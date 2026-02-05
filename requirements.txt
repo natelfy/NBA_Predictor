@@ -1,6 +1,18 @@
-nba_api
-pandas
-numpy
-scikit-learn
-streamlit
-joblib
+# NBA Oracle - Requirements
+# Installation: pip install -r requirements.txt
+
+# Data & API
+nba_api>=1.4
+pandas>=2.0
+numpy>=1.24
+
+# Machine Learning
+scikit-learn>=1.3
+joblib>=1.3
+
+# Interface
+streamlit>=1.28
+
+# Optionnel (pour de meilleurs modèles)
+# xgboost>=2.0
+# lightgbm>=4.0
