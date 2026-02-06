@@ -1,0 +1,75 @@
+name: NBA Oracle - Mise à jour quotidienne
+
+# ⏰ Exécution automatique tous les jours à 10h UTC (11h Paris, 5h New York)
+# C'est le meilleur moment: après les matchs de la nuit, avant les matchs du soir
+on:
+  schedule:
+    - cron: '0 10 * * *'  # Tous les jours à 10h UTC
+  
+  # Permet aussi de lancer manuellement depuis GitHub
+  workflow_dispatch:
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # 1. Récupérer le code
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      # 2. Installer Python
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      # 3. Installer les dépendances
+      - name: 📦 Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      # 4. Collecter les nouvelles données NBA
+      - name: 🏀 Collecter données NBA
+        run: python src/get_data.py
+        continue-on-error: true  # Continue même si l'API NBA a un souci
+      
+      # 5. Traiter les données (ELO, features, matchups)
+      - name: ⚙️ Traiter les données
+        run: python src/process_data.py
+      
+      # 6. Entraîner le modèle
+      - name: 🧠 Entraîner le modèle
+        run: python src/train_model.py
+      
+      # 7. Sauvegarder les changements
+      - name: 💾 Commit et push
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # Ajouter les fichiers modifiés
+          git add data/ models/
+          
+          # Commit seulement si il y a des changements
+          git diff --staged --quiet || git commit -m "🔄 Mise à jour automatique $(date +'%Y-%m-%d')"
+          
+          # Push
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      # 8. Notification de succès (optionnel)
+      - name: ✅ Résumé
+        run: |
+          echo "=========================================="
+          echo "✅ Mise à jour terminée avec succès!"
+          echo "📅 Date: $(date)"
+          echo "=========================================="
+          echo ""
+          echo "📊 Métriques du modèle:"
+          cat models/metrics.txt || echo "Pas de métriques"
