@@ -1,8 +1,11 @@
 """
-NBA Oracle - Application avec Tracking
-=======================================
+NBA Oracle - Application avec TTFL
+===================================
 
-Version avec suivi des prédictions intégré.
+Interface complète avec:
+- Prédictions des matchs NBA
+- Tracking des prédictions
+- Module TTFL (picks quotidiens)
 """
 
 import streamlit as st
@@ -30,6 +33,13 @@ except ImportError:
     TRACKER_AVAILABLE = False
 
 try:
+    from src.ttfl_predictor import TTFLPredictor, suggest_strategy
+    from src.ttfl_collector import TTFLDeckManager
+    TTFL_AVAILABLE = True
+except ImportError:
+    TTFL_AVAILABLE = False
+
+try:
     from nba_api.stats.endpoints import scoreboardv2
     NBA_API_AVAILABLE = True
 except ImportError:
@@ -40,7 +50,7 @@ except ImportError:
 # =============================================================================
 
 st.set_page_config(
-    page_title="🏀 NBA Oracle",
+    page_title="🏀 NBA Oracle + TTFL",
     page_icon="🏀",
     layout="wide"
 )
@@ -99,7 +109,7 @@ def load_features():
 
 
 # =============================================================================
-# PRÉDICTION
+# PRÉDICTION MATCHS
 # =============================================================================
 
 def predict_match(model, home_stats, away_stats, home_rest, away_rest, features_list):
@@ -152,10 +162,14 @@ def match_odds(odds_df, home_name, away_name):
 
 def main():
     # Header
-    st.title("🏀 NBA Oracle")
+    st.title("🏀 NBA Oracle + TTFL")
     
     # Tabs
-    tab1, tab2 = st.tabs(["📊 Prédictions du jour", "📈 Performance (Tracking)"])
+    if TTFL_AVAILABLE:
+        tab1, tab2, tab3 = st.tabs(["📊 Prédictions Matchs", "🎯 TTFL Picks", "📈 Tracking"])
+    else:
+        tab1, tab2 = st.tabs(["📊 Prédictions Matchs", "📈 Tracking"])
+        tab3 = None
     
     # Chargement
     model = load_model()
@@ -168,159 +182,266 @@ def main():
     tracker = PredictionTracker() if TRACKER_AVAILABLE else None
     
     # =================================
-    # TAB 1: PRÉDICTIONS
+    # TAB 1: PRÉDICTIONS MATCHS
     # =================================
     with tab1:
         st.markdown(f"**{datetime.now().strftime('%A %d %B %Y')}**")
         
         if model is None:
             st.error("❌ Modèle non trouvé")
-            st.stop()
-        
-        if team_stats is None:
+        elif team_stats is None:
             st.error("❌ Données non trouvées")
-            st.stop()
-        
-        if games.empty:
+        elif games.empty:
             st.warning("📅 Aucun match aujourd'hui")
-            st.stop()
-        
-        # Bouton pour sauvegarder les prédictions
-        col_info, col_save = st.columns([3, 1])
-        with col_info:
-            st.success(f"✅ {len(games)} match(s) | {'🎰 Cotes dispo' if odds_data is not None else '⚠️ Pas de cotes'}")
-        with col_save:
-            if tracker and st.button("💾 Sauvegarder prédictions"):
-                save_predictions_today(tracker, model, team_stats, last_dates, games, features_list, odds_data)
-                st.success("✅ Prédictions sauvegardées!")
-        
-        st.markdown("---")
-        
-        # Afficher les matchs
-        for _, game in games.iterrows():
-            home_id = game['HOME_TEAM_ID']
-            away_id = game['VISITOR_TEAM_ID']
-            
-            if home_id not in team_stats.index or away_id not in team_stats.index:
-                continue
-            
-            home_data = team_stats.loc[home_id]
-            away_data = team_stats.loc[away_id]
-            home_name = home_data.get('TEAM_NAME', f'Team {home_id}')
-            away_name = away_data.get('TEAM_NAME', f'Team {away_id}')
-            
-            home_rest = (datetime.now() - last_dates[home_id]).days
-            away_rest = (datetime.now() - last_dates[away_id]).days
-            
-            prob_home, _ = predict_match(model, home_data.to_dict(), away_data.to_dict(), home_rest, away_rest, features_list)
-            market_home, _ = match_odds(odds_data, home_name, away_name)
-            
-            # Affichage
-            col1, col2, col3 = st.columns([2, 1.5, 2])
-            
-            with col1:
-                st.markdown(f"### 🏃 {away_name}")
-                st.metric("ELO", int(away_data.get('ELO_PRE', 1500)))
-            
-            with col2:
-                winner = home_name if prob_home > 0.5 else away_name
-                conf = max(prob_home, 1 - prob_home)
-                color = "#28a745" if conf >= 0.65 else "#ffc107" if conf >= 0.55 else "#6c757d"
-                
-                st.markdown(f"""
-                    <div style='text-align: center; background: #1a1a2e; padding: 15px; border-radius: 10px; margin-top: 20px;'>
-                        <p style='margin: 0; color: #888;'>🤖 PRÉDICTION</p>
-                        <h2 style='color: {color}; margin: 5px 0;'>{conf:.0%}</h2>
-                        <p>→ {winner.split()[-1]}</p>
-                    </div>
-                """, unsafe_allow_html=True)
-                
-                if market_home:
-                    edge = prob_home - market_home
-                    if abs(edge) >= 0.05:
-                        vt = home_name.split()[-1] if edge > 0 else away_name.split()[-1]
-                        st.markdown(f"<div style='text-align:center;color:#28a745;'>💎 VALUE: {vt} +{abs(edge):.1%}</div>", unsafe_allow_html=True)
-            
-            with col3:
-                st.markdown(f"### 🏠 {home_name}")
-                st.metric("ELO", int(home_data.get('ELO_PRE', 1500)))
+        else:
+            # Bouton sauvegarder
+            col_info, col_save = st.columns([3, 1])
+            with col_info:
+                st.success(f"✅ {len(games)} match(s) | {'🎰 Cotes dispo' if odds_data is not None else '⚠️ Pas de cotes'}")
+            with col_save:
+                if tracker and st.button("💾 Sauvegarder prédictions"):
+                    save_predictions_today(tracker, model, team_stats, last_dates, games, features_list, odds_data)
+                    st.success("✅ Sauvegardé!")
             
             st.markdown("---")
+            
+            # Matchs
+            for _, game in games.iterrows():
+                home_id = game['HOME_TEAM_ID']
+                away_id = game['VISITOR_TEAM_ID']
+                
+                if home_id not in team_stats.index or away_id not in team_stats.index:
+                    continue
+                
+                home_data = team_stats.loc[home_id]
+                away_data = team_stats.loc[away_id]
+                home_name = home_data.get('TEAM_NAME', f'Team {home_id}')
+                away_name = away_data.get('TEAM_NAME', f'Team {away_id}')
+                
+                home_rest = (datetime.now() - last_dates[home_id]).days
+                away_rest = (datetime.now() - last_dates[away_id]).days
+                
+                prob_home, _ = predict_match(model, home_data.to_dict(), away_data.to_dict(), home_rest, away_rest, features_list)
+                market_home, _ = match_odds(odds_data, home_name, away_name)
+                
+                col1, col2, col3 = st.columns([2, 1.5, 2])
+                
+                with col1:
+                    st.markdown(f"### 🏃 {away_name}")
+                    st.metric("ELO", int(away_data.get('ELO_PRE', 1500)))
+                
+                with col2:
+                    winner = home_name if prob_home > 0.5 else away_name
+                    conf = max(prob_home, 1 - prob_home)
+                    color = "#28a745" if conf >= 0.65 else "#ffc107" if conf >= 0.55 else "#6c757d"
+                    
+                    st.markdown(f"""
+                        <div style='text-align: center; background: #1a1a2e; padding: 15px; border-radius: 10px;'>
+                            <p style='margin: 0; color: #888;'>🤖 PRÉDICTION</p>
+                            <h2 style='color: {color}; margin: 5px 0;'>{conf:.0%}</h2>
+                            <p>→ {winner.split()[-1]}</p>
+                        </div>
+                    """, unsafe_allow_html=True)
+                
+                with col3:
+                    st.markdown(f"### 🏠 {home_name}")
+                    st.metric("ELO", int(home_data.get('ELO_PRE', 1500)))
+                
+                st.markdown("---")
     
     # =================================
-    # TAB 2: TRACKING
+    # TAB 2 ou 3: TTFL
     # =================================
-    with tab2:
-        st.header("📈 Performance du modèle")
+    if TTFL_AVAILABLE and tab3:
+        with tab2:
+            render_ttfl_tab()
+    
+    # =================================
+    # TAB TRACKING
+    # =================================
+    tracking_tab = tab3 if TTFL_AVAILABLE else tab2
+    with tracking_tab:
+        render_tracking_tab(tracker)
+
+
+def render_ttfl_tab():
+    """Affiche l'onglet TTFL."""
+    
+    st.header("🎯 TTFL - Recommandations du soir")
+    
+    # Initialiser le predictor
+    predictor = TTFLPredictor()
+    deck_manager = TTFLDeckManager()
+    
+    # Sidebar: Stats du deck
+    with st.sidebar:
+        st.markdown("### 📊 Mon Deck TTFL")
+        stats = deck_manager.get_stats()
+        st.metric("Joueurs utilisés (30j)", stats['picks_30_days'])
+        st.metric("Joueurs bloqués", stats['players_locked'])
+        st.metric("Total saison", stats['players_used_season'])
         
-        if not TRACKER_AVAILABLE:
-            st.warning("⚠️ Module tracker non disponible")
-            st.stop()
+        # Stratégie
+        strategy = suggest_strategy(deck_manager)
+        st.markdown(strategy)
+    
+    # Options
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        exclude_used = st.checkbox("Exclure joueurs en cooldown", value=True)
+    with col2:
+        min_minutes = st.slider("Minutes minimum", 15, 35, 20)
+    with col3:
+        top_n = st.slider("Nombre de joueurs", 10, 30, 15)
+    
+    # Bouton de génération
+    if st.button("🔄 Générer les recommandations", type="primary"):
+        with st.spinner("Analyse en cours..."):
+            recs = predictor.get_tonight_recommendations(
+                top_n=top_n,
+                exclude_used=exclude_used,
+                min_minutes=min_minutes
+            )
         
-        if tracker is None:
-            tracker = PredictionTracker()
-        
-        # Stats
-        stats = tracker.get_stats(days=30)
-        
-        if stats['total_predictions'] == 0:
-            st.info("📭 Aucune prédiction trackée pour l'instant.")
-            st.markdown("""
-            **Comment ça marche :**
-            1. Clique sur "💾 Sauvegarder prédictions" dans l'onglet Prédictions
-            2. Le lendemain, les résultats seront automatiquement récupérés
-            3. Reviens ici pour voir ta vraie performance !
-            """)
+        if recs.empty:
+            st.warning("⚠️ Pas de match ce soir ou données indisponibles")
         else:
-            # Métriques principales
-            col1, col2, col3, col4 = st.columns(4)
-            col1.metric("🎯 Prédictions", stats['total_predictions'])
-            col2.metric("✅ Correctes", stats['correct'])
-            col3.metric("📈 Accuracy", f"{stats['accuracy']:.1%}")
-            col4.metric("📅 Période", f"{stats['period_days']} jours")
-            
-            st.markdown("---")
-            
-            # Par confiance
-            st.subheader("📊 Par niveau de confiance")
-            
-            if stats['by_confidence']:
-                conf_data = []
-                for label, data in stats['by_confidence'].items():
-                    conf_data.append({
-                        'Confiance': label,
-                        'Matchs': data['count'],
-                        'Correctes': data['correct'],
-                        'Accuracy': f"{data['accuracy']:.1%}"
-                    })
-                st.dataframe(pd.DataFrame(conf_data), use_container_width=True)
-            
-            # Value bets
-            if stats['value_bets']:
-                st.subheader("💎 Value Bets")
-                vb = stats['value_bets']
-                c1, c2, c3 = st.columns(3)
-                c1.metric("Nombre", vb['count'])
-                c2.metric("Accuracy", f"{vb['accuracy']:.1%}")
-                c3.metric("Edge moyen", f"{vb['avg_edge']:.1%}")
-            
-            # Historique récent
-            st.subheader("📋 Dernières prédictions")
-            recent = tracker.get_recent_predictions(days=7)
-            if len(recent) > 0:
-                display_cols = ['date', 'home_team', 'away_team', 'pred_winner', 'pred_confidence', 'actual_winner', 'correct']
-                display = recent[[c for c in display_cols if c in recent.columns]].copy()
-                display['correct'] = display['correct'].map({True: '✅', False: '❌', None: '⏳'})
-                display['pred_confidence'] = display['pred_confidence'].apply(lambda x: f"{x:.0%}" if pd.notna(x) else '')
-                st.dataframe(display, use_container_width=True)
+            st.session_state['ttfl_recs'] = recs
+    
+    # Afficher les recommandations
+    if 'ttfl_recs' in st.session_state and not st.session_state['ttfl_recs'].empty:
+        recs = st.session_state['ttfl_recs']
         
-        # Bouton pour mettre à jour les résultats
         st.markdown("---")
-        if st.button("🔄 Mettre à jour les résultats d'hier"):
-            with st.spinner("Récupération des résultats..."):
-                tracker.update_results()
-            st.success("✅ Résultats mis à jour!")
-            st.rerun()
+        
+        # TOP PICKS
+        st.subheader("🏆 TOP PICKS CE SOIR")
+        
+        # Tableau principal
+        display_cols = ['rank', 'player_name', 'team', 'home_away', 
+                       'predicted_score', 'season_avg', 'risk_emoji', 'minutes']
+        
+        display_df = recs[display_cols].copy()
+        display_df.columns = ['#', 'Joueur', 'Team', 'Loc', 'Prédit', 'Moy.', 'Risque', 'Min']
+        
+        st.dataframe(
+            display_df,
+            use_container_width=True,
+            hide_index=True,
+            column_config={
+                '#': st.column_config.NumberColumn(width="small"),
+                'Joueur': st.column_config.TextColumn(width="medium"),
+                'Team': st.column_config.TextColumn(width="small"),
+                'Loc': st.column_config.TextColumn(width="small"),
+                'Prédit': st.column_config.NumberColumn(format="%.1f"),
+                'Moy.': st.column_config.NumberColumn(format="%.1f"),
+                'Risque': st.column_config.TextColumn(width="small"),
+                'Min': st.column_config.NumberColumn(format="%.0f"),
+            }
+        )
+        
+        # Analyses spécifiques
+        col1, col2, col3 = st.columns(3)
+        
+        with col1:
+            st.markdown("### 🛡️ SAFE PICKS")
+            st.caption("Consistants, faible variance")
+            safe = predictor.get_safe_picks(recs, top_n=3)
+            for _, row in safe.iterrows():
+                st.markdown(f"**{row['player_name']}** ({row['team']})")
+                st.caption(f"Prédit: {row['predicted_score']:.1f} | σ={row['std_dev']:.1f}")
+        
+        with col2:
+            st.markdown("### 💎 VALUE PICKS")
+            st.caption("Sous-cotés, bon potentiel")
+            value = predictor.get_value_picks(recs, top_n=3)
+            for _, row in value.iterrows():
+                st.markdown(f"**{row['player_name']}** ({row['team']})")
+                st.caption(f"Prédit: {row['predicted_score']:.1f} | Moy: {row['season_avg']:.1f}")
+        
+        with col3:
+            st.markdown("### 🚀 HIGH CEILING")
+            st.caption("Potentiel d'explosion")
+            ceiling = predictor.get_high_ceiling_picks(recs, top_n=3)
+            for _, row in ceiling.iterrows():
+                st.markdown(f"**{row['player_name']}** ({row['team']})")
+                st.caption(f"Ceiling: {row['confidence_high']:.1f}")
+        
+        st.markdown("---")
+        
+        # Enregistrer un pick
+        st.subheader("📝 Enregistrer mon pick")
+        
+        col1, col2 = st.columns([3, 1])
+        
+        with col1:
+            selected_player = st.selectbox(
+                "Joueur sélectionné ce soir",
+                options=recs['player_name'].tolist(),
+                index=0
+            )
+        
+        with col2:
+            if st.button("✅ Valider le pick"):
+                player_row = recs[recs['player_name'] == selected_player].iloc[0]
+                deck_manager.add_pick(
+                    player_id=int(player_row['player_id']),
+                    player_name=selected_player
+                )
+                st.success(f"✅ {selected_player} ajouté à ton deck!")
+                st.balloons()
+        
+        # Historique des picks récents
+        st.markdown("---")
+        st.subheader("📋 Mes picks récents")
+        
+        recent_picks = deck_manager.get_recent_picks(30)
+        if recent_picks:
+            picks_df = pd.DataFrame(recent_picks)
+            picks_df = picks_df[['date', 'player_name', 'days_ago', 'available_in']]
+            picks_df.columns = ['Date', 'Joueur', 'Il y a (j)', 'Dispo dans (j)']
+            st.dataframe(picks_df, use_container_width=True, hide_index=True)
+        else:
+            st.info("Aucun pick enregistré ces 30 derniers jours")
+
+
+def render_tracking_tab(tracker):
+    """Affiche l'onglet tracking."""
+    
+    st.header("📈 Performance du modèle")
+    
+    if not TRACKER_AVAILABLE or tracker is None:
+        st.warning("⚠️ Module tracker non disponible")
+        return
+    
+    stats = tracker.get_stats(days=30)
+    
+    if stats['total_predictions'] == 0:
+        st.info("📭 Aucune prédiction trackée pour l'instant.")
+        st.markdown("""
+        **Comment ça marche :**
+        1. Va dans l'onglet "Prédictions Matchs"
+        2. Clique sur "💾 Sauvegarder prédictions"
+        3. Le lendemain, les résultats seront récupérés automatiquement
+        """)
+    else:
+        col1, col2, col3, col4 = st.columns(4)
+        col1.metric("🎯 Prédictions", stats['total_predictions'])
+        col2.metric("✅ Correctes", stats['correct'])
+        col3.metric("📈 Accuracy", f"{stats['accuracy']:.1%}")
+        col4.metric("📅 Période", f"{stats['period_days']} jours")
+        
+        if stats['by_confidence']:
+            st.subheader("Par niveau de confiance")
+            conf_data = [{'Confiance': k, 'Matchs': v['count'], 'Accuracy': f"{v['accuracy']:.1%}"} 
+                        for k, v in stats['by_confidence'].items()]
+            st.dataframe(pd.DataFrame(conf_data), use_container_width=True)
+    
+    if st.button("🔄 Mettre à jour les résultats d'hier"):
+        with st.spinner("Récupération..."):
+            tracker.update_results()
+        st.success("✅ Mis à jour!")
+        st.rerun()
 
 
 def save_predictions_today(tracker, model, team_stats, last_dates, games, features_list, odds_data):
