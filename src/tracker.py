@@ -1,11 +1,11 @@
 """
-NBA Oracle - Tracking des Prédictions (CORRIGÉ)
-================================================
+NBA Oracle - Tracking des Prédictions (CORRIGÉ v2)
+===================================================
 
-Ce module permet de :
-1. Sauvegarder les prédictions AVANT les matchs
-2. Récupérer les résultats APRÈS les matchs
-3. Calculer les métriques de performance réelle
+FIXES:
+- Meilleur matching des noms d'équipes
+- Debug logs pour diagnostic
+- Gestion des cas où l'API ne retourne pas de données
 """
 
 import pandas as pd
@@ -28,6 +28,74 @@ except ImportError:
 
 TRACKING_FILE = 'data/predictions_history.csv'
 
+# Mapping des noms d'équipes (ton format → format NBA API)
+TEAM_NAME_VARIANTS = {
+    # Format: 'mot_clé': 'nom_complet_nba_api'
+    'lakers': 'Lakers',
+    'celtics': 'Celtics',
+    'warriors': 'Warriors',
+    'nets': 'Nets',
+    'knicks': 'Knicks',
+    'bulls': 'Bulls',
+    'heat': 'Heat',
+    'bucks': 'Bucks',
+    'sixers': '76ers',
+    '76ers': '76ers',
+    'suns': 'Suns',
+    'mavericks': 'Mavericks',
+    'mavs': 'Mavericks',
+    'clippers': 'Clippers',
+    'nuggets': 'Nuggets',
+    'jazz': 'Jazz',
+    'blazers': 'Trail Blazers',
+    'trail blazers': 'Trail Blazers',
+    'timberwolves': 'Timberwolves',
+    'wolves': 'Timberwolves',
+    'pelicans': 'Pelicans',
+    'grizzlies': 'Grizzlies',
+    'spurs': 'Spurs',
+    'rockets': 'Rockets',
+    'thunder': 'Thunder',
+    'kings': 'Kings',
+    'raptors': 'Raptors',
+    'pacers': 'Pacers',
+    'hawks': 'Hawks',
+    'hornets': 'Hornets',
+    'wizards': 'Wizards',
+    'magic': 'Magic',
+    'pistons': 'Pistons',
+    'cavaliers': 'Cavaliers',
+    'cavs': 'Cavaliers',
+}
+
+
+def normalize_team_name(name: str) -> str:
+    """Extrait le nom d'équipe normalisé."""
+    if not name:
+        return ""
+    
+    name_lower = name.lower().strip()
+    
+    # Chercher dans les variantes connues
+    for key, value in TEAM_NAME_VARIANTS.items():
+        if key in name_lower:
+            return value.lower()
+    
+    # Sinon, prendre le dernier mot (ex: "Los Angeles Lakers" → "lakers")
+    return name_lower.split()[-1]
+
+
+def teams_match(team1: str, team2: str) -> bool:
+    """Vérifie si deux noms d'équipes correspondent."""
+    norm1 = normalize_team_name(team1)
+    norm2 = normalize_team_name(team2)
+    
+    if not norm1 or not norm2:
+        return False
+    
+    # Match exact ou contenu
+    return norm1 == norm2 or norm1 in norm2 or norm2 in norm1
+
 
 # =============================================================================
 # CLASSE PRINCIPALE
@@ -44,7 +112,6 @@ class PredictionTracker:
         if os.path.exists(TRACKING_FILE):
             try:
                 df = pd.read_csv(TRACKING_FILE)
-                # Convertir la colonne date en datetime
                 if 'date' in df.columns:
                     df['date'] = pd.to_datetime(df['date'], errors='coerce')
                 return df
@@ -70,22 +137,15 @@ class PredictionTracker:
         self.history.to_csv(TRACKING_FILE, index=False)
     
     def save_predictions(self, predictions: List[Dict]):
-        """
-        Sauvegarde les prédictions du jour.
-        
-        Args:
-            predictions: Liste de dicts avec les prédictions
-        """
+        """Sauvegarde les prédictions du jour."""
         today = datetime.now().date()
         today_ts = pd.Timestamp(today)
         
         for pred in predictions:
-            # Calculer le gagnant prédit
             pred_home_prob = pred['pred_home_prob']
             pred_winner = pred['home_team'] if pred_home_prob > 0.5 else pred['away_team']
             pred_confidence = max(pred_home_prob, 1 - pred_home_prob)
             
-            # Value bet?
             market_prob = pred.get('market_home_prob')
             value_bet = False
             value_edge = 0.0
@@ -96,7 +156,6 @@ class PredictionTracker:
                     value_bet = True
                     value_edge = edge
             
-            # Nouveau row
             new_row = {
                 'date': today_ts,
                 'game_id': str(pred.get('game_id', '')),
@@ -117,20 +176,19 @@ class PredictionTracker:
             
             # Éviter les doublons
             if len(self.history) > 0 and 'date' in self.history.columns:
-                # S'assurer que les dates sont comparables
                 self.history['date'] = pd.to_datetime(self.history['date'], errors='coerce')
                 
+                # Match par date + équipes (plus fiable que game_id)
                 mask = (self.history['date'] == today_ts) & \
-                       (self.history['game_id'] == str(pred.get('game_id', '')))
+                       (self.history['home_team'] == pred['home_team']) & \
+                       (self.history['away_team'] == pred['away_team'])
                 
                 if mask.any():
-                    # Mettre à jour les colonnes de prédiction uniquement
                     for col in ['pred_home_prob', 'pred_winner', 'pred_confidence', 
                                'market_home_prob', 'value_bet', 'value_edge']:
                         self.history.loc[mask, col] = new_row[col]
                     continue
             
-            # Ajouter nouvelle ligne
             self.history = pd.concat([
                 self.history, 
                 pd.DataFrame([new_row])
@@ -157,7 +215,6 @@ class PredictionTracker:
             print("   Aucune prédiction dans l'historique")
             return
         
-        # Convertir les dates
         self.history['date'] = pd.to_datetime(self.history['date'], errors='coerce')
         
         # Matchs non résolus de cette date
@@ -170,7 +227,9 @@ class PredictionTracker:
             print("   Aucun match en attente pour cette date")
             return
         
-        # Récupérer les résultats
+        print(f"   {len(pending)} matchs en attente")
+        
+        # Récupérer les résultats via NBA API
         try:
             board = scoreboardv2.ScoreboardV2(
                 game_date=target_date.strftime('%Y-%m-%d'),
@@ -178,8 +237,15 @@ class PredictionTracker:
             )
             games = board.game_header.get_data_frame()
             line_scores = board.line_score.get_data_frame()
+            
+            print(f"   {len(games)} matchs trouvés dans l'API")
+            
         except Exception as e:
             print(f"   ⚠️ Erreur API: {e}")
+            return
+        
+        if games.empty:
+            print("   Aucun match retourné par l'API")
             return
         
         updated = 0
@@ -188,64 +254,82 @@ class PredictionTracker:
             home_team = row['home_team']
             away_team = row['away_team']
             
+            print(f"   Recherche: {away_team} @ {home_team}")
+            
             # Chercher dans les résultats
             for _, game in games.iterrows():
-                game_scores = line_scores[line_scores['GAME_ID'] == game['GAME_ID']]
+                game_id = game['GAME_ID']
+                game_scores = line_scores[line_scores['GAME_ID'] == game_id]
                 
                 if len(game_scores) < 2:
                     continue
                 
-                home_row = game_scores[game_scores['TEAM_ID'] == game['HOME_TEAM_ID']]
-                away_row = game_scores[game_scores['TEAM_ID'] == game['VISITOR_TEAM_ID']]
+                # Récupérer les infos des deux équipes
+                home_team_id = game['HOME_TEAM_ID']
+                away_team_id = game['VISITOR_TEAM_ID']
+                
+                home_row = game_scores[game_scores['TEAM_ID'] == home_team_id]
+                away_row = game_scores[game_scores['TEAM_ID'] == away_team_id]
                 
                 if len(home_row) == 0 or len(away_row) == 0:
                     continue
                 
-                home_score = home_row['PTS'].values[0]
-                away_score = away_row['PTS'].values[0]
+                # Construire les noms d'équipe depuis l'API
+                api_home_name = ""
+                api_away_name = ""
                 
-                if pd.isna(home_score) or pd.isna(away_score):
-                    continue
+                if 'TEAM_CITY' in home_row.columns and 'TEAM_NAME' in home_row.columns:
+                    api_home_name = f"{home_row['TEAM_CITY'].values[0]} {home_row['TEAM_NAME'].values[0]}"
+                    api_away_name = f"{away_row['TEAM_CITY'].values[0]} {away_row['TEAM_NAME'].values[0]}"
+                elif 'TEAM_NAME' in home_row.columns:
+                    api_home_name = home_row['TEAM_NAME'].values[0]
+                    api_away_name = away_row['TEAM_NAME'].values[0]
                 
-                # Matching sur nom d'équipe
-                api_home_name = home_row['TEAM_CITY'].values[0] + ' ' + home_row['TEAM_NAME'].values[0] \
-                    if 'TEAM_CITY' in home_row.columns else str(home_row['TEAM_ID'].values[0])
+                # Vérifier si c'est le bon match
+                home_match = teams_match(home_team, api_home_name)
+                away_match = teams_match(away_team, api_away_name)
                 
-                home_match = (home_team.split()[-1].lower() in api_home_name.lower())
-                
-                if home_match:
+                if home_match and away_match:
+                    home_score = home_row['PTS'].values[0]
+                    away_score = away_row['PTS'].values[0]
+                    
+                    if pd.isna(home_score) or pd.isna(away_score):
+                        print(f"      ⏳ Match pas encore terminé")
+                        continue
+                    
+                    home_score = int(home_score)
+                    away_score = int(away_score)
+                    
                     actual_winner = home_team if home_score > away_score else away_team
                     correct = (actual_winner == row['pred_winner'])
                     
                     self.history.loc[idx, 'actual_winner'] = actual_winner
-                    self.history.loc[idx, 'home_score'] = int(home_score)
-                    self.history.loc[idx, 'away_score'] = int(away_score)
+                    self.history.loc[idx, 'home_score'] = home_score
+                    self.history.loc[idx, 'away_score'] = away_score
                     self.history.loc[idx, 'correct'] = correct
                     self.history.loc[idx, 'resolved'] = True
                     
                     status = "✅" if correct else "❌"
-                    print(f"   {status} {away_team} @ {home_team}: {int(away_score)}-{int(home_score)}")
+                    print(f"      {status} {away_score}-{home_score} → {actual_winner.split()[-1]}")
                     
                     updated += 1
                     break
+            else:
+                print(f"      ⚠️ Match non trouvé dans l'API")
         
         self._save_history()
-        print(f"\n📊 {updated} résultats mis à jour")
+        print(f"\n📊 {updated}/{len(pending)} résultats mis à jour")
     
     def get_stats(self, days: int = 30) -> Dict:
         """Calcule les statistiques de performance."""
         
-        # Vérifier si l'historique est vide
         if len(self.history) == 0:
             return {
                 'total_predictions': 0,
                 'message': 'Pas encore de données'
             }
         
-        # S'assurer que les dates sont bien formatées
         self.history['date'] = pd.to_datetime(self.history['date'], errors='coerce')
-        
-        # Filtrer les lignes avec des dates valides
         valid_dates = self.history['date'].notna()
         
         if not valid_dates.any():
@@ -254,17 +338,14 @@ class PredictionTracker:
                 'message': 'Pas de dates valides'
             }
         
-        # Cutoff date
         cutoff = pd.Timestamp(datetime.now() - timedelta(days=days))
         
-        # Filtrer: résolu ET date >= cutoff
         resolved_mask = (self.history['resolved'] == True)
         date_mask = (self.history['date'] >= cutoff)
         
         resolved = self.history[valid_dates & resolved_mask & date_mask].copy()
         
         if len(resolved) == 0:
-            # Compter les prédictions en attente
             pending = self.history[valid_dates & ~resolved_mask]
             return {
                 'total_predictions': 0,
@@ -272,10 +353,7 @@ class PredictionTracker:
                 'message': f'{len(pending)} prédictions en attente de résultat'
             }
         
-        # Métriques globales
         total = len(resolved)
-        
-        # S'assurer que 'correct' est booléen
         resolved['correct'] = resolved['correct'].astype(bool)
         correct = resolved['correct'].sum()
         accuracy = correct / total if total > 0 else 0
@@ -383,12 +461,20 @@ if __name__ == "__main__":
     parser.add_argument('--update', action='store_true', help='Mettre à jour les résultats')
     parser.add_argument('--stats', action='store_true', help='Afficher les stats')
     parser.add_argument('--days', type=int, default=30, help='Nombre de jours')
+    parser.add_argument('--debug', action='store_true', help='Mode debug')
     
     args = parser.parse_args()
     
     tracker = PredictionTracker()
     
-    if args.update:
+    if args.debug:
+        print("📋 Prédictions en attente:")
+        pending = tracker.get_pending_predictions()
+        if len(pending) > 0:
+            print(pending[['date', 'home_team', 'away_team', 'pred_winner']].to_string())
+        else:
+            print("   Aucune")
+    elif args.update:
         tracker.update_results()
     elif args.stats:
         tracker.print_stats(days=args.days)
