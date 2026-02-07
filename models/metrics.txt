@@ -1,7 +1,5 @@
-Model: Logistic Regression (Optimized)
-Accuracy: 0.6313
-ROC-AUC: 0.6794
-Brier: 0.2246
+Model: Logistic Regression
+Accuracy: 0.6191
+ROC-AUC: 0.6747
+Brier: 0.2261
 Baseline: 0.5448
-Optimized: True
-Trials: 200
