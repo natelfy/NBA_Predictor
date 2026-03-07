@@ -1,5 +1,5 @@
 Model: Random Forest
-Accuracy: 0.5947
-ROC-AUC: 0.6670
-Brier: 0.2299
-Baseline: 0.5272
+Accuracy: 0.5997
+ROC-AUC: 0.6724
+Brier: 0.2281
+Baseline: 0.5255
