@@ -1,5 +1,5 @@
-Model: Random Forest
-Accuracy: 0.5997
-ROC-AUC: 0.6724
-Brier: 0.2281
-Baseline: 0.5255
+Model: Logistic Regression
+Accuracy: 0.6341
+ROC-AUC: 0.6846
+Brier: 0.2234
+Baseline: 0.5409
