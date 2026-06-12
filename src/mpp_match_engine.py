@@ -37,6 +37,14 @@ def result_probs(mat):
     p_b = sum(mat[i][j] for i in range(n) for j in range(n) if i < j)
     return p_a, p_d, p_b
 
+def market_probs(cotes):
+    """Probabilites implicites du MARCHE depuis les COTES DECIMALES (1/cote, devigge).
+    cotes : dict {'a','draw','b'} en cotes decimales (ex 1.83 / 3.65 / 4.70).
+    Requise par mpp_batch.py pour calculer le levier de differenciation."""
+    raw = {k: 1.0 / cotes[k] for k in ('a', 'draw', 'b')}
+    s = sum(raw.values())
+    return {k: raw[k] / s for k in raw}
+
 # ------------------------- FORCES -------------------------
 
 def load_ratings():
@@ -158,5 +166,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 

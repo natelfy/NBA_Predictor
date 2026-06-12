@@ -1,99 +1,139 @@
 """
-Football Oracle - Mode batch + placement du bonus x2 (MPP)
-==========================================================
+Football Oracle - Mode batch + placement du bonus x2 (MPP)  [v2 lisible + rarete]
+================================================================================
 
-Traite une journee de matchs d'un coup et te dit OU poser ton bonus x2.
+Traite une journee de matchs et te dit, par match : QUOI jouer (selon ton mode),
+le SCORE (modal + version "rarete" sous-cotee), et OU poser ton x2.
 
-VERITE : EV plate -> doubler n'importe quel match ajoute la meme esperance.
-Le x2 est un AMPLIFICATEUR DE VARIANCE, pas un generateur de points. On le
-place donc selon ta position en ligue :
-  - leader      : x2 sur le favori le plus sur (amplifier avec le peloton).
-  - challenger  : x2 sur le meilleur levier de differenciation (bombe de rattrapage).
-  - equilibre   : x2 sur le meilleur coup de differenciation (un swing calcule).
+RAPPEL x2 : il est UNIQUE sur tout le tournoi. La ligne "BONUS x2" ci-dessous
+designe le meilleur spot SI tu decides de le depenser aujourd'hui -- pas un x2
+quotidien. Regle : jamais sur un favori, sur un pick qui sort du lot, et utilise-le.
 
-[A VERIFIER] On ne sait pas ou les ADVERSAIRES posent leur x2 (donnee non dispo).
-On optimise donc TA strategie, pas la guerre des x2.
+SCORE "rarete" : on part du score le plus probable (Poisson) puis on penalise les
+scores que les foules sur-jouent (1-0, 1-1, 2-0...). Sans le % par score de MPP,
+c'est une HEURISTIQUE de jugement, pas un optimum chiffre -> a toi de trancher.
 
-ENTREE : un CSV (team_a,team_b,cote_a,cote_draw,cote_b[,crowd_a,crowd_draw,crowd_b,host])
-Usage : python src/mpp_batch.py matches.csv --mode challenger
+ENTREE CSV : team_a,team_b,cote_a,cote_draw,cote_b[,crowd_a,crowd_draw,crowd_b,host]
+  -> cote_* = COTES DECIMALES reelles (1.83 / 3.65 / 4.70), PAS les points MPP.
+Usage : python src/mpp_batch.py matchday.csv --mode challenger
 """
-import os, sys, csv, argparse
+import os, csv, argparse
 from mpp_match_engine import (load_ratings, teams_available, build_lambdas,
                               market_probs, score_matrix, result_probs)
 
+# popularite "humaine" des scorelines (ce que la foule sur-joue). defaut 0.2
+POP = {(1,0):1.0,(0,1):1.0,(1,1):1.0,(2,1):0.8,(1,2):0.8,(2,0):0.7,(0,2):0.7,
+       (0,0):0.7,(3,1):0.45,(1,3):0.45,(3,0):0.4,(0,3):0.4,(2,2):0.4}
+ALPHA = 0.70  # force du nudge anti-foule
+
+def _ok(outcome, i, j):
+    return (outcome=='a' and i>j) or (outcome=='draw' and i==j) or (outcome=='b' and i<j)
+
 def modal_score(mat, outcome, mg):
-    best, bp = (0, 0), -1.0
-    for i in range(mg + 1):
-        for j in range(mg + 1):
-            ok = (outcome == 'a' and i > j) or (outcome == 'draw' and i == j) or (outcome == 'b' and i < j)
-            if ok and mat[i][j] > bp:
-                bp, best = mat[i][j], (i, j)
-    return f"{best[0]}-{best[1]}"
+    best, bp = (0,0), -1.0
+    for i in range(mg+1):
+        for j in range(mg+1):
+            if _ok(outcome,i,j) and mat[i][j] > bp:
+                bp, best = mat[i][j], (i,j)
+    return best
+
+def rarity_score(mat, outcome, mg):
+    """score le + probable APRES penalisation des scorelines sur-jouees.
+    Garde-fou : on n'accepte pas un score sous 50% de la proba du score modal."""
+    modal_p = max(mat[i][j] for i in range(mg+1) for j in range(mg+1) if _ok(outcome,i,j))
+    floor = 0.5 * modal_p
+    best, bv = (0,0), -1.0
+    for i in range(mg+1):
+        for j in range(mg+1):
+            if _ok(outcome,i,j) and mat[i][j] >= floor:
+                adj = mat[i][j] * (1 - ALPHA*POP.get((i,j), 0.2))
+                if adj > bv:
+                    bv, best = adj, (i,j)
+    return best
+
+def top_scores(mat, outcome, mg, n=3):
+    cells = [(mat[i][j], i, j) for i in range(mg+1) for j in range(mg+1) if _ok(outcome,i,j)]
+    cells.sort(reverse=True)
+    return [(i,j,p) for p,i,j in cells[:n]]
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('csv_path')
-    ap.add_argument('--mode', choices=['equilibre', 'leader', 'challenger'], default='equilibre')
+    ap.add_argument('--mode', choices=['equilibre','leader','challenger'], default='equilibre')
     a = ap.parse_args()
     if not os.path.exists(a.csv_path):
         print(f"[STOP] {a.csv_path} introuvable."); return
     ro = load_ratings(); av = teams_available(ro)
-
-    rows = []
     with open(a.csv_path, newline='', encoding='utf-8') as f:
-        for r in csv.DictReader(f):
-            rows.append(r)
+        rows = list(csv.DictReader(f))
 
-    print("\n" + "=" * 78)
-    print(f"  JOURNEE MPP - mode {a.mode}   ({len(rows)} matchs)")
-    print("=" * 78)
-    print(f"  {'Match':<26}{'Favori':<14}{'Diff (levier)':<20}{'x2?':>6}")
-    print("  " + "-" * 70)
+    print("\n" + "="*70)
+    print(f"  JOURNEE MPP  -  mode {a.mode}   ({len(rows)} matchs)")
+    print("="*70)
 
     analyzed = []
     for r in rows:
         ta, tb = r['team_a'].strip(), r['team_b'].strip()
         if ta not in av or tb not in av:
-            print(f"  {ta} vs {tb:<14} [equipe absente, ignore]"); continue
-        cotes = {'a': float(r['cote_a']), 'draw': float(r['cote_draw']), 'b': float(r['cote_b'])}
-        host = r.get('host', '').strip() or None
+            print(f"\n  {ta} vs {tb}  ->  [equipe absente des forces, ignore]"); continue
+        cotes = {'a':float(r['cote_a']), 'draw':float(r['cote_draw']), 'b':float(r['cote_b'])}
+        host = r.get('host','').strip() or None
         la, lb = build_lambdas(ta, tb, ro, host=host)
         mat = score_matrix(la, lb)
-        p_mkt = market_probs(cotes)
-        lab = {'a': ta, 'draw': 'Nul', 'b': tb}
-        fav = max(p_mkt, key=p_mkt.get)
-        fav_str = f"{lab[fav]} {modal_score(mat, fav, 8)}"
+        p = market_probs(cotes)
+        lab = {'a':ta, 'draw':'Nul', 'b':tb}
+        fav = max(p, key=p.get)
 
         crowd = None
         if r.get('crowd_a') and r.get('crowd_draw') and r.get('crowd_b'):
-            crowd = {'a': float(r['crowd_a'])/100, 'draw': float(r['crowd_draw'])/100, 'b': float(r['crowd_b'])/100}
-        if crowd:
-            lev = {k: p_mkt[k] * (1 - crowd[k]) for k in p_mkt}
-            diff = max((k for k in lev if k != fav), key=lambda k: lev[k])
-            diff_str = f"{lab[diff]} {modal_score(mat, diff, 8)} ({lev[diff]:.2f})"
-            x2_score = lev[diff] if a.mode != 'leader' else p_mkt[fav]
-        else:
-            lev = None; diff = None; diff_str = "(pas de % foule)"; x2_score = p_mkt[fav]
+            crowd = {'a':float(r['crowd_a'])/100,'draw':float(r['crowd_draw'])/100,'b':float(r['crowd_b'])/100}
 
-        analyzed.append({'m': f"{ta} v {tb}", 'fav': fav_str, 'diff': diff_str,
-                         'x2_score': x2_score, 'lev': lev, 'fav_k': fav, 'diff_k': diff, 'lab': lab})
-
-    # placement du x2
-    if analyzed:
-        x2 = max(analyzed, key=lambda d: d['x2_score'])
-        for d in analyzed:
-            mark = "  <== x2" if d is x2 else ""
-            print(f"  {d['m']:<26}{d['fav']:<14}{d['diff']:<20}{mark:>6}")
-        print("\n" + "=" * 78)
-        if a.mode == 'leader':
-            print(f"  BONUS x2 -> {x2['m']} : double le FAVORI {x2['lab'][x2['fav_k']]} "
-                  f"(le plus sur, tu restes avec le peloton)")
+        # quel PICK jouer selon le mode
+        if a.mode == 'leader' or not crowd:
+            pick = fav; why = "favori (proba max)"
+            lev = None
         else:
-            tgt = x2['diff_k'] if x2['diff_k'] else x2['fav_k']
-            print(f"  BONUS x2 -> {x2['m']} : double {x2['lab'][tgt]} "
-                  f"(meilleur levier de differenciation de la journee)")
-        print("  Sur les AUTRES matchs : joue les favoris (reste avec le peloton).")
-        print("=" * 78)
+            lev = {k: p[k]*(1-crowd[k]) for k in p}
+            if a.mode == 'challenger':
+                pick = max((k for k in lev if k != fav), key=lambda k: lev[k])
+                why = f"differenciation (levier {lev[pick]:.2f})"
+            else:  # equilibre
+                pick = fav; why = "favori (EV max)"
+        x2v = (lev[pick] if (lev and a.mode!='leader') else p[fav])
+
+        analyzed.append(dict(ta=ta,tb=tb,host=host,p=p,lab=lab,fav=fav,pick=pick,
+                             why=why,mat=mat,lev=lev,x2v=x2v,la=la,lb=lb,crowd=crowd))
+
+    if not analyzed: return
+    x2 = max(analyzed, key=lambda d: d['x2v'])
+
+    for idx, d in enumerate(analyzed, 1):
+        ms = modal_score(d['mat'], d['pick'], 8)
+        rs = rarity_score(d['mat'], d['pick'], 8)
+        tops = top_scores(d['mat'], d['pick'], 8)
+        hote = f"  (hote: {d['host']})" if d['host'] else ""
+        is_x2 = (d is x2)
+        print(f"\n  Match {idx} : {d['ta']}  v  {d['tb']}{hote}")
+        print(f"     buts attendus : {d['ta']} {d['la']:.2f} | {d['tb']} {d['lb']:.2f}")
+        order = ['a','draw','b']
+        probs = "  ".join(f"{d['lab'][k]} {d['p'][k]:.0%}"
+                          + (f"/foule{int(d['crowd'][k]*100)}%" if d['crowd'] else "")
+                          for k in order)
+        print(f"     marche/foule  : {probs}")
+        print(f"     >> JOUE       : {d['lab'][d['pick']]}   [{d['why']}]")
+        print(f"     >> SCORE      : {ms[0]}-{ms[1]} (le + probable)"
+              f"   |   RARETE: {rs[0]}-{rs[1]} (sous-coche, +gros bonus)")
+        print(f"        autres scores : " + " ".join(f"{i}-{j}({pp:.0%})" for i,j,pp in tops))
+        if is_x2:
+            print(f"     ***  C'EST ICI que ton x2 a le + de valeur aujourd'hui  ***")
+
+    print("\n" + "="*70)
+    tgt = x2['pick']
+    print(f"  x2 (si tu le depenses aujourd'hui) -> {x2['ta']} v {x2['tb']} : double {x2['lab'][tgt]}")
+    print(f"  Rappel : x2 UNIQUE sur le tournoi. Jamais sur un favori. Utilise-le une fois.")
+    if a.mode == 'challenger':
+        print(f"  Mode chasseur : joue les picks differenciants ci-dessus pour te detacher.")
+    print("="*70)
 
 if __name__ == "__main__":
     main()
