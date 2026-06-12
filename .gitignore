@@ -32,5 +32,3 @@ secrets.toml
 
 # Cache
 .cache/
-
-data/

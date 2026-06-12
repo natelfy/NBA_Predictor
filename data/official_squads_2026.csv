@@ -1,0 +1,661 @@
+Team,Player_Name,Pos
+United States,Weston McKennie,MF
+United States,Chris Richards,DF
+United States,Joe Scally,"DF,MF"
+United States,Mark McKenzie,DF
+United States,Brenden Aaronson,"MF,FW"
+United States,Kristoffer Lund,"DF,MF"
+United States,Timothy Weah,"MF,DF"
+United States,Folarin Balogun,FW
+United States,Tanner Tessmann,MF
+United States,James Sands,MF
+United States,Tyler Adams,MF
+United States,Noahkai Banks,DF
+United States,Malik Tillman,MF
+United States,Christian Pulisic,FW
+United States,Antonee Robinson,"DF,MF"
+United States,Johnny Cardoso,MF
+United States,Yunus Musah,MF
+United States,Damion Downs,FW
+United States,Gio Reyna,MF
+United States,Lennard Maloney,"DF,MF"
+United States,Alex Freeman,DF
+United States,Kevin Paredes,MF
+United States,Ben Cremaschi,MF
+England,Jordan Pickford,GK
+England,James Garner,"MF,DF"
+England,Jarrod Bowen,"MF,FW"
+England,Elliot Anderson,MF
+England,Dean Henderson,GK
+England,James Tarkowski,DF
+England,Morgan Rogers,MF
+England,Tyrick Mitchell,MF
+England,Luke Shaw,DF
+England,Morgan Gibbs-White,MF
+England,Kyle Walker,"DF,MF"
+England,Declan Rice,MF
+England,Ezri Konsa,DF
+England,Lloyd Kelly,DF
+England,Alex Scott,MF
+England,Ollie Watkins,FW
+England,Lewis Dunk,DF
+England,Jayden Bogle,"MF,DF"
+England,Trevoh Chalobah,DF
+England,Marcus Tavernier,MF
+England,Jaidon Anthony,MF
+England,Dominic Calvert-Lewin,FW
+England,Nico O’Reilly,"DF,MF"
+Morocco,Omar El Hilali,DF
+Morocco,Ilyas Chaira,"MF,FW"
+Morocco,Abde Ezzalzouli,"MF,FW"
+Morocco,Sofiane Diop,"MF,FW"
+Morocco,Samir El Mourabet,MF
+Morocco,Azzedine Ounahi,MF
+Morocco,Bilal El Khannouss,"MF,FW"
+Morocco,Chemsdine Talbi,"MF,FW"
+Morocco,Abdel Abqar,DF
+Morocco,Abdelhamid Ait Boudlal,DF
+Morocco,Nayef Aguerd,DF
+Morocco,Achraf Hakimi,DF
+Morocco,Yassine Kechta,MF
+Morocco,Sofyan Amrabat,MF
+Morocco,Brahim Díaz,"MF,FW"
+Morocco,Youssef Maleh,MF
+Morocco,Amine Adli,MF
+Morocco,Sofiane Boufal,"MF,FW"
+Morocco,Walid Cheddira,FW
+Morocco,Neil El Aynaoui,MF
+Morocco,Noussair Mazraoui,"DF,MF"
+Morocco,Youssef El-Arabi,FW
+Morocco,Issa Diop,DF
+Tunisia,Rani Khedira,MF
+Tunisia,Montassar Talbi,DF
+Tunisia,Ellyes Skhiri,"MF,DF"
+Tunisia,Hannibal Mejbri,MF
+Tunisia,Ali Abdi,"MF,DF"
+Tunisia,Elias Saad,"MF,FW"
+Tunisia,Ismaël Gharbi,MF
+Ghana,Kojo Peprah Oppong,DF
+Ghana,Elisha Owusu,MF
+Ghana,Ransford Königsdörffer,"FW,MF"
+Ghana,Gideon Mensah,DF
+Ghana,Iñaki Williams,"MF,FW"
+Ghana,Terry Yegbe,DF
+Ghana,Derrick Köhn,"MF,DF"
+Ghana,Antoine Semenyo,MF
+Ghana,Marvin Senaya,"DF,MF"
+Ghana,Kwasi Sibo,MF
+Ghana,Mohammed Kudus,"MF,FW"
+Ghana,Antoine Semenyo,"MF,FW"
+Ghana,Alidu Seidu,DF
+Ghana,Mohammed Salisu,DF
+Ghana,Kamaldeen Sulemana,MF
+Ghana,Caleb Ekuban,"FW,MF"
+Ghana,Thomas Partey,MF
+Ghana,Salis Abdul Samed,MF
+Ghana,Ibrahim Sulemana,MF
+Ghana,Nathaniel Adjei,DF
+Ghana,Joseph Aidoo,DF
+Ghana,Ibrahim Osman,"MF,FW"
+Ghana,Francis Abu,MF
+Saudi Arabia,Saud Abdulhamid,MF
+France,Jean Butez,GK
+France,Adrien Truffert,DF
+France,Mike Maignan,GK
+France,Pierre Kalulu,"DF,MF"
+France,Florian Lejeune,DF
+France,Ibrahima Konaté,DF
+France,Maxence Lacroix,DF
+France,Michel Ndary Adopo,MF
+France,Guillaume Restes,GK
+France,Matthieu Udol,"MF,DF"
+France,Robin Risser,GK
+France,Oumar Solet,DF
+France,Maxime Estève,DF
+France,Enzo Le Fée,"MF,FW"
+France,Malang Sarr,DF
+France,Brice Samba,GK
+France,Kévin Danois,MF
+France,Ludovic Ajorque,FW
+France,Nordi Mukiele,DF
+France,Joris Chotard,MF
+France,Valentin Rongier,MF
+France,Lucas Da Cunha,MF
+France,Yann Gboho,"MF,FW"
+Brazil,Igor Thiago,FW
+Brazil,Vitor Reis,DF
+Brazil,Dodô,"DF,MF"
+Brazil,João Gomes,MF
+Brazil,Vinicius Júnior,"FW,MF"
+Brazil,Natan,DF
+Brazil,André,MF
+Brazil,Gabriel Magalhães,DF
+Brazil,Evanilson,FW
+Brazil,João Pedro,"FW,MF"
+Brazil,Casemiro,MF
+Brazil,Luiz Lúcio Reis Júnior,GK
+Brazil,Matheus Cunha,"MF,FW"
+Brazil,Bruno Guimarães,MF
+Brazil,Wesley,MF
+Brazil,Antony,"MF,FW"
+Brazil,Alisson,GK
+Brazil,Bernardo,DF
+Brazil,Igor Jesus,FW
+Brazil,Éderson,MF
+Brazil,Rômulo,FW
+Brazil,Gleison Bremer,DF
+Brazil,Abner,"DF,MF"
+Germany,Bernd Leno,GK
+Germany,Jeremy Toljan,DF
+Germany,Noah Atubolu,GK
+Germany,Maximilian Eggestein,MF
+Germany,Alexander Nübel,GK
+Germany,Moritz Nicolas,GK
+Germany,Marvin Schwäbe,GK
+Germany,Patrick Mainka,DF
+Germany,Finn Dahmen,GK
+Germany,Oliver Baumann,GK
+Germany,Malick Thiaw,DF
+Germany,Nicolai Remberg,MF
+Germany,Mio Backhaus,GK
+Germany,Waldemar Anton,DF
+Germany,Matthias Ginter,DF
+Germany,Robin Koch,DF
+Germany,Robin Fellhauer,MF
+Germany,Diant Ramaj,GK
+Germany,Kevin Schade,"MF,FW"
+Germany,Angelo Stiller,MF
+Germany,Danny da Costa,"DF,MF"
+Germany,Nathaniel Brown,"MF,DF"
+Germany,Rocco Reitz,MF
+Scotland,Scott McTominay,MF
+Scotland,John McGinn,MF
+Scotland,Josh Doig,DF
+Scotland,Che Adams,FW
+Scotland,Oliver Burke,"FW,MF"
+Scotland,Lewis Ferguson,MF
+Scotland,Kieron Bowie,FW
+Scotland,Andrew Robertson,DF
+Scotland,Lennon Miller,MF
+Scotland,Ryan Christie,MF
+Scotland,Billy Gilmour,MF
+Scotland,Tom Cairney,MF
+Scotland,Aaron Hickey,"DF,MF"
+Scotland,Nathan Patterson,DF
+Scotland,Andy Irving,MF
+Scotland,Ben Gannon-Doak,MF
+Scotland,Angus Gunn,GK
+Scotland,Tyler Fletcher,MF
+Austria,Romano Schmid,"MF,FW"
+Austria,David Affengruber,DF
+Austria,Christoph Baumgartner,MF
+Austria,Leopold Querfeld,DF
+Austria,Nicolas Seiwald,MF
+Austria,Marco Friedl,DF
+Austria,Valentino Lazaro,MF
+Austria,Phillipp Mwene,MF
+Austria,Marco Grüll,"MF,FW"
+Austria,Konrad Laimer,DF
+Austria,Christopher Trimmel,"MF,DF"
+Austria,Xaver Schlager,MF
+Austria,Samson Baidoo,DF
+Austria,Marcel Sabitzer,MF
+Austria,Patrick Wimmer,MF
+Austria,Kevin Danso,DF
+Austria,Stefan Posch,DF
+Austria,Kevin Stöger,MF
+Austria,Alexander Prass,MF
+Austria,Philipp Lienhart,DF
+Austria,Mathias Honsak,"MF,FW"
+Austria,Carney Chukwuemeka,"MF,FW"
+Austria,Michael Gregoritsch,FW
+Netherlands,Virgil van Dijk,DF
+Netherlands,Bart Verbruggen,GK
+Netherlands,Jan Paul van Hecke,DF
+Netherlands,Robin Roefs,GK
+Netherlands,Danilho Doekhi,DF
+Netherlands,Micky van de Ven,DF
+Netherlands,Ryan Gravenberch,MF
+Netherlands,Pascal Struijk,DF
+Netherlands,Sepp van den Berg,DF
+Netherlands,Cody Gakpo,"MF,FW"
+Netherlands,Marten de Roon,MF
+Netherlands,Daley Blind,DF
+Netherlands,Jordan Teze,"MF,DF"
+Netherlands,Crysencio Summerville,"MF,FW"
+Netherlands,Jurriën Timber,DF
+Netherlands,Wouter Burger,MF
+Netherlands,Jurgen Ekkelenkamp,MF
+Netherlands,Mark Flekken,GK
+Netherlands,Ramon Hendriks,DF
+Netherlands,Brian Brobbey,FW
+Netherlands,Mats Wieffer,DF
+Netherlands,Sven Botman,DF
+Netherlands,Teun Koopmeiners,"MF,DF"
+Ivory Coast,Obite N'Dicka,DF
+Ivory Coast,Jean-Philippe Gbamin,"DF,MF"
+Ivory Coast,Yan Diomandé,"FW,MF"
+Ivory Coast,Nicolas Pépé,"MF,FW"
+Ivory Coast,Amad Diallo,MF
+Ivory Coast,Bazoumana Touré,"MF,FW"
+Ivory Coast,Koffi Kouao,"DF,MF"
+Ivory Coast,Sinaly Diomande,DF
+Ivory Coast,Ibrahim Sangaré,MF
+Ivory Coast,Guela Doué,"DF,MF"
+Ivory Coast,Bamo Meïté,DF
+Ivory Coast,Clément Akpa,DF
+Ivory Coast,Hassane Kamara,"MF,DF"
+Ivory Coast,Martial Godo,MF
+Ivory Coast,Junior Diaz,DF
+Ivory Coast,Jean-Daniel Akpa-Akpro,MF
+Ivory Coast,Eric Bailly,DF
+Ivory Coast,Emmanuel Agbadou,DF
+Ivory Coast,Jean-Philippe Krasso,FW
+Ivory Coast,Odilon Kossounou,DF
+Ivory Coast,Elye Wahi,FW
+Ivory Coast,Simon Adingra,"MF,FW"
+Ivory Coast,Mohamed Bamba,FW
+Spain,David Soria,GK
+Spain,Antonio Sivera,GK
+Spain,Unai Simón,GK
+Spain,David Raya,GK
+Spain,Álex Remiro,GK
+Spain,David de Gea,GK
+Spain,Sergio Herrera,GK
+Spain,Luis Milla,MF
+Spain,Aarón Escandell,GK
+Spain,Carlos Romero,DF
+Spain,Iglesias,DF
+Spain,Aleix Febas,MF
+Spain,Antonio Blanco,MF
+Spain,Catena,DF
+Spain,Robert Sánchez,GK
+Spain,Jon Moncayola,MF
+Spain,Jonny Castro,DF
+Spain,Martín Zubimendi,MF
+Spain,Leo Román,GK
+Spain,Germán Valera,"MF,DF"
+Spain,Pablo Fornals,MF
+Spain,Mikel Jauregizar,MF
+Spain,Manu Sánchez,DF
+Switzerland,Gregor Kobel,GK
+Switzerland,Nico Elvedi,DF
+Switzerland,Yann Sommer,GK
+Switzerland,Granit Xhaka,MF
+Switzerland,Michel Aebischer,MF
+Switzerland,Manuel Akanji,DF
+Switzerland,Yvon Mvogo,GK
+Switzerland,Miro Muheim,"MF,DF"
+Switzerland,Fabian Rieder,MF
+Switzerland,Remo Freuler,MF
+Switzerland,Djibril Sow,MF
+Switzerland,Sascha Britschgi,"MF,DF"
+Switzerland,Johan Manzambi,MF
+Switzerland,Denis Zakaria,"DF,MF"
+Switzerland,Breel Embolo,FW
+Switzerland,Cameron Puertas,MF
+Switzerland,Cedric Zesiger,DF
+Switzerland,Silvan Widmer,MF
+Switzerland,Aurele Amenda,DF
+Switzerland,Philipp Köhn,GK
+Switzerland,Ruben Vargas,"MF,FW"
+Switzerland,Noah Okafor,"FW,MF"
+Switzerland,Ricardo Rodríguez,DF
+Norway,Erling Haaland,FW
+Norway,Sander Berge,MF
+Norway,Leo Skiri Østigård,DF
+Norway,Sebastian Sebulonsen,"DF,MF"
+Norway,Kristian Thorstvedt,MF
+Norway,Aron Dønnum,MF
+Norway,Julian Ryerson,MF
+Norway,Marcus Pedersen,"MF,DF"
+Norway,Torbjørn Heggem,DF
+Norway,Antonio Nusa,"FW,MF"
+Norway,Alexander Sørloth,FW
+Norway,Kristoffer Ajer,DF
+Norway,Jørgen Strand Larsen,FW
+Norway,Martin Ødegaard,MF
+Norway,Fredrik Oppegard,"MF,DF"
+Norway,David Møller Wolfe,"MF,DF"
+Norway,Jørgen Strand Larsen,FW
+Norway,Warren Kamanzi,MF
+Norway,Andreas Hanche-Olsen,DF
+Norway,Morten Thorsby,MF
+Norway,Mathias Rasmussen,MF
+Norway,Morten Thorsby,MF
+Norway,Oscar Bobb,MF
+Uruguay,Leandro Cabrera,DF
+Uruguay,Mauro Arambarri,MF
+Uruguay,Federico Valverde,"MF,DF"
+Uruguay,Santiago Bueno,DF
+Uruguay,Federico Viñas,"FW,MF"
+Uruguay,Santiago Mouriño,DF
+Uruguay,Álvaro Rodríguez,FW
+Uruguay,Rodrigo Bentancur,MF
+Uruguay,Martin Satriano,"FW,MF"
+Uruguay,Alfonso Espino,"DF,MF"
+Uruguay,Mathías Olivera,"DF,MF"
+Uruguay,Juan Rodríguez,DF
+Uruguay,José María Giménez,DF
+Uruguay,Ronald Araújo,DF
+Uruguay,Nicolas Fonseca,MF
+Uruguay,Alan Matturro,DF
+Uruguay,Manuel Ugarte,MF
+Uruguay,Franco Israel,GK
+Uruguay,Martin Satriano,FW
+Uruguay,Matías Vecino,MF
+Uruguay,Cristhian Stuani,FW
+Uruguay,Sebastián Boselli,DF
+Uruguay,Carlos Benavídez,DF
+Argentina,Marcos Senesi,DF
+Argentina,Nahuel Tenaglia,DF
+Argentina,Enzo Fernández,MF
+Argentina,Paulo Gazzaniga,GK
+Argentina,Augusto Batalla,GK
+Argentina,Mateo Pellegrino,FW
+Argentina,Nicolás Paz,MF
+Argentina,Emiliano Martínez,GK
+Argentina,Máximo Perrone,MF
+Argentina,Alexis Mac Allister,MF
+Argentina,Gerónimo Rulli,GK
+Argentina,Santiago Pierotti,"MF,FW"
+Argentina,Santiago Castro,FW
+Argentina,Matias Moreno,DF
+Argentina,Lautaro Valenti,DF
+Argentina,Giovanni Simeone,FW
+Argentina,Joaquín Panichelli,FW
+Argentina,Valentín Barco,MF
+Argentina,Lautaro Martínez,FW
+Argentina,Matìas Soulé,"MF,FW"
+Argentina,Giuliano Simeone,MF
+Argentina,Santiago Colombatto,MF
+Argentina,Leonardo Balerdi,DF
+Portugal,Tiago Gabriel,DF
+Portugal,Bruno Fernandes,MF
+Portugal,Danilo Veiga,DF
+Portugal,Mateus Fernandes,MF
+Portugal,Daniel Heuer Fernandes,GK
+Portugal,Domingos Duarte,DF
+Portugal,Anthony Lopes,GK
+Portugal,Bernardo Silva,MF
+Portugal,Matheus Nunes,DF
+Portugal,Samu Costa,MF
+Portugal,Pedro Neto,"MF,FW"
+Portugal,Diogo Dalot,"DF,MF"
+Portugal,Renato Veiga,DF
+Portugal,Vitinha,"FW,MF"
+Portugal,Fabio Vieira,"MF,FW"
+Portugal,João Palhinha,MF
+Portugal,Rúben Dias,DF
+Portugal,Vitinha,MF
+Portugal,Florentino Luís,MF
+Portugal,Francisco Conceição,"MF,FW"
+Portugal,José Sá,GK
+Portugal,Félix Correia,MF
+Portugal,Mathias Pereira Lage,"MF,FW"
+Sweden,Jesper Karlström,MF
+Sweden,Gabriel Gudmundsson,"DF,MF"
+Sweden,Daniel Svensson,MF
+Sweden,Eric Smith,"DF,MF"
+Sweden,Viktor Gyökeres,FW
+Sweden,Isak Hien,DF
+Sweden,Yasin Ayari,MF
+Sweden,Hugo Larsson,MF
+Sweden,Hjalmar Ekdal,DF
+Sweden,Carl Starfelt,DF
+Sweden,Anthony Elanga,"FW,MF"
+Sweden,Williot Swedberg,"FW,MF"
+Sweden,Amin Sarr,"FW,MF"
+Sweden,Sebastian Nanasi,MF
+Sweden,Lucas Bergvall,MF
+Sweden,Victor Lindelöf,"DF,MF"
+Sweden,Mattias Svanberg,MF
+Sweden,Jacob Ondrejka,"FW,MF"
+Sweden,Alexander Isak,FW
+Sweden,Emil Holm,DF
+Sweden,Roony Bardghji,"MF,FW"
+Sweden,Isak Jansson,"FW,MF"
+Sweden,Hugo Bolin,"MF,FW"
+Panama,Michael Amir Murillo,"DF,MF"
+Denmark,Victor Nelsson,DF
+Denmark,Morten Frendrup,MF
+Denmark,Joachim Andersen,DF
+Denmark,Rasmus Højlund,FW
+Denmark,Pierre Højbjerg,MF
+Denmark,Rasmus Nicolaisen,DF
+Denmark,Frederik Rønnow,GK
+Denmark,Thomas Kristensen,DF
+Denmark,Jens Stage,MF
+Denmark,Christian Eriksen,MF
+Denmark,Martin Frese,"MF,DF"
+Denmark,Jonathan Fischer,GK
+Denmark,Mathias Jensen,MF
+Denmark,Mikkel Damsgaard,MF
+Denmark,Oliver Jensen,MF
+Denmark,Lucas Høgsberg,DF
+Denmark,Mads Hermansen,GK
+Denmark,Gustav Isaksen,FW
+Denmark,Rasmus Kristensen,"DF,MF"
+Denmark,Oliver Nielsen,DF
+Denmark,Henrik Meister,FW
+Denmark,Patrick Dorgu,MF
+Denmark,Jens Odgaard,MF
+Japan,Kaishu Sano,MF
+Japan,Joel Fujita,MF
+Japan,Ayumu Seko,"MF,DF"
+Japan,Yukinari Sugawara,"DF,MF"
+Japan,Ritsu Doan,MF
+Japan,Daichi Kamada,MF
+Japan,Zion Suzuki,GK
+Japan,Kaoru Mitoma,"MF,FW"
+Japan,Yuito Suzuki,MF
+Japan,Takefusa Kubo,MF
+Japan,Ao Tanaka,MF
+Japan,Tomoya Ando,DF
+Japan,Shuto Machino,"FW,MF"
+Japan,Takumi Minamino,MF
+Japan,Hiroki Ito,DF
+Japan,Takuma Asano,"MF,FW"
+Japan,Kōta Takai,DF
+Japan,Kento Shiogai,MF
+Japan,Sota Kawasaki,"MF,DF"
+Japan,Wataru Endo,DF
+Japan,Koki Machida,DF
+Japan,Taichi Hara,FW
+Ecuador,Moisés Caicedo,MF
+Ecuador,Willian Pacho,DF
+Ecuador,Piero Hincapié,DF
+Ecuador,Pervis Estupiñán,MF
+Ecuador,Kendry Páez,"MF,FW"
+Ecuador,Nilson Angulo,MF
+Ecuador,Jeremy Sarmiento,MF
+Ecuador,Piero Hincapié,DF
+Ecuador,Alexander Legendre,MF
+Ecuador,Jeremy Arévalo,FW
+Colombia,Johan Mojica,DF
+Colombia,Cucho,FW
+Colombia,Luis Díaz,MF
+Colombia,Daniel Muñoz,MF
+Colombia,Jhon Lucumí,DF
+Colombia,Yerry Mina,DF
+Colombia,Yerson Mosquera,DF
+Colombia,Jefferson Lerma,"MF,DF"
+Colombia,Jhon Arias,"FW,MF"
+Colombia,Duván Zapata,FW
+Colombia,Deiver Machado,"DF,MF"
+Colombia,Nelson Deossa,MF
+Colombia,Yaser Asprilla,"FW,MF"
+Colombia,Daniel Mosquera,FW
+Colombia,Juan Cuadrado,MF
+Colombia,Jhon Solis,MF
+Colombia,Juan David Cabal,MF
+Colombia,Deiver Machado,MF
+Colombia,Juan Arizala,MF
+Canada,Ismaël Koné,MF
+Canada,Tajon Buchanan,MF
+Canada,Jonathan David,FW
+Canada,Tani Oluwaseyi,FW
+Canada,Alphonso Davies,DF
+Canada,Jacen Russell-Rowe,FW
+Canada,Moïse Bombito,DF
+Canada,Derek Cornelius,"DF,FW"
+Canada,Theo Bair,FW
+Belgium,Mandela Keita,MF
+Belgium,Mike Penders,GK
+Belgium,Senne Lammens,GK
+Belgium,Thibaut Courtois,GK
+Belgium,Alexis Saelemaekers,MF
+Belgium,Senne Lynen,MF
+Belgium,Matz Sels,GK
+Belgium,Axel Witsel,MF
+Belgium,Nathan Ngoy,DF
+Belgium,Matias Fernandez-Pardo,"FW,MF"
+Belgium,Christian Kabasele,DF
+Belgium,Charles De Ketelaere,"MF,FW"
+Belgium,Arthur Theate,DF
+Belgium,Diego Moreira,MF
+Belgium,Leandro Trossard,"FW,MF"
+Belgium,Jari Vandeputte,MF
+Belgium,Thomas Meunier,DF
+Belgium,Youri Tielemans,MF
+Belgium,Timothy Castagne,"DF,MF"
+Belgium,Koni De Winter,DF
+Belgium,Jeremy Doku,"MF,FW"
+Belgium,Charles Vanhoutte,MF
+Belgium,Amadou Onana,MF
+Senegal,Issa Soumaré,"FW,MF"
+Senegal,Iliman Ndiaye,MF
+Senegal,Moussa Niakhate,DF
+Senegal,Moustapha Mbow,DF
+Senegal,El Hadji Malick Diouf,"DF,MF"
+Senegal,Mory Diaw,GK
+Senegal,Rassoul Ndiaye,MF
+Senegal,Yehvann Diouf,GK
+Senegal,Arouna Sangante,DF
+Senegal,Ismaila Sarr,MF
+Senegal,Pape Gueye,MF
+Senegal,Antoine Mendy,DF
+Senegal,Idrissa Gana Gueye,MF
+Senegal,Pathé Ciss,"MF,DF"
+Senegal,Sadibou Sané,DF
+Senegal,Habib Diallo,FW
+Senegal,Lamine Camara,MF
+Senegal,Nobel Mendy,DF
+Senegal,Alpha Touré,MF
+Senegal,Abdoulaye Faye,DF
+Senegal,Habib Diarra,MF
+Senegal,Pape Matar Sarr,MF
+Senegal,Mamadou Sarr,DF
+Croatia,Nikola Vlašić,"MF,FW"
+Croatia,Ante Budimir,FW
+Croatia,Marin Pongračić,DF
+Croatia,Luka Modrić,MF
+Croatia,Luka Vušković,DF
+Croatia,Adrian Šemper,GK
+Croatia,Andrej Kramarić,"MF,FW"
+Croatia,Duje Ćaleta-Car,DF
+Croatia,Domagoj Bradarić,MF
+Croatia,Mario Pašalić,MF
+Croatia,Josip Stanišić,DF
+Croatia,Nikola Moro,MF
+Croatia,Petar Sucic,MF
+Croatia,Toma Bašić,MF
+Croatia,Ivan Smolčić,DF
+Croatia,Kristijan Jakić,"MF,DF"
+Croatia,Igor Matanovic,FW
+Croatia,Martin Baturina,"MF,FW"
+Croatia,Joško Gvardiol,DF
+Croatia,Lovro Majer,MF
+Croatia,Luka Sučić,"MF,FW"
+Croatia,Josip Brekalo,"MF,FW"
+Croatia,Patrice Čović,MF
+Turkey,Ferdi Kadioglu,"DF,MF"
+Turkey,Berke Özer,GK
+Turkey,Kenan Yıldız,"MF,FW"
+Turkey,Zeki Çelik,"MF,DF"
+Turkey,Arda Güler,MF
+Turkey,Atakan Karazor,MF
+Turkey,Cenk Özkacar,DF
+Turkey,Ozan Kabak,DF
+Turkey,Hakan Çalhanoğlu,MF
+Turkey,Can Uzun,MF
+Turkey,Emirhan İlkhan,MF
+Turkey,Semih Kılıçsoy,FW
+Turkey,İsak Vural,MF
+Turkey,Livan Burcu,"MF,FW"
+Turkey,Altay Bayındır,GK
+Turkey,Enes Ünal,FW
+Turkey,Salih Özcan,MF
+Turkey,Deniz Ofli,DF
+Turkey,Bertuğ Yıldırım,FW
+Poland,Kamil Grabara,GK
+Poland,Jakub Kamiński,"MF,FW"
+Poland,Matty Cash,DF
+Poland,Sebastian Walukiewicz,DF
+Poland,Arkadiusz Pyrka,MF
+Poland,Piotr Zieliński,MF
+Poland,Nicola Zalewski,MF
+Poland,Jakub Piotrowski,MF
+Poland,Robert Lewandowski,FW
+Poland,Łukasz Skorupski,GK
+Poland,Adam Dźwigała,DF
+Poland,Przemysław Frankowski,"MF,DF"
+Poland,Kacper Potulski,DF
+Poland,Adam Buksa,FW
+Poland,Radosław Majecki,GK
+Poland,Sebastian Szymański,MF
+Poland,Wojciech Szczęsny,GK
+Poland,Jan Ziółkowski,DF
+Poland,Adrian Benedyczak,FW
+Poland,Max Oyedele,"MF,DF"
+Poland,Daniel Mikołajewski,FW
+Poland,Arkadiusz Milik,FW
+Poland,Adrian Przyborek,MF
+Czechia,Vladimír Coufal,"DF,MF"
+Czechia,Ladislav Krejčí,"DF,MF"
+Czechia,Robin Hranáč,DF
+Czechia,Tomáš Souček,MF
+Czechia,Patrik Schick,FW
+Czechia,Pavel Šulc,"FW,MF"
+Czechia,Martin Vitík,DF
+Czechia,Adam Karabec,"MF,FW"
+Czechia,Antonín Kinský,GK
+Czechia,Alex Král,MF
+Czechia,Ladislav Krejčí,DF
+Czechia,Václav Černý,"FW,MF"
+Czechia,Adam Hložek,"FW,MF"
+Czechia,Louis Buffon,FW
+Czechia,Yannick Eduardo,FW
+Bosnia and Herzegovina,Nikola Vasilj,GK
+Bosnia and Herzegovina,Tarik Muharemovic,DF
+Bosnia and Herzegovina,Haris Tabakovic,FW
+Bosnia and Herzegovina,Ermedin Demirović,FW
+Bosnia and Herzegovina,Sead Kolašinac,DF
+Bosnia and Herzegovina,Denis Huseinbasic,MF
+Bosnia and Herzegovina,Nidal Celik,DF
+Bosnia and Herzegovina,Milan Đurić,FW
+Bosnia and Herzegovina,Edin Džeko,FW
+Bosnia and Herzegovina,Milan Đurić,FW
+Bosnia and Herzegovina,Jusuf Gazibegović,DF
+Australia,Mathew Ryan,GK
+Australia,Alessandro Circati,DF
+Australia,Jackson Irvine,MF
+Australia,Connor Metcalfe,"MF,FW"
+Mexico,Johan Vásquez,DF
+Mexico,Raúl Jiménez,FW
+Mexico,Santiago Giménez,FW
+Mexico,Obed Vargas,MF
+Mexico,Álvaro Fidalgo,MF
+South Africa,Lyle Foster,"FW,MF"
+Egypt,Mohamed Salah,MF
+Egypt,Haissem Hassan,"MF,FW"
+Egypt,Mostafa Mohamed,FW
+Egypt,Omar Marmoush,"FW,MF"
+South Korea,Lee Jae-sung,"MF,FW"
+South Korea,Kim Min-jae,DF
+South Korea,Castrop Jens,MF
+South Korea,Lee Kang-in,"MF,FW"
+South Korea,Hwang Hee-chan,"FW,MF"
+South Korea,Jeong Woo-yeong,"MF,FW"
+South Korea,Kwon Hyeokkyu,MF
+South Korea,Hong Hyunseok,MF
