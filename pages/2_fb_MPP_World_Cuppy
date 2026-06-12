@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+from src.poisson_engine import calculate_expected_goals, generate_score_matrix, get_top_scores
 
 st.set_page_config(page_title="MPP Oracle - Mode Théorie des Jeux", layout="wide")
 st.title("♟️ MPP Oracle : Théorie des Jeux & Expected Value")
@@ -130,3 +131,33 @@ if st.button("🧠 Lancer l'Algorithme Théorie des Jeux", use_container_width=T
         st.success(f"🚨 **LEVIER MAXIMAL : Jouer {best_play.upper()}** 🚨\n\nC'est la faille mathématique de ce match. La probabilité que ce scénario arrive, croisée avec le fait que peu de joueurs de ta ligue vont oser le cocher, crée un différentiel de points massif en ta faveur sur le long terme.")
     else:
         st.error("💀 **MATCH TOXIQUE (NO BET)**. Les cotes MPP sont trop faibles ET la foule est du bon côté. Mathématiquement, tu ne feras aucune différence sur ta ligue ici. Limite la casse en jouant l'équipe favorite, et cherche ton levier sur un autre match.")
+# --- MOTEUR DE SCORES EXACTS (POISSON) ---
+st.markdown("---")
+st.header("🎯 Prédiction du Score Exact (Bonus MPP)")
+
+# 1. Calcul des xG pour ce match
+xg_a, xg_b = calculate_expected_goals(stat_a, stat_b)
+st.caption(f"xG Modélisés : {team_a} ({xg_a:.2f}) - ({xg_b:.2f}) {team_b}")
+
+# 2. Génération de la matrice et extraction des meilleurs scores
+score_matrix = generate_score_matrix(xg_a, xg_b)
+top_scores = get_top_scores(score_matrix, top_n=3)
+
+# 3. Affichage visuel
+cols = st.columns(3)
+for idx, row in top_scores.reset_index().iterrows():
+    with cols[idx]:
+        prob = row['Probability']
+        score = row['Score']
+        
+        # Application de la logique "Contrarienne" (Rarete) :
+        # Les scores 1-0, 2-0, 1-1, 2-1 sont massivement joués par la foule.
+        # Un 3-1 ou un 0-0 rapporte un bonus de "rareté" sur MPP.
+        is_common = score in ["1-0", "0-1", "1-1", "2-1", "1-2", "2-0", "0-2"]
+        
+        if is_common:
+            st.info(f"**{score}**\n\nProbabilité : {prob:.1%}\n*(Score classique)*")
+        else:
+            st.success(f"**{score}**\n\nProbabilité : {prob:.1%}\n⭐ **Score Rare (Haut Potentiel)**")
+
+st.markdown("💡 **Règle d'Or MPP :** Si ton classement est bas, joue un 'Score Rare' (s'il est dans le Top 3) pour maximiser tes points de différenciation. Si tu es 1er, assure avec un 'Score classique'.")
