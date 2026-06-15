@@ -7,12 +7,11 @@ import os
 st.set_page_config(page_title="MPP World Cup Oracle", page_icon="⚽", layout="wide")
 
 st.title("⚽ Moteur de Points - Coupe du Monde 2026")
-st.markdown("Algorithme Terminal : xG Plafonnés, ELO Symétrique, **Pénalités Environnementales** et **Théorème de Dixon-Coles**.")
+st.markdown("Algorithme Terminal : xG Plafonnés, ELO, Climat, Dixon-Coles et **Matrice Tactique**.")
 
 # ==========================================
-# 1. DICTIONNAIRES (CALENDRIER ET GÉOGRAPHIE)
+# 1. DICTIONNAIRES
 # ==========================================
-# Mise à jour massive : Amériques, Afrique, Asie et Moyen-Orient
 LATAM_AFRICA_TEAMS = {
     'Mexico', 'Brazil', 'Argentina', 'Uruguay', 'Colombia', 'Ecuador', 'Paraguay', 'Panama', 'Curaçao',
     'Senegal', 'Morocco', 'Algeria', 'Egypt', 'Ghana', 'Ivory Coast', 'South Africa', 'Tunisia', 'Cape Verde', 'DR Congo',
@@ -25,27 +24,13 @@ CLIMATE_ZONES = {
     "Haute Altitude (Mexico, Guadalajara...)": 0.80
 }
 
+TACTICAL_STYLES = [
+    "Équilibré / Direct (Standard)", 
+    "Possession (Attaque Placée)", 
+    "Contre-Attaque (Bloc Bas)"
+]
+
 CALENDRIER = {
-    "Jeudi 11 juin 2026": [
-        {"team_a": "Mexico", "team_b": "South Africa", "score": "2-0", "host": "Mexico", "climate": "Haute Altitude (Mexico, Guadalajara...)"},
-        {"team_a": "South Korea", "team_b": "Czechia", "score": "2-1", "host": "", "climate": "Climat Tempéré (Optimal)"}
-    ],
-    "Vendredi 12 juin 2026": [
-        {"team_a": "Canada", "team_b": "Bosnia and Herzegovina", "score": "1-1", "host": "Canada", "climate": "Climat Tempéré (Optimal)"},
-        {"team_a": "United States", "team_b": "Paraguay", "score": "4-1", "host": "United States", "climate": "Chaleur/Humidité (Miami, Houston...)"}
-    ],
-    "Samedi 13 juin 2026": [
-        {"team_a": "Qatar", "team_b": "Switzerland", "score": "1-1", "host": "", "climate": "Climat Tempéré (Optimal)"},
-        {"team_a": "Brazil", "team_b": "Morocco", "score": "1-1", "host": "", "climate": "Chaleur/Humidité (Miami, Houston...)"},
-        {"team_a": "Haiti", "team_b": "Scotland", "score": "0-1", "host": "", "climate": "Climat Tempéré (Optimal)"},
-        {"team_a": "Australia", "team_b": "Turkey", "score": "2-0", "host": "", "climate": "Climat Tempéré (Optimal)"}
-    ],
-    "Dimanche 14 juin 2026": [
-        {"team_a": "Germany", "team_b": "Curaçao", "score": None, "host": "", "climate": "Chaleur/Humidité (Miami, Houston...)"},
-        {"team_a": "Netherlands", "team_b": "Japan", "score": None, "host": "", "climate": "Chaleur/Humidité (Miami, Houston...)"},
-        {"team_a": "Ivory Coast", "team_b": "Ecuador", "score": None, "host": "", "climate": "Climat Tempéré (Optimal)"},
-        {"team_a": "Sweden", "team_b": "Tunisia", "score": None, "host": "", "climate": "Haute Altitude (Mexico, Guadalajara...)"}
-    ],
     "Lundi 15 juin 2026": [
         {"team_a": "Spain", "team_b": "Cape Verde", "score": None, "host": "", "climate": "Climat Tempéré (Optimal)"},
         {"team_a": "Belgium", "team_b": "Egypt", "score": None, "host": "", "climate": "Chaleur/Humidité (Miami, Houston...)"},
@@ -69,10 +54,10 @@ CALENDRIER = {
 POPULAR_SCORES = {(1,0):1.0, (0,1):1.0, (1,1):1.0, (2,1):0.8, (1,2):0.8, (2,0):0.7, (0,2):0.7, (0,0):0.7}
 ALPHA = 0.70
 MOTIVATION_LEVELS = {"Équipe Type (100%)": 1.0, "Légère Rotation (85%)": 0.85, "Équipe B / Démotivé (60%)": 0.60}
-RHO = 0.18  # Paramètre de dépendance Dixon-Coles
+RHO = 0.18  
 
 # ==========================================
-# 2. LOGIQUE STATISTIQUE ET ENVIRONNEMENTALE
+# 2. LOGIQUE MATHÉMATIQUE
 # ==========================================
 def load_football_data():
     if not os.path.exists('data/processed_football_games.csv'):
@@ -86,12 +71,13 @@ def load_football_data():
         
     return stats, power
 
-def calculate_lambdas(stat_a, stat_b, power_df, team_a_name, team_b_name, host_nation, mot_a, mot_b, climate_zone):
+def calculate_lambdas(stat_a, stat_b, power_df, team_a_name, team_b_name, host_nation, mot_a, mot_b, climate_zone, style_a, style_b):
     off_a = stat_a.get('AVG_GOALS_10', 1.5)
     off_b = stat_b.get('AVG_GOALS_10', 1.5)
     def_a = stat_a.get('AVG_OPP_GOALS_10', 1.0)
     def_b = stat_b.get('AVG_OPP_GOALS_10', 1.0)
     
+    # 1. Rotation et Climat
     off_a *= (0.4 + 0.6 * mot_a)
     off_b *= (0.4 + 0.6 * mot_b)
     
@@ -100,10 +86,29 @@ def calculate_lambdas(stat_a, stat_b, power_df, team_a_name, team_b_name, host_n
 
     off_a *= climate_factor_a
     def_a *= (2.0 - climate_factor_a) 
-    
     off_b *= climate_factor_b
     def_b *= (2.0 - climate_factor_b)
 
+    # 2. Matrice Tactique (Pierre-Feuille-Ciseaux)
+    tac_mod_a, tac_mod_b = 1.0, 1.0
+    
+    if style_a == "Possession (Attaque Placée)" and style_b == "Contre-Attaque (Bloc Bas)":
+        tac_mod_a, tac_mod_b = 0.85, 1.15
+    elif style_b == "Possession (Attaque Placée)" and style_a == "Contre-Attaque (Bloc Bas)":
+        tac_mod_a, tac_mod_b = 1.15, 0.85
+    elif style_a == "Possession (Attaque Placée)" and style_b == "Équilibré / Direct (Standard)":
+        tac_mod_a, tac_mod_b = 1.10, 0.90
+    elif style_b == "Possession (Attaque Placée)" and style_a == "Équilibré / Direct (Standard)":
+        tac_mod_a, tac_mod_b = 0.90, 1.10
+    elif style_a == "Contre-Attaque (Bloc Bas)" and style_b == "Équilibré / Direct (Standard)":
+        tac_mod_a, tac_mod_b = 0.90, 1.10
+    elif style_b == "Contre-Attaque (Bloc Bas)" and style_a == "Équilibré / Direct (Standard)":
+        tac_mod_a, tac_mod_b = 1.10, 0.90
+
+    off_a *= tac_mod_a
+    off_b *= tac_mod_b
+
+    # 3. Base xG et ELO
     xg_a_base = max(0.2, off_a * def_b)
     xg_b_base = max(0.2, off_b * def_a)
     
@@ -123,12 +128,9 @@ def calculate_lambdas(stat_a, stat_b, power_df, team_a_name, team_b_name, host_n
         p_a *= (mot_a * climate_factor_a)
         p_b *= (mot_b * climate_factor_b)
         
-        power_diff = p_a - p_b
-        elo_a += power_diff * 4
+        elo_a += (p_a - p_b) * 4
 
-    elo_diff = elo_a - elo_b
-    
-    shift_factor = elo_diff / 400.0  
+    shift_factor = (elo_a - elo_b) / 400.0  
     xg_a = xg_a_base * (1 + 0.6 * max(0, shift_factor)) / (1 + 0.6 * max(0, -shift_factor))
     xg_b = xg_b_base * (1 + 0.6 * max(0, -shift_factor)) / (1 + 0.6 * max(0, shift_factor))
         
@@ -138,24 +140,15 @@ def calculate_lambdas(stat_a, stat_b, power_df, team_a_name, team_b_name, host_n
     return xg_a, xg_b, elo_a, elo_b
 
 stats_df, power_df = load_football_data()
-if stats_df is None:
-    st.error("❌ Base de données introuvable.")
-    st.stop()
-
+if stats_df is None: st.stop()
 valid_teams = set(stats_df['TEAM_ID'].unique())
 
 # ==========================================
 # 3. INTERFACE UTILISATEUR MPP
 # ==========================================
 col_header_1, col_header_2 = st.columns([3, 1])
-with col_header_1:
-    date_selected = st.selectbox("📅 Sélectionner la journée", list(CALENDRIER.keys()))
-with col_header_2:
-    mode = st.radio("🎯 Stratégie", [
-        "Sécurité Absolue (Probabilité Terrain)", 
-        "Équilibré (EV Max)", 
-        "Challenger Amorti"
-    ])
+with col_header_1: date_selected = st.selectbox("📅 Sélectionner la journée", list(CALENDRIER.keys()))
+with col_header_2: mode = st.radio("🎯 Stratégie", ["Sécurité Absolue", "Équilibré (EV Max)", "Challenger Amorti"])
 
 st.markdown("---")
 
@@ -163,54 +156,40 @@ matchs_du_jour = CALENDRIER[date_selected]
 analyzed_matches = []
 
 for idx, match in enumerate(matchs_du_jour):
-    ta = match['team_a']
-    tb = match['team_b']
-    default_climate = match.get('climate', 'Climat Tempéré (Optimal)')
-    
-    if match.get('score'):
-        with st.container():
-            st.success(f"✅ **Terminé :** {ta} **{match['score']}** {tb}")
-            st.markdown("<br>", unsafe_allow_html=True)
-        continue 
-
-    if ta not in valid_teams or tb not in valid_teams:
-        st.error(f"⚠️ Équipe non trouvée dans la base de données : {ta} ou {tb}.")
-        continue
+    ta, tb = match['team_a'], match['team_b']
+    if match.get('score'): continue 
+    if ta not in valid_teams or tb not in valid_teams: continue
         
-    stat_a = stats_df[stats_df['TEAM_ID'] == ta].iloc[0]
-    stat_b = stats_df[stats_df['TEAM_ID'] == tb].iloc[0]
+    stat_a, stat_b = stats_df[stats_df['TEAM_ID'] == ta].iloc[0], stats_df[stats_df['TEAM_ID'] == tb].iloc[0]
     
     with st.expander(f"⚽ {ta} vs {tb}", expanded=True):
         
         col_env1, col_env2, col_env3 = st.columns([2, 1, 1])
         with col_env1:
-            climate = st.selectbox("🌡️ Conditions Géographiques", list(CLIMATE_ZONES.keys()), index=list(CLIMATE_ZONES.keys()).index(default_climate), key=f"clim_{idx}")
+            climate = st.selectbox("🌡️ Conditions Géographiques", list(CLIMATE_ZONES.keys()), index=list(CLIMATE_ZONES.keys()).index(match.get('climate', 'Climat Tempéré (Optimal)')), key=f"clim_{idx}")
         with col_env2:
-            m_str_a = st.selectbox(f"Effectif {ta}", list(MOTIVATION_LEVELS.keys()), key=f"mot_a_{idx}")
+            style_a = st.selectbox(f"Style {ta}", TACTICAL_STYLES, index=0, key=f"style_a_{idx}")
         with col_env3:
-            m_str_b = st.selectbox(f"Effectif {tb}", list(MOTIVATION_LEVELS.keys()), key=f"mot_b_{idx}")
+            style_b = st.selectbox(f"Style {tb}", TACTICAL_STYLES, index=0, key=f"style_b_{idx}")
             
-        mot_a, mot_b = MOTIVATION_LEVELS[m_str_a], MOTIVATION_LEVELS[m_str_b]
+        m_str_a, m_str_b = "Équipe Type (100%)", "Équipe Type (100%)"
+        mot_a, mot_b = 1.0, 1.0
         
-        la, lb, elo_a, elo_b = calculate_lambdas(stat_a, stat_b, power_df, ta, tb, match.get('host', ''), mot_a, mot_b, climate)
+        la, lb, elo_a, elo_b = calculate_lambdas(stat_a, stat_b, power_df, ta, tb, match.get('host', ''), mot_a, mot_b, climate, style_a, style_b)
         
         MAX_GOALS = 15
         matrix = np.zeros((MAX_GOALS, MAX_GOALS))
         
-        # Brique Dixon-Coles (Correction psychologique des matchs nuls)
         for i in range(MAX_GOALS):
             for j in range(MAX_GOALS):
                 base_prob = poisson.pmf(i, la) * poisson.pmf(j, lb)
-                
                 if i == 0 and j == 0: tau = max(0, 1 - la * lb * RHO)
                 elif i == 1 and j == 0: tau = max(0, 1 + la * RHO)
                 elif i == 0 and j == 1: tau = max(0, 1 + lb * RHO)
                 elif i == 1 and j == 1: tau = max(0, 1 - RHO)
                 else: tau = 1.0
-                
                 matrix[i][j] = base_prob * tau
                 
-        # Normalisation indispensable de la matrice
         matrix /= np.sum(matrix)
                 
         prob_oracle_a = np.sum(np.tril(matrix, -1))
@@ -240,19 +219,15 @@ for idx, match in enumerate(matchs_du_jour):
         ev_dict = {k: prob_dict[k] * pts_dict for k, pts_dict in zip(['a', 'draw', 'b'], [pts_a, pts_draw, pts_b])}
         crowd_dict = {'a': max(foule_a/100, 0.10), 'draw': max(foule_draw/100, 0.10), 'b': max(foule_b/100, 0.10)}
         
-        if mode == "Sécurité Absolue (Probabilité Terrain)":
+        if mode == "Sécurité Absolue":
             pick = max(prob_dict, key=prob_dict.get)
         elif mode == "Équilibré (EV Max)":
             pick = max(ev_dict, key=ev_dict.get)
         else:
-            leverage_dict = {}
-            for k in prob_dict:
-                if prob_dict[k] < 0.15: leverage_dict[k] = -1 
-                else: leverage_dict[k] = ev_dict[k] / (crowd_dict[k] ** 0.6)
+            leverage_dict = {k: (-1 if prob_dict[k] < 0.15 else ev_dict[k] / (crowd_dict[k] ** 0.6)) for k in prob_dict}
             pick = max(leverage_dict, key=leverage_dict.get)
             
-        def _ok(outcome, i, j):
-            return (outcome=='a' and i>j) or (outcome=='draw' and i==j) or (outcome=='b' and i<j)
+        def _ok(outcome, i, j): return (outcome=='a' and i>j) or (outcome=='draw' and i==j) or (outcome=='b' and i<j)
             
         best_score, max_p = (0,0), -1.0
         rare_score, max_r = (0,0), -1.0
@@ -261,11 +236,9 @@ for idx, match in enumerate(matchs_du_jour):
             for j in range(7):
                 if _ok(pick, i, j):
                     p_exact = matrix[i][j]
-                    if p_exact > max_p:
-                        max_p, best_score = p_exact, (i, j)
+                    if p_exact > max_p: max_p, best_score = p_exact, (i, j)
                     adj = p_exact * (1 - ALPHA * POPULAR_SCORES.get((i, j), 0.2))
-                    if adj > max_r:
-                        max_r, rare_score = adj, (i, j)
+                    if adj > max_r: max_r, rare_score = adj, (i, j)
 
         labels = {'a': ta, 'draw': 'Match Nul', 'b': tb}
         
@@ -277,6 +250,9 @@ for idx, match in enumerate(matchs_du_jour):
             if climate != "Climat Tempéré (Optimal)":
                 if ta not in LATAM_AFRICA_TEAMS: st.caption(f"⚠️ **{ta}** : Alerte Physique (-20%)")
                 if tb not in LATAM_AFRICA_TEAMS: st.caption(f"⚠️ **{tb}** : Alerte Physique (-20%)")
+            
+            if style_a != "Équilibré / Direct (Standard)" or style_b != "Équilibré / Direct (Standard)":
+                st.caption(f"🛡️ Ajustement Tactique Appliqué")
 
         with c4:
             st.markdown("**Objectif Score Exact**")
