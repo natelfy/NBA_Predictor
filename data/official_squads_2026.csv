@@ -26,8 +26,8 @@ England,Jordan Pickford,GK
 England,James Garner,"MF,DF"
 England,Jarrod Bowen,"MF,FW"
 England,Elliot Anderson,MF
-England,Dean Henderson,GK
 England,James Tarkowski,DF
+England,Dean Henderson,GK
 England,Morgan Rogers,MF
 England,Tyrick Mitchell,MF
 England,Luke Shaw,DF
@@ -147,18 +147,18 @@ Brazil,Gleison Bremer,DF
 Brazil,Abner,"DF,MF"
 Germany,Bernd Leno,GK
 Germany,Jeremy Toljan,DF
-Germany,Noah Atubolu,GK
-Germany,Maximilian Eggestein,MF
-Germany,Alexander Nübel,GK
 Germany,Moritz Nicolas,GK
-Germany,Marvin Schwäbe,GK
 Germany,Patrick Mainka,DF
+Germany,Maximilian Eggestein,MF
+Germany,Noah Atubolu,GK
+Germany,Marvin Schwäbe,GK
 Germany,Finn Dahmen,GK
 Germany,Oliver Baumann,GK
+Germany,Alexander Nübel,GK
 Germany,Malick Thiaw,DF
+Germany,Waldemar Anton,DF
 Germany,Nicolai Remberg,MF
 Germany,Mio Backhaus,GK
-Germany,Waldemar Anton,DF
 Germany,Matthias Ginter,DF
 Germany,Robin Koch,DF
 Germany,Robin Fellhauer,MF
@@ -209,8 +209,8 @@ Austria,Philipp Lienhart,DF
 Austria,Mathias Honsak,"MF,FW"
 Austria,Carney Chukwuemeka,"MF,FW"
 Austria,Michael Gregoritsch,FW
-Netherlands,Virgil van Dijk,DF
 Netherlands,Bart Verbruggen,GK
+Netherlands,Virgil van Dijk,DF
 Netherlands,Jan Paul van Hecke,DF
 Netherlands,Robin Roefs,GK
 Netherlands,Danilho Doekhi,DF
@@ -255,12 +255,12 @@ Ivory Coast,Odilon Kossounou,DF
 Ivory Coast,Elye Wahi,FW
 Ivory Coast,Simon Adingra,"MF,FW"
 Ivory Coast,Mohamed Bamba,FW
-Spain,David Soria,GK
 Spain,Antonio Sivera,GK
-Spain,Unai Simón,GK
+Spain,David Soria,GK
+Spain,David de Gea,GK
 Spain,David Raya,GK
 Spain,Álex Remiro,GK
-Spain,David de Gea,GK
+Spain,Unai Simón,GK
 Spain,Sergio Herrera,GK
 Spain,Luis Milla,MF
 Spain,Aarón Escandell,GK
@@ -360,8 +360,8 @@ Argentina,Alexis Mac Allister,MF
 Argentina,Gerónimo Rulli,GK
 Argentina,Santiago Pierotti,"MF,FW"
 Argentina,Santiago Castro,FW
-Argentina,Matias Moreno,DF
 Argentina,Lautaro Valenti,DF
+Argentina,Matias Moreno,DF
 Argentina,Giovanni Simeone,FW
 Argentina,Joaquín Panichelli,FW
 Argentina,Valentín Barco,MF
