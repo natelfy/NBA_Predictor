@@ -1,5 +1,5 @@
 Model: Logistic Regression
-Accuracy: 0.6904
-ROC-AUC: 0.7609
+Accuracy: 0.6890
+ROC-AUC: 0.7610
 Brier: 0.1976
 Baseline: 0.5575
