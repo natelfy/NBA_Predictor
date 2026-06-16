@@ -23,7 +23,7 @@ def generate_proxy_squads():
         "AUS": "Australia", "KSA": "Saudi Arabia", "ECU": "Ecuador", "TUN": "Tunisia", 
         "DZA": "Algeria", "AUT": "Austria", "NOR": "Norway", "TUR": "Turkey", 
         "SWE": "Sweden", "CZE": "Czechia", "SCO": "Scotland", "BIH": "Bosnia and Herzegovina", 
-        "RSA": "South Africa", "PAN": "Panama", "IRN": "Iran", "EGY": "Egypt"
+        "RSA": "South Africa", "PAN": "Panama", "IRN": "Iran", "EGY": "Egypt", "PAR": "Paraguay", "HAI": "Haiti"
     }
 
     print("⏳ Lecture de la base de données FBref...")
