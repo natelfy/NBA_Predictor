@@ -36,7 +36,7 @@ SQUAD_INJURIES = {
 CALENDRIER = {
     "Jeudi 11 juin 2026": [
         {"team_a": "Mexico", "team_b": "South Africa", "score": "2-0", "climate": "Haute Altitude (Mexico, Guadalajara, Monterrey)"},
-        {"team_a": "South Korea", "team_b": "Czechia", "score": "2-1", "climate": "Haute Altitude (Mexico, Guadalajara, Monterrey)"}
+        {"team_a": "South Korea", "team_b": "Czech Republic", "score": "2-1", "climate": "Haute Altitude (Mexico, Guadalajara, Monterrey)"}
     ],
     "Vendredi 12 juin 2026": [
         {"team_a": "Canada", "team_b": "Bosnia and Herzegovina", "score": "1-1", "climate": "Climat Tempéré (Optimal)"},
@@ -61,22 +61,22 @@ CALENDRIER = {
         {"team_a": "Iran", "team_b": "New Zealand", "score": "2-2", "climate": "Chaleur/Humidité (Miami, Houston, Dallas, LA, Atlanta...)"}
     ],
     "Mardi 16 juin 2026": [
-        {"team_a": "France", "team_b": "Senegal", "score": None, "climate": "Climat Tempéré (Optimal)"},
-        {"team_a": "Iraq", "team_b": "Norway", "score": None, "climate": "Climat Tempéré (Optimal)"},
-        {"team_a": "Argentina", "team_b": "Algeria", "score": None, "climate": "Climat Tempéré (Optimal)"},
-        {"team_a": "Austria", "team_b": "Jordan", "score": None, "climate": "Climat Tempéré (Optimal)"}
+        {"team_a": "France", "team_b": "Senegal", "score": "3-1", "climate": "Climat Tempéré (Optimal)"},
+        {"team_a": "Iraq", "team_b": "Norway", "score": "1-4", "climate": "Climat Tempéré (Optimal)"},
+        {"team_a": "Argentina", "team_b": "Algeria", "score": "3-0", "climate": "Climat Tempéré (Optimal)"},
+        {"team_a": "Austria", "team_b": "Jordan", "score": "3-1", "climate": "Climat Tempéré (Optimal)"}
     ],
     "Mercredi 17 juin 2026": [
-        {"team_a": "Portugal", "team_b": "DR Congo", "score": None, "climate": "Chaleur/Humidité (Miami, Houston, Dallas, LA, Atlanta...)"},
-        {"team_a": "England", "team_b": "Croatia", "score": None, "climate": "Chaleur/Humidité (Miami, Houston, Dallas, LA, Atlanta...)"},
-        {"team_a": "Ghana", "team_b": "Panama", "score": None, "climate": "Climat Tempéré (Optimal)"},
-        {"team_a": "Uzbekistan", "team_b": "Colombia", "score": None, "climate": "Haute Altitude (Mexico, Guadalajara, Monterrey)"}
+        {"team_a": "Portugal", "team_b": "DR Congo", "score": "1-1", "climate": "Chaleur/Humidité (Miami, Houston, Dallas, LA, Atlanta...)"},
+        {"team_a": "England", "team_b": "Croatia", "score": "4-2", "climate": "Chaleur/Humidité (Miami, Houston, Dallas, LA, Atlanta...)"},
+        {"team_a": "Ghana", "team_b": "Panama", "score": "1-0", "climate": "Climat Tempéré (Optimal)"},
+        {"team_a": "Uzbekistan", "team_b": "Colombia", "score": "1-3", "climate": "Haute Altitude (Mexico, Guadalajara, Monterrey)"}
     ],
     "Jeudi 18 juin 2026": [
-        {"team_a": "Czechia", "team_b": "South Africa", "score": None, "climate": "Chaleur/Humidité (Miami, Houston, Dallas, LA, Atlanta...)"},
-        {"team_a": "Switzerland", "team_b": "Bosnia and Herzegovina", "score": None, "climate": "Chaleur/Humidité (Miami, Houston, Dallas, LA, Atlanta...)"},
-        {"team_a": "Canada", "team_b": "Qatar", "score": None, "climate": "Climat Tempéré (Optimal)"},
-        {"team_a": "Mexico", "team_b": "South Korea", "score": None, "climate": "Haute Altitude (Mexico, Guadalajara, Monterrey)"}
+        {"team_a": "Czech Republic", "team_b": "South Africa", "score": "1-1", "climate": "Chaleur/Humidité (Miami, Houston, Dallas, LA, Atlanta...)"},
+        {"team_a": "Switzerland", "team_b": "Bosnia and Herzegovina", "score": "4-1", "climate": "Chaleur/Humidité (Miami, Houston, Dallas, LA, Atlanta...)"},
+        {"team_a": "Canada", "team_b": "Qatar", "score": "6-0", "climate": "Climat Tempéré (Optimal)"},
+        {"team_a": "Mexico", "team_b": "South Korea", "score": "1-0", "climate": "Haute Altitude (Mexico, Guadalajara, Monterrey)"}
     ],
     "Vendredi 19 juin 2026": [
         {"team_a": "United States", "team_b": "Australia", "score": None, "climate": "Climat Tempéré (Optimal)"},
@@ -113,7 +113,7 @@ CALENDRIER = {
         {"team_a": "Bosnia and Herzegovina", "team_b": "Qatar", "score": None, "climate": "Climat Tempéré (Optimal)"},
         {"team_a": "Scotland", "team_b": "Brazil", "score": None, "climate": "Chaleur/Humidité (Miami, Houston, Dallas, LA, Atlanta...)"},
         {"team_a": "Morocco", "team_b": "Haiti", "score": None, "climate": "Chaleur/Humidité (Miami, Houston, Dallas, LA, Atlanta...)"},
-        {"team_a": "Czechia", "team_b": "Mexico", "score": None, "climate": "Haute Altitude (Mexico, Guadalajara, Monterrey)"},
+        {"team_a": "Czech Republic", "team_b": "Mexico", "score": None, "climate": "Haute Altitude (Mexico, Guadalajara, Monterrey)"},
         {"team_a": "South Africa", "team_b": "South Korea", "score": None, "climate": "Haute Altitude (Mexico, Guadalajara, Monterrey)"}
     ],
     "Jeudi 25 juin 2026": [
@@ -322,4 +322,25 @@ for idx, match in enumerate(matchs_du_jour):
             st.markdown("**Objectif Score Exact**")
             st.info(f"🏆 **Score Mathématique : {best_score[0]} - {best_score[1]}** (Proba: {max_p:.1%})")
 
-        analyzed_matches.append({'match': f"{ta} vs {tb}", 'pick': labels[pick], 'leverage': (ev_dict[pick] / (crowd_dict[pick] ** 0.6)) if prob_dict[pick] >= 0.15 else 0})
+        analyzed_matches.append({
+            'match': f"{ta} vs {tb}", 
+            'pick': labels[pick], 
+            'prob': prob_dict[pick], 
+            'ev': ev_dict[pick],
+            'crowd': crowd_dict[pick]
+        })
+
+if analyzed_matches:
+    st.markdown("---")
+    st.header("♟️ Radar du Bonus x2 (Intelligence Hybride)")
+    
+    # Filtre de Sécurité Absolue : On exige au moins 55% de probabilité de victoire réelle
+    safe_matches = [m for m in analyzed_matches if m['prob'] >= 0.55]
+    
+    if safe_matches:
+        # Parmi ces matchs ultra-sécurisés, on cherche la plus haute Espérance de Gain (EV)
+        best_x2 = max(safe_matches, key=lambda x: x['ev'])
+        st.success(f"🚨 **CIBLE x2 VERROUILLÉE** : Coche **{best_x2['pick'].upper()}** sur le match **{best_x2['match']}**.")
+        st.write(f"📊 *Justification : L'équipe franchit le mur de sécurité (Proba: {best_x2['prob']:.1%}) tout en garantissant la plus forte rentabilité du jour.*")
+    else:
+        st.warning("⚠️ **AUCUN x2 RECOMMANDÉ AUJOURD'HUI**. Tous les matchs sont soumis à une variance trop élevée (< 55% de chances). Garde ton bonus.")

@@ -22,7 +22,7 @@ def generate_proxy_squads():
         "POL": "Poland", "MEX": "Mexico", "GHA": "Ghana", "CIV": "Ivory Coast", 
         "AUS": "Australia", "KSA": "Saudi Arabia", "ECU": "Ecuador", "TUN": "Tunisia", 
         "DZA": "Algeria", "AUT": "Austria", "NOR": "Norway", "TUR": "Turkey", 
-        "SWE": "Sweden", "CZE": "Czechia", "SCO": "Scotland", "BIH": "Bosnia and Herzegovina", 
+        "SWE": "Sweden", "CZE": "Czech Republic", "SCO": "Scotland", "BIH": "Bosnia and Herzegovina", 
         "RSA": "South Africa", "PAN": "Panama", "IRN": "Iran", "EGY": "Egypt", "PAR": "Paraguay", "HAI": "Haiti"
     }
 
