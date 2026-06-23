@@ -129,11 +129,13 @@ for idx, match in daily_matches.iterrows():
             def render_stat(col, label, p, ev, is_best):
                 bg = "#e8f5e9" if is_best else "#f9fafb"
                 border = "#2e7b32" if is_best else "#e5e7eb"
+                text_color = "#111827"  # Force un texte sombre (Noir/Gris)
+                
                 col.markdown(f"""
-                <div style="background:{bg}; padding:10px; border:2px solid {border}; border-radius:5px; text-align:center;">
-                    <strong>{label}</strong><br>
-                    <span style="font-size:24px;">{p:.1%}</span><br>
-                    EV : {ev:.1f} pts
+                <div style="background:{bg}; padding:10px; border:2px solid {border}; border-radius:5px; text-align:center; color:{text_color};">
+                    <strong style="color:{text_color};">{label}</strong><br>
+                    <span style="font-size:26px; font-weight:bold; color:{text_color};">{p:.1%}</span><br>
+                    <span style="font-size:14px; color:{text_color};">EV : {ev:.1f} pts</span>
                 </div>
                 """, unsafe_allow_html=True)
                 
