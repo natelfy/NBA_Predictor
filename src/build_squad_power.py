@@ -3,6 +3,24 @@ import numpy as np
 import unicodedata
 import os
 import re
+import difflib
+
+def fuzzy_match_teams(fbref_name, fifa_teams):
+    canonical_mapping = {
+        'Ivory Coast': "Côte d'Ivoire",
+        'Cote d Ivoire': "Côte d'Ivoire",
+        'DR Congo': 'Congo DR',
+        'Democratic Republic of the Congo': 'Congo DR',
+        'Czechia': 'Czech Republic',
+        'South Korea': 'Korea Republic',
+        'North Korea': 'Korea DPR',
+        'USA': 'United States',
+        'Iran': 'IR Iran'
+    }
+    if fbref_name in canonical_mapping:
+        return canonical_mapping[fbref_name]
+    matches = difflib.get_close_matches(str(fbref_name), fifa_teams, n=1, cutoff=0.7)
+    return matches[0] if matches else fbref_name
 
 def clean_player_name(name):
     """Nettoyage pour garantir une fusion parfaite."""
@@ -91,6 +109,23 @@ def build_squad_power():
     print("\n📊 VRAI CLASSEMENT SQUAD POWER (Top 10) :")
     print(df_power.head(10).to_string(index=False, formatters={'Squad_Power_Index': '{:.1f}'.format, 'Avg_Top11_Minutes': '{:.0f}'.format, 'Avg_Top11_Impact': '{:.1f}'.format}))
     
+    # --- DÉBUT DE L'INTERCEPTION (Industrialisation du Fuzzy Matching) ---
+    print("🛡️ Application automatique de la correction des noms de nations...")
+    try:
+        df_games = pd.read_csv('data/processed_football_games.csv')
+        fifa_teams = df_games['TEAM_ID'].unique().tolist()
+        
+        team_col = 'Team' if 'Team' in df_power.columns else ('TEAM' if 'TEAM' in df_power.columns else None)
+        if team_col:
+            df_power[team_col] = df_power[team_col].apply(lambda x: fuzzy_match_teams(x, fifa_teams))
+            print("✅ Noms des effectifs alignés sur la matrice FIFA.")
+    except Exception as e:
+        print(f"⚠️ Impossible de corriger les noms à la volée : {e}")
+    # --- FIN DE L'INTERCEPTION ---
+    
+    # Ta ligne de sauvegarde d'origine se trouve juste ici
+    # df.to_csv('data/squad_power.csv', index=False)
+
     df_power.to_csv('data/squad_power.csv', index=False)
     print("\n✅ Fichier 'data/squad_power.csv' généré. Le biais des gardiens de but est neutralisé.")
     print("=" * 60)
