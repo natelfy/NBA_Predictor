@@ -22,37 +22,34 @@ MPP_BONUS_EXACT = {
 def poisson_prob(l, k):
     return (l**k * exp(-l)) / factorial(k)
 
-def calculate_exact_score_ev(goal_diff, prob_1x2):
+def calculate_exact_score_ev(goal_diff, total_goals=2.5):
     """
-    Calcule l'Espérance du Bonus de Score.
-    goal_diff = T1_goals - T2_goals
-    On part sur une moyenne de 2.5 buts/match dans le tournoi pour distribuer.
+    Espérance du bonus de score exact, PAR issue, + meilleur score exact PAR issue.
+    goal_diff   = buts T1 - buts T2 (prédit par le régresseur).
+    total_goals = total de buts attendu (figé pour l'instant ; cf. roadmap = le rendre dynamique).
+    Retourne (expected_bonus, best_score) où best_score['T1'|'NUL'|'T2'] = (i, j).
+    Le meilleur score est cherché DANS chaque issue -> garantit la cohérence score/issue.
     """
-    l1 = max(0.1, (2.5 + goal_diff) / 2)
-    l2 = max(0.1, (2.5 - goal_diff) / 2)
-    
-    score_probs = {}
+    l1 = max(0.1, (total_goals + goal_diff) / 2)
+    l2 = max(0.1, (total_goals - goal_diff) / 2)
+
     expected_bonus = {'T1': 0.0, 'NUL': 0.0, 'T2': 0.0}
-    best_score_str = ""
-    max_score_ev = -1
-    
-    for i in range(5):
-        for j in range(5):
+    best_score = {'T1': (1, 0), 'NUL': (1, 1), 'T2': (0, 1)}  # replis sûrs
+    best_ev = {'T1': -1.0, 'NUL': -1.0, 'T2': -1.0}
+
+    for i in range(6):
+        for j in range(6):
             prob = poisson_prob(l1, i) * poisson_prob(l2, j)
-            score_probs[(i,j)] = prob
-            bonus = MPP_BONUS_EXACT.get((i,j), 60) # Par défaut 60 pour les scores improbables (5-0)
-            
+            bonus = MPP_BONUS_EXACT.get((i, j), 60)  # défaut 60 pour les scores rares hors matrice
             ev = prob * bonus
-            if i > j: expected_bonus['T1'] += ev
-            elif i == j: expected_bonus['NUL'] += ev
-            else: expected_bonus['T2'] += ev
-            
-            # On cherche le score exact qui a la plus grosse EV brute pour l'affichage
-            if ev > max_score_ev:
-                max_score_ev = ev
-                best_score_str = f"{i} - {j}"
-                
-    return expected_bonus, best_score_str
+            issue = 'T1' if i > j else ('NUL' if i == j else 'T2')
+            expected_bonus[issue] += ev
+            # meilleur score DANS l'issue (et non plus le meilleur score global)
+            if ev > best_ev[issue]:
+                best_ev[issue] = ev
+                best_score[issue] = (i, j)
+
+    return expected_bonus, best_score
 
 @st.cache_resource
 def load_oracle_environment():
@@ -109,37 +106,63 @@ for idx, match in upcoming_matches[upcoming_matches['DATE'] == next_date].iterro
             goal_diff = reg.predict(X_pred)[0]
             prob_dict = {'T1': probs[2], 'NUL': probs[1], 'T2': probs[0]}
             
-            # ÉTAPE CLÉ : Distribution Poisson et calcul de l'EV Totale (Issue + Bonus Score)
-            expected_bonus, recommended_score = calculate_exact_score_ev(goal_diff, prob_dict)
-            
-            ev_totale = {
-                'T1': (prob_dict['T1'] * cote_t1) + expected_bonus['T1'],
-                'NUL': (prob_dict['NUL'] * cote_nul) + expected_bonus['NUL'],
-                'T2': (prob_dict['T2'] * cote_t2) + expected_bonus['T2']
-            }
-            
-            # Décision
-            if points_gap >= 30: # Leader
-                best = max(prob_dict, key=prob_dict.get)
-            else: # Chasseur (On enlève le plancher restrictif, on suit l'EV totale pure)
-                best = max(ev_totale, key=ev_totale.get)
+            # ÉTAPE CLÉ : Distribution Poisson -> E[bonus] par issue + meilleur score PAR issue
+            expected_bonus, best_score = calculate_exact_score_ev(goal_diff)
 
+            cotes = {'T1': cote_t1, 'NUL': cote_nul, 'T2': cote_t2}
+            ev_issue = {k: prob_dict[k] * cotes[k] for k in cotes}
+            ev_totale = {k: ev_issue[k] + expected_bonus[k] for k in cotes}
+
+            # Proba de la FOULE (marché MPP) dévigée, déduite des cotes -> mesure l'edge réel
+            inv = {k: 1.0 / cotes[k] for k in cotes}
+            s_inv = sum(inv.values())
+            implied = {k: inv[k] / s_inv for k in cotes}
+            edge = {k: prob_dict[k] - implied[k] for k in cotes}
+
+            model_pick = max(prob_dict, key=prob_dict.get)   # ce que croit le modèle calibré
+            value_pick = max(ev_totale, key=ev_totale.get)   # meilleure EV totale (issue + bonus)
+
+            # --- Décision : se différencier UNIQUEMENT sur un edge réel vs la foule ---
+            # (sinon on suit le modèle : pas de nul/outsider forcé sur chaque match)
+            # Seuils provisoires -> le sélecteur définitif sera la simulation P(top-3).
+            EDGE_MIN, PROB_MIN = 0.05, 0.20
+            if points_gap >= 30:   # Leader : on sécurise -> issue la plus probable
+                best = model_pick
+            else:                  # Chasseur : valeur SEULEMENT si edge réel et proba non négligeable
+                if value_pick == model_pick or (edge[value_pick] >= EDGE_MIN and prob_dict[value_pick] >= PROB_MIN):
+                    best = value_pick
+                else:
+                    best = model_pick
+
+            is_contrarian = (best == value_pick) and (value_pick != model_pick)
+            si, sj = best_score[best]              # score COHÉRENT avec l'issue choisie
+            recommended_score = f"{si} - {sj}"
             winner_name = t1 if best == 'T1' else (t2 if best == 'T2' else 'MATCH NUL')
 
-            st.success(f"**Cible EV MAX : Jouer {winner_name.upper()}** (Score mathématique recommandé : {recommended_score})")
+            badge = " · 🎯 COUP CONTRARIAN" if is_contrarian else ""
+            st.success(f"**Cible : Jouer {winner_name.upper()}** (Score recommandé : {recommended_score}){badge}")
+            if is_contrarian:
+                st.caption(f"✅ Différenciation justifiée : le modèle donne **{prob_dict[best]:.0%}** à cette issue "
+                           f"vs **{implied[best]:.0%}** pour la foule (edge **+{edge[best]*100:.0f} pts de %**). "
+                           f"C'est ce type de pari qui fait remonter au classement.")
+            else:
+                st.caption("ℹ️ Pas d'edge net vs la foule → on suit la prédiction du modèle (pas de prise de risque inutile).")
             
             r1, r2, r3 = st.columns(3)
-            def render(col, label, p, ev_issue, ev_bonus, ev_tot, is_best):
+            def render(col, label, key, is_best):
+                p, imp, eg = prob_dict[key], implied[key], edge[key]
                 bg, border = ("#e8f5e9", "#2e7b32") if is_best else ("#f9fafb", "#e5e7eb")
+                eg_color = "#15803d" if eg >= 0 else "#b91c1c"
                 col.markdown(f"""
                 <div style="background:{bg}; padding:10px; border:2px solid {border}; border-radius:5px; text-align:center; color:#111827;">
                     <strong>{label}</strong><br>
                     <span style="font-size:26px; font-weight:bold;">{p:.1%}</span><br>
-                    <span style="font-size:12px; color:#4b5563;">EV Issue : {ev_issue:.1f} | E[Bonus] : {ev_bonus:.1f}</span><br>
-                    <span style="font-size:16px; font-weight:bold;">EV TOTALE : {ev_tot:.1f} pts</span>
+                    <span style="font-size:12px; color:#4b5563;">Foule : {imp:.0%} · <span style="color:{eg_color}; font-weight:bold;">edge {eg*100:+.0f}</span></span><br>
+                    <span style="font-size:12px; color:#4b5563;">EV Issue : {ev_issue[key]:.1f} | E[Bonus] : {expected_bonus[key]:.1f}</span><br>
+                    <span style="font-size:16px; font-weight:bold;">EV TOTALE : {ev_totale[key]:.1f} pts</span>
                 </div>
                 """, unsafe_allow_html=True)
-                
-            render(r1, t1, prob_dict['T1'], prob_dict['T1']*cote_t1, expected_bonus['T1'], ev_totale['T1'], best == 'T1')
-            render(r2, "NUL", prob_dict['NUL'], prob_dict['NUL']*cote_nul, expected_bonus['NUL'], ev_totale['NUL'], best == 'NUL')
-            render(r3, t2, prob_dict['T2'], prob_dict['T2']*cote_t2, expected_bonus['T2'], ev_totale['T2'], best == 'T2')
+
+            render(r1, t1, 'T1', best == 'T1')
+            render(r2, "NUL", 'NUL', best == 'NUL')
+            render(r3, t2, 'T2', best == 'T2')
