@@ -1,168 +1,250 @@
 """
-Football Oracle - Simulateur Monte-Carlo du jeu MPP (vectorise)
-===============================================================
+Football Oracle - Simulateur P(top-3) a foule OBSERVEE (Monte-Carlo, stdlib pur)
+================================================================================
 
-Tranche : "quelle strategie maximise P(finir 1er) dans ma ligue ?"
-Hypothese honnete : meme info pour tous (les cotes). Seul l'ecart = la STRATEGIE.
+Question reelle : "Quelle strategie de pronos maximise ma proba de finir top-3,
+sachant que je suis a GAP points du 3e, dans une ligue ou je VOIS comment parie
+la foule (% des joueurs par issue) ?"
 
-ETALON 'champ_moyen' = jouer comme un adversaire -> DOIT ~= hasard 1/(N+1).
-C'est le test de correction du moteur.
+Modele honnete "Y - L" (evite de simuler 600 joueurs) :
+  - Y = points que TU gagnes sur les matchs a venir (selon TA strategie).
+  - L = points que gagne la "ligne du 3e", modelisee par defaut comme un fort
+        joueur qui suit la FOULE (le favori du public) sur chaque match.
+  - Tu finis top-3  <=>  ton_total + Y >= total_3e + L  <=>  (Y - L) >= GAP.
+  => P(top-3) ~= P(Y - L >= GAP).
 
-Strategies testees :
-  champ_moyen : joue comme la foule (etalon).
-  favori      : favori partout + x2 sur le + sur (EV-optimal, variance mini).
-  diff        : 1 swing sur le match le + ouvert + x2 dessus (differenciation douce).
-  longshot    : outsiders (grosse cote) sur les K matchs les + ouverts + x2 sur
-                le + gros outsider (variance MAX = theorie des concours).
-  adaptatif   : favori si tu mene, longshot si tu chasses.
+Pourquoi c'est juste pour decider : quand tu joues comme la foule, Y - L ~ 0 ->
+tu ne combles jamais un GAP positif. On ne grimpe qu'en ayant RAISON la ou la
+foule a TORT (edge = proba_modele - %_foule > 0), ce qui paie la grosse cote.
+Le simulateur classe donc les strategies par P(top-3) et te donne les picks.
 
-[A VERIFIER] Bareme : points ~ cote ; score exact -> double le match ; x2 -> double
-le match. Bonus de RARETE non modelise (Famille A). On isole le levier issue+x2.
+Barreme MPP : points = cote de l'issue si correcte + bonus de score exact
+(reel si saisi, sinon score_model.default_bonus). Le x2 est deja depense -> ignore.
+
+Entrees fournies par l'utilisateur (il VOIT cotes, %-foule, et bonus connus) :
+  match = {
+    'name': 'Portugal vs Uzbekistan',
+    'p_model': {'T1':.62,'NUL':.25,'T2':.13},   # proba du modele calibre
+    'p_crowd': {'T1':.78,'NUL':.07,'T2':.15},   # % OBSERVE des joueurs (somme ~1)
+    'cotes'  : {'T1':24,'NUL':154,'T2':173},    # cotes MPP
+    'lambdas': (2.15, 0.35),                     # buts attendus (ratings ou goal_diff)
+    'bonus_known': {(0,0):30, (1,1):15},         # bonus de score reels connus (optionnel)
+  }
+
+Pur stdlib (math, random, statistics) : testable hors-ligne, zero dependance.
+ISOLATION : aucun fichier NBA.
 """
-import numpy as np
-import argparse
+import random
+import statistics
+from score_model import (score_matrix, outcome_probs, exact_score_ev,
+                         default_bonus, lambdas_from_goal_diff, lambdas_from_ratings)
 
-SCORES_WIN  = [(1,0),(2,0),(2,1),(3,0),(3,1)]
-SCORES_DRAW = [(1,1),(0,0),(2,2)]
-POP_WIN  = np.array([.36,.26,.20,.11,.07]); POP_WIN /= POP_WIN.sum()
-POP_DRAW = np.array([.55,.30,.15])
-# codes de score par issue (0=dom,1=nul,2=ext) ; ext = miroir de dom
-CODES = {0: np.array([10*a+b for a,b in SCORES_WIN]),
-         1: np.array([10*a+b for a,b in SCORES_DRAW]),
-         2: np.array([10*b+a for a,b in SCORES_WIN])}
-POP   = {0: POP_WIN, 1: POP_DRAW, 2: POP_WIN}
+OUTS = ['T1', 'NUL', 'T2']
 
-def gen_probs(rng):
-    pf = rng.uniform(0.38, 0.84); rem = 1 - pf
-    pd = rem * rng.uniform(0.40, 0.62)
-    p = np.array([pf, pd, rem - pd])
-    return p[rng.permutation(3)]
 
-def cotes_from(p, margin=0.06): return 1.0 / (p * (1 + margin))
-def res_pts(c): return c * 10.0
+# ----------------------------------------------------------------------------------
+# Preparation d'un match : distribution de score, E[bonus]/issue, E[points]/issue...
+# ----------------------------------------------------------------------------------
+def prep_match(m):
+    l1, l2 = m['lambdas']
+    sm = score_matrix(l1, l2)
+    ops = outcome_probs(sm)
+    bonus_known = m.get('bonus_known') or {}
+    eb, best_score = exact_score_ev(sm, bonus_known)
+    p_model, p_crowd, cotes = m['p_model'], m['p_crowd'], m['cotes']
 
-def sample_codes(outs, rng, pop_prob=0.8):
-    """Vectorise : un code de score par joueur selon son issue."""
-    n = len(outs); codes = np.empty(n, dtype=int)
-    pop_flag = rng.random(n) < pop_prob
-    for o in (0, 1, 2):
-        m = outs == o
-        k = int(m.sum())
-        if not k: continue
-        cds = CODES[o]; pf = pop_flag[m]; idx = np.empty(k, dtype=int)
-        npop = int(pf.sum())
-        if npop: idx[pf] = rng.choice(len(cds), size=npop, p=POP[o])
-        if k - npop: idx[~pf] = rng.integers(len(cds), size=k - npop)
-        codes[m] = cds[idx]
-    return codes
+    e_points = {k: p_model[k] * cotes[k] + eb[k] for k in OUTS}   # E[points] = issue + bonus
+    nail, bonus_val = {}, {}
+    for k in OUTS:
+        s = best_score[k]
+        po = ops[k] if ops[k] > 1e-9 else 1e-9
+        nail[k] = min(1.0, sm.get(s, 0.0) / po)                  # P(score exact | issue k)
+        bonus_val[k] = bonus_known.get(s, default_bonus(s[0], s[1]))
+    return {
+        'name': m.get('name', '?'),
+        'p_model': p_model, 'p_crowd': p_crowd, 'cotes': cotes,
+        'e_points': e_points, 'best_score': best_score,
+        'nail': nail, 'bonus_val': bonus_val,
+        'edge': {k: p_model[k] - p_crowd[k] for k in OUTS},      # avantage vs foule OBSERVEE
+    }
 
-def one_code(out, rng, popular=True):
-    cds = CODES[out]
-    i = rng.choice(len(cds), p=POP[out]) if popular else rng.integers(len(cds))
-    return int(cds[i])
 
-def my_day(cotes, strat, rng, leading, K=3, pfav=0.80, popp=0.8):
-    G = len(cotes); favs = [int(np.argmin(c)) for c in cotes]
-    open_cote = np.array([cotes[g][favs[g]] for g in range(G)])
-    most_open = int(open_cote.argmax()); safest = int(open_cote.argmin())
-    longs = [int(np.argmax(cotes[g])) for g in range(G)]          # issue + cotee
-    long_pts = np.array([cotes[g][longs[g]] for g in range(G)])
-    if strat == 'adaptatif': strat = 'favori' if leading else 'longshot'
+# ----------------------------- strategies de picks --------------------------------
+def picks_favori(P):
+    """Ce que joue la foule / la ligne du 3e : l'issue la plus jouee par le public."""
+    return [max(OUTS, key=lambda k: pm['p_crowd'][k]) for pm in P]
 
-    outs = list(favs); codes = []; x2 = safest
-    if strat == 'champ_moyen':
-        for g in range(G):
-            c = cotes[g]
-            if rng.random() < pfav: o = favs[g]
-            else:
-                w = 1/c; w[favs[g]] = 0; w /= w.sum(); o = int(rng.choice(3, p=w))
-            outs[g] = o; codes.append(one_code(o, rng, rng.random() < popp))
-        return np.array(outs), np.array(codes), safest
-    if strat == 'favori':
-        codes = [one_code(favs[g], rng, True) for g in range(G)]
-        return np.array(favs), np.array(codes), safest
-    if strat == 'diff':
-        for g in range(G):
-            if g == most_open:
-                c = cotes[g]; w = 1/c; w[favs[g]] = 0; w /= w.sum()
-                o = int(w.argmax()); outs[g] = o
-                codes.append(one_code(o, rng, popular=False))
-            else: codes.append(one_code(favs[g], rng, True))
-        return np.array(outs), np.array(codes), most_open
-    if strat == 'longshot':
-        openK = set(np.argsort(open_cote)[-K:])                   # K matchs + ouverts
-        for g in range(G):
-            if g in openK:
-                outs[g] = longs[g]; codes.append(one_code(longs[g], rng, popular=False))
-            else: codes.append(one_code(favs[g], rng, True))
-        x2 = int(long_pts.argmax())                               # x2 sur + gros outsider
-        return np.array(outs), np.array(codes), x2
-    raise ValueError(strat)
 
-def run(strat, n, T, days, gpd, seed, K=3, pfav=0.80, popp=0.8):
-    rng = np.random.default_rng(seed)
-    ranks = np.empty(T); firsts = 0
-    for t in range(T):
-        my = 0.0; fld = np.zeros(n)
-        for d in range(days):
-            probs = [gen_probs(rng) for _ in range(gpd)]
-            cotes = [cotes_from(p) for p in probs]
-            res = [(int(rng.choice(3, p=p)), None) for p in probs]
-            res = [(o, one_code(o, rng, rng.random() < 0.5)) for o, _ in res]
-            favs = [int(np.argmin(c)) for c in cotes]
-            fav_cote = np.array([cotes[g][favs[g]] for g in range(gpd)])
-            fx2 = int(fav_cote.argmin())                          # foule : x2 sur + sur
-            leading = (d > 0 and my >= fld.max())
-            mo, mc, mx2 = my_day(cotes, strat, rng, leading, K, pfav, popp)
-            for g in range(gpd):
-                c = cotes[g]; to, tcode = res[g]; base = res_pts(c[to])
-                # --- champ (vectorise sur n) ---
-                fav = favs[g]; fo = np.full(n, fav)
-                u = rng.random(n); nf = u >= pfav
-                if nf.any():
-                    w = 1/c.copy(); w[fav] = 0; w /= w.sum()
-                    fo[nf] = rng.choice(3, size=int(nf.sum()), p=w)
-                fc = sample_codes(fo, rng, popp)
-                correct = fo == to
-                pts = correct * base + (correct & (fc == tcode)) * base
-                if g == fx2: pts = pts * 2
-                fld += pts
-                # --- toi ---
-                if mo[g] == to:
-                    mp = base + (base if mc[g] == tcode else 0)
-                    my += mp * 2 if g == mx2 else mp
-        ranks[t] = 1 + int((fld > my).sum())
-        if my >= fld.max(): firsts += 1
-    return ranks.mean(), firsts / T
+def picks_modele(P):
+    return [max(OUTS, key=lambda k: pm['p_model'][k]) for pm in P]
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument('--tournois', type=int, default=4000)
-    ap.add_argument('--joueurs', type=int, default=20)
-    ap.add_argument('--jours', type=int, default=6)
-    ap.add_argument('--matchs', type=int, default=8)
-    ap.add_argument('--K', type=int, default=3)
-    ap.add_argument('--seed', type=int, default=42)
-    ap.add_argument('--pfav', type=float, default=0.80)
-    ap.add_argument('--popp', type=float, default=0.80)
-    a = ap.parse_args()
-    base = 1.0 / (a.joueurs + 1)
-    print("\n" + "=" * 74)
-    print(f"  SIMULATEUR MPP  |  {a.tournois} tournois, {a.joueurs+1} joueurs, "
-          f"{a.jours}j x {a.matchs} matchs  (K={a.K}, pfav={a.pfav})")
-    print(f"  Meme info pour tous -> seul l'ecart = la STRATEGIE.")
-    print("=" * 74)
-    print(f"  {'Strategie':<16}{'Rang moyen':>12}{'P(1er)':>11}{'vs hasard':>13}")
-    print("  " + "-" * 52)
-    for s in ['champ_moyen', 'favori', 'diff', 'longshot', 'adaptatif']:
-        mr, p1 = run(s, a.joueurs, a.tournois, a.jours, a.matchs, a.seed, a.K, a.pfav, a.popp)
-        tag = "  <-- etalon" if s == 'champ_moyen' else ""
-        print(f"  {s:<16}{mr:>12.2f}{p1:>10.1%}{p1/base:>12.2f}x{tag}")
-    print("  " + "-" * 52)
-    print(f"  hasard pur : P(1er) {base:.1%}, rang moyen {(a.joueurs+2)/2:.1f}")
-    print("=" * 74)
 
+def picks_valeur(P, edge_min=0.0):
+    """Meilleure E[points] PARMI les issues a edge positif (sinon repli sur le modele)."""
+    out = []
+    for pm in P:
+        cand = [k for k in OUTS if pm['edge'][k] >= edge_min]
+        if not cand:
+            cand = list(OUTS)
+        out.append(max(cand, key=lambda k: pm['e_points'][k]))
+    return out
+
+
+def picks_valeur_topK(P, K, edge_min=0.03):
+    """Se differencie SEULEMENT sur les K matchs au plus fort edge ; favori ailleurs."""
+    fav = picks_favori(P)
+    val = picks_valeur(P, edge_min)
+    diffs = sorted([(i, P[i]['edge'][val[i]]) for i in range(len(P)) if val[i] != fav[i]],
+                   key=lambda x: -x[1])
+    keep = {i for i, _ in diffs[:K]}
+    return [val[i] if i in keep else fav[i] for i in range(len(P))]
+
+
+# ------------------------------- Monte-Carlo --------------------------------------
+def _sample_outcome(p, rng):
+    r = rng.random()
+    c = 0.0
+    for k in OUTS:
+        c += p[k]
+        if r <= c:
+            return k
+    return OUTS[-1]
+
+
+def _match_points(pm, pick, outcome, rng):
+    if pick != outcome:
+        return 0.0
+    pts = pm['cotes'][pick]
+    if rng.random() < pm['nail'][pick]:      # tu trouves AUSSI le score exact -> bonus
+        pts += pm['bonus_val'][pick]
+    return pts
+
+
+def simulate(P, your_picks, comp_picks, gap, trials=20000, seed=42):
+    """Renvoie P(Y - L >= gap) + statistiques sur le gain net (Y - L)."""
+    rng = random.Random(seed)
+    fav = picks_favori(P)
+    nets, hits_when_win, close = [], [], 0
+    for _ in range(trials):
+        Y = L = 0.0
+        hits = 0
+        for idx, pm in enumerate(P):
+            o = _sample_outcome(pm['p_model'], rng)
+            Y += _match_points(pm, your_picks[idx], o, rng)
+            L += _match_points(pm, comp_picks[idx], o, rng)
+            if your_picks[idx] != fav[idx] and your_picks[idx] == o:
+                hits += 1
+        net = Y - L
+        nets.append(net)
+        if net >= gap:
+            close += 1
+            hits_when_win.append(hits)
+    nets.sort()
+    return {
+        'p_top3': close / trials,
+        'net_median': nets[len(nets) // 2],
+        'net_mean': sum(nets) / len(nets),
+        'net_p90': nets[min(len(nets) - 1, int(0.90 * len(nets)))],
+        'avg_contrarian_hits_when_win': (sum(hits_when_win) / len(hits_when_win)) if hits_when_win else 0.0,
+    }
+
+
+# ------------------------- API haut niveau : recommander --------------------------
+def recommend(matches, gap, trials=20000, seed=42, competitor='favori'):
+    """
+    Compare les strategies et renvoie la meilleure + les picks recommandes.
+    competitor : strategie supposee de la 'ligne du 3e' ('favori' par defaut ;
+                 mets 'valeur' pour un concurrent plus agressif = scenario prudent).
+    """
+    P = [prep_match(m) for m in matches]
+    comp = picks_valeur(P) if competitor == 'valeur' else picks_favori(P)
+
+    cands = {
+        'favori (comme la foule)': picks_favori(P),
+        'modele (argmax proba)': picks_modele(P),
+        'valeur (edge>0)': picks_valeur(P, edge_min=0.0),
+        'valeur top-2 edges': picks_valeur_topK(P, 2),
+        'valeur top-4 edges': picks_valeur_topK(P, 4),
+    }
+    table = {}
+    for name, yp in cands.items():
+        table[name] = simulate(P, yp, comp, gap, trials, seed)
+
+    best_name = max(table, key=lambda n: table[n]['p_top3'])
+    best_picks = cands[best_name]
+    fav = picks_favori(P)
+    detail = []
+    for idx, pm in enumerate(P):
+        k = best_picks[idx]
+        detail.append({
+            'match': pm['name'], 'pick': k, 'score': pm['best_score'][k],
+            'p_model': pm['p_model'][k], 'p_crowd': pm['p_crowd'][k],
+            'edge': pm['edge'][k], 'cote': pm['cotes'][k],
+            'contrarian': k != fav[idx],
+        })
+    return {'best': best_name, 'p_top3': table[best_name]['p_top3'],
+            'table': table, 'picks': detail, 'P': P}
+
+
+def build_match(name, p_model, p_crowd, cotes, goal_diff=None, lambdas=None,
+                ratings=None, teams=None, bonus_known=None, is_t1_host=0):
+    """Helper : construit un 'match' en derivant lambdas des ratings, sinon du goal_diff."""
+    if lambdas is None:
+        if ratings is not None and teams is not None:
+            lambdas = lambdas_from_ratings(teams[0], teams[1], ratings, is_t1_host)
+        else:
+            lambdas = lambdas_from_goal_diff(goal_diff if goal_diff is not None else 0.0)
+    return {'name': name, 'p_model': p_model, 'p_crowd': p_crowd, 'cotes': cotes,
+            'lambdas': lambdas, 'bonus_known': bonus_known or {}}
+
+
+# --------------------------------------------------------------------------------------
+# Auto-test / demo (python src/mpp_sim.py) : verifie la mecanique du moteur
+# --------------------------------------------------------------------------------------
 if __name__ == "__main__":
-    main()
+    # Slate synthetique : sur quelques matchs, le modele voit des nuls/outsiders
+    # que la foule sous-estime (edge>0) -> ce sont les coups qui font remonter.
+    slate = [
+        build_match("Favori net A", {'T1':.70,'NUL':.22,'T2':.08},
+                    {'T1':.82,'NUL':.10,'T2':.08}, {'T1':30,'NUL':110,'T2':160}, goal_diff=1.4),
+        build_match("Favori net B", {'T1':.66,'NUL':.24,'T2':.10},
+                    {'T1':.80,'NUL':.12,'T2':.08}, {'T1':33,'NUL':120,'T2':150}, goal_diff=1.2),
+        build_match("Nul sous-cote", {'T1':.40,'NUL':.34,'T2':.26},
+                    {'T1':.55,'NUL':.12,'T2':.33}, {'T1':70,'NUL':150,'T2':95}, goal_diff=0.2),
+        build_match("Outsider live", {'T1':.34,'NUL':.30,'T2':.36},
+                    {'T1':.50,'NUL':.20,'T2':.30}, {'T1':95,'NUL':140,'T2':120}, goal_diff=-0.1),
+        build_match("Equilibre", {'T1':.38,'NUL':.32,'T2':.30},
+                    {'T1':.45,'NUL':.18,'T2':.37}, {'T1':80,'NUL':150,'T2':100}, goal_diff=0.1),
+        build_match("Piege", {'T1':.30,'NUL':.33,'T2':.37},
+                    {'T1':.40,'NUL':.22,'T2':.38}, {'T1':110,'NUL':135,'T2':95}, goal_diff=-0.2),
+    ]
+    P = [prep_match(m) for m in slate]
 
+    print("== mpp_sim :: auto-test (mecanique) ==")
+    fav = picks_favori(P)
+    # 1) Jouer comme la foule -> gain net ~ 0 -> on ne comble pas un gap positif
+    s_fav = simulate(P, fav, fav, gap=120, trials=8000, seed=1)
+    print(f"favori vs favori : net_mean={s_fav['net_mean']:.1f} (attendu ~0), "
+          f"P(combler 120)={s_fav['p_top3']:.1%}")
+    assert abs(s_fav['net_mean']) < 6.0, "jouer comme la foule doit donner un net ~0"
 
+    # 2) Jouer la valeur (edge>0) -> net moyen > 0 et P(combler) > favori
+    val = picks_valeur(P)
+    s_val = simulate(P, val, fav, gap=120, trials=8000, seed=1)
+    print(f"valeur vs favori : net_mean={s_val['net_mean']:.1f} (attendu >0), "
+          f"P(combler 120)={s_val['p_top3']:.1%}")
+    assert s_val['net_mean'] > s_fav['net_mean'], "la valeur doit battre le favori en moyenne"
+    assert s_val['p_top3'] >= s_fav['p_top3'], "la valeur doit augmenter P(combler)"
+
+    print("\n== Recommandation (gap au 3e = 120 sur ce slate) ==")
+    rec = recommend(slate, gap=120, trials=12000)
+    for name, r in rec['table'].items():
+        print(f"  {name:<26} P(top3)={r['p_top3']:.1%}  net_med={r['net_median']:+.0f}  "
+              f"net_p90={r['net_p90']:+.0f}")
+    print(f"\n  >>> MEILLEURE : {rec['best']}  (P(top3)={rec['p_top3']:.1%})")
+    for d in rec['picks']:
+        flag = " <- CONTRARIAN" if d['contrarian'] else ""
+        print(f"     {d['match']:<16} {d['pick']:<4} {d['score'][0]}-{d['score'][1]}  "
+              f"modele {d['p_model']:.0%} vs foule {d['p_crowd']:.0%} (edge {d['edge']*100:+.0f}) "
+              f"cote {d['cote']}{flag}")
+    print("\nOK : favori->net~0, valeur->net>0 et P(top3) superieure. Mecanique validee.")
