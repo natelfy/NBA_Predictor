@@ -60,6 +60,8 @@ if clf is None:
 # =====================================================================
 st.sidebar.header("🎯 Ta situation")
 gap_3e = st.sidebar.number_input("Points à combler sur le 3e", value=505, step=10)
+n_remaining = st.sidebar.number_input("Matchs restants (estim. jusqu'à la fin)",
+                                      value=int(max(len(upcoming_matches), 30)), step=5, min_value=1)
 st.sidebar.caption(f"team_ratings.json : {'✅ chargé (scores ajustés)' if ratings else '❌ absent (fallback goal_diff)'}")
 
 # Réglages internes (volontairement non exposés pour garder l'UI simple)
@@ -165,16 +167,22 @@ if st.button("🎯 Calculer la stratégie du jour", type="primary"):
                     'Contexte': mc['note'],
                 })
 
-            rec = mpp_sim.recommend(slate, gap=gap_3e, trials=TRIALS, competitor=COMPETITOR)
+            # Objectif PRORATISÉ : la part de l'écart au 3e à grignoter SUR LA JOURNÉE
+            # (combler 505 d'un coup sur un seul jour est impossible -> P≈0 et choix non fiable).
+            n_today = len(slate)
+            daily_target = max(1.0, gap_3e * n_today / max(n_remaining, n_today))
+            rec = mpp_sim.recommend(slate, gap=daily_target, trials=TRIALS, competitor=COMPETITOR)
 
             with results_box:
                 p = rec['p_top3']
                 st.markdown("## 🧮 Stratégie recommandée")
                 cA, cB = st.columns([1, 2])
-                cA.metric("P(combler l'écart au 3e)", f"{p:.1%}")
-                cB.info(f"Meilleure stratégie : **{rec['best']}**. "
-                        + ("⚠️ Long shot honnête : vise les coups contrarian ci-dessous et relance chaque jour."
-                           if p < 0.10 else "Profil jouable : tiens cette ligne et relance chaque jour."))
+                cA.metric(f"P(objectif du jour ≥ +{daily_target:.0f})", f"{p:.1%}")
+                cB.info(f"🎯 Objectif du jour ≈ **+{daily_target:.0f} pts nets** vs la foule "
+                        f"(part de l'écart {gap_3e} réparti sur ~{int(n_remaining)} matchs restants). "
+                        f"Meilleure stratégie : **{rec['best']}**. "
+                        + ("⚠️ Reste un long shot — tiens la ligne et relance chaque jour."
+                           if p < 0.15 else "Profil jouable : tiens cette ligne et relance chaque jour."))
                 st.caption("📌 Radar live : le modèle **sous-estime les nuls** — sur un match à talent serré "
                            "ou face à un gros favori, le **NUL** est un meilleur pari contrarian que l'EV ne le "
                            "montre (voir colonnes *Talent* / *Contexte* dans le détail).")
@@ -185,9 +193,13 @@ if st.button("🎯 Calculer la stratégie du jour", type="primary"):
                             'NUL': 'MATCH NUL'}[d['pick']]
                     sc = f"{d['score'][0]}-{d['score'][1]}"
                     if d['contrarian']:
-                        st.success(f"🎯 **{d['match']}** → **{name}** (score {sc}) · "
-                                   f"modèle {d['p_model']:.0%} vs foule {d['p_crowd']:.0%} "
-                                   f"(**edge {d['edge'] * 100:+.0f}**, cote {d['cote']}) — COUP CONTRARIAN")
+                        suspect = d['edge'] > 0.22          # écart vs 599 joueurs : + probable = erreur modèle que value
+                        tag = ("⚠️ écart ÉNORME vs foule → probable limite du modèle sur cette équipe (À VÉRIFIER), "
+                               "pas forcément une vraie valeur" if suspect else "COUP CONTRARIAN")
+                        line = (f"🎯 **{d['match']}** → **{name}** (score {sc}) · "
+                                f"modèle {d['p_model']:.0%} vs foule {d['p_crowd']:.0%} "
+                                f"(**edge {d['edge'] * 100:+.0f}**, cote {d['cote']}) — {tag}")
+                        (st.warning if suspect else st.success)(line)
                     else:
                         st.write(f"• **{d['match']}** → {name} (score {sc}) · pas d'edge net → prudence "
                                  f"(modèle {d['p_model']:.0%} vs foule {d['p_crowd']:.0%}, cote {d['cote']})")
