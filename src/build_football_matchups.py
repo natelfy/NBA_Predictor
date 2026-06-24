@@ -5,12 +5,15 @@ from datetime import datetime
 print("⏳ [1/3] Chargement des données brutes (Format Long détecté)...")
 df = pd.read_csv('data/raw_international_games.csv')
 
-# 1. Conversion des dates et tri chronologique absolu
+# 1. Conversion des dates et tri chronologique absolu.
+#    Tri aussi par IS_HOST décroissant (tri STABLE) : la ligne de l'équipe HÔTE devient T1
+#    quand il y en a une -> orientation déterministe et T1_IS_HOST cohérent ; sinon ordre stable.
 df['MATCH_DATE'] = pd.to_datetime(df['MATCH_DATE'])
-df = df.sort_values(['MATCH_DATE', 'MATCH_ID']).reset_index(drop=True)
+df = df.sort_values(['MATCH_DATE', 'MATCH_ID', 'IS_HOST'],
+                    ascending=[True, True, False], kind='mergesort').reset_index(drop=True)
 
-# 2. Dédoublonnage : On ne garde qu'une seule ligne par MATCH_ID pour avoir la vue "1 ligne = 1 match"
-# En gardant la première occurrence, TEAM_ID devient notre Équipe 1 (T1) et OPP_TEAM_ID notre Équipe 2 (T2)
+# 2. Dédoublonnage : une seule ligne par MATCH_ID ("1 ligne = 1 match").
+#    keep='first' -> T1 = équipe hôte si elle existe (sinon 1ère équipe, de façon stable et reproductible).
 df_matches = df.drop_duplicates(subset=['MATCH_ID'], keep='first').copy()
 
 # 3. Renommage tactique pour connecter au moteur de simulation

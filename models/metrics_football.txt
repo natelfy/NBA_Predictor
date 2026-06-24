@@ -1,18 +1,19 @@
-RAPPORT D'ENTRAÎNEMENT - FOOTBALL ORACLE
-Date : 2026-06-23 10:59:29
-Taille Train : 39502 matchs
-Taille Test  : 9876 matchs
+RAPPORT D'ENTRAINEMENT - FOOTBALL ORACLE (V3)
+Date : 2026-06-24 09:41:24
+Tailles : Train 34564 | Val 7407 | Test 7407
 
---- CLASSIFICATION (1X2) ---
-Accuracy     : 0.5977
-Log Loss     : 0.8755
-Baseline Naïve Log Loss : 1.0515
-Brier Score (Moyenne)   : 0.1715
+--- CLASSIFICATION 1X2 (modele CALIBRE, mesure sur TEST intact) ---
+Log Loss        : 0.8782
+Baseline naive  : 1.0497  (edge +0.1715)
+Brier (moy OvR) : 0.1693
 
---- RÉGRESSION (BUTS) ---
-Mean Absolute Error : 1.3458
+--- REGRESSION (ecart de buts) ---
+MAE             : 1.3446 buts/match
 
---- TOP 3 FEATURES ---
-ELO_PRE_DIFF: 40.0%
-AVG_OPP_GOALS_10_DIFF: 16.8%
-T1_IS_HOST: 10.2%
+--- TOP FEATURES (importance XGBoost) ---
+ELO_PRE_DIFF: 38.1%
+AVG_OPP_GOALS_10_DIFF: 16.0%
+T1_IS_HOST: 10.3%
+FORM_10_DIFF: 8.5%
+AVG_OPP_GOALS_3_DIFF: 5.1%
+AVG_GOALS_10_DIFF: 5.1%

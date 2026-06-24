@@ -82,6 +82,10 @@ def implied_from_cotes(cotes):
 def model_probs_and_lambdas(t1, t2):
     sub1 = history_df[history_df['TEAM_ID'] == t1].sort_values('MATCH_DATE')
     sub2 = history_df[history_df['TEAM_ID'] == t2].sort_values('MATCH_DATE')
+    for t, sub in [(t1, sub1), (t2, sub2)]:
+        if sub.empty:                       # guard noms (E3) : plus de fallback ELO=1500 silencieux
+            st.warning(f"⚠️ '{t}' introuvable dans l'historique (problème de nom ?) — "
+                       f"ELO/forme par défaut, proba peu fiable pour ce match.")
     elo_dict = {
         t1: (sub1.iloc[-1]['ELO_POST'] if not sub1.empty else 1500),
         t2: (sub2.iloc[-1]['ELO_POST'] if not sub2.empty else 1500),

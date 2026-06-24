@@ -63,8 +63,10 @@ def train_models():
     
     ll = log_loss(y_class_test, class_probs)
     avg_brier = np.mean([brier_score_loss((y_class_test == k).astype(int), class_probs[:, k]) for k in range(3)])
-    
-    print(f"   🎯 Log Loss Honnête : {ll:.4f}")
+    base_rates = np.array([(y_class_test == k).mean() for k in range(3)])
+    ll_baseline = log_loss(y_class_test, np.tile(base_rates, (len(y_class_test), 1)))
+
+    print(f"   🎯 Log Loss Honnête : {ll:.4f}  (baseline naïve {ll_baseline:.4f})")
     print(f"   ⚖️ Brier Score (Calibré) : {avg_brier:.4f}")
 
     # =========================================================================
@@ -76,7 +78,8 @@ def train_models():
         n_estimators=500, subsample=0.8, random_state=42, early_stopping_rounds=20
     )
     reg.fit(X_train, y_reg_train, eval_set=[(X_val, y_reg_val)], verbose=False)
-    print(f"   🎯 MAE : {mean_absolute_error(y_reg_test, reg.predict(X_test)):.2f} buts/match")
+    mae = mean_absolute_error(y_reg_test, reg.predict(X_test))
+    print(f"   🎯 MAE : {mae:.2f} buts/match")
 
     # =========================================================================
     # SAUVEGARDE
@@ -86,8 +89,25 @@ def train_models():
     joblib.dump(reg, 'models/football_regressor.pkl')
     with open('models/football_features.txt', 'w') as f:
         f.write(','.join(features))
-        
-    print("\n💾 Modèles enregistrés. Le pipeline est prêt pour l'EV Score Exact.")
+
+    # Rapport de métriques reproductible -> écrit PAR le pipeline (fin de la régression C1)
+    import datetime
+    importances = sorted(zip(features, clf.feature_importances_), key=lambda x: -x[1])
+    with open('models/metrics_football.txt', 'w') as f:
+        f.write("RAPPORT D'ENTRAINEMENT - FOOTBALL ORACLE (V3)\n")
+        f.write(f"Date : {datetime.datetime.now():%Y-%m-%d %H:%M:%S}\n")
+        f.write(f"Tailles : Train {len(X_train)} | Val {len(X_val)} | Test {len(X_test)}\n\n")
+        f.write("--- CLASSIFICATION 1X2 (modele CALIBRE, mesure sur TEST intact) ---\n")
+        f.write(f"Log Loss        : {ll:.4f}\n")
+        f.write(f"Baseline naive  : {ll_baseline:.4f}  (edge {ll_baseline - ll:+.4f})\n")
+        f.write(f"Brier (moy OvR) : {avg_brier:.4f}\n\n")
+        f.write("--- REGRESSION (ecart de buts) ---\n")
+        f.write(f"MAE             : {mae:.4f} buts/match\n\n")
+        f.write("--- TOP FEATURES (importance XGBoost) ---\n")
+        for name, imp in importances[:6]:
+            f.write(f"{name}: {imp * 100:.1f}%\n")
+
+    print("\n💾 Modèles + models/metrics_football.txt enregistrés. Pipeline prêt pour l'EV Score Exact.")
 
 if __name__ == "__main__":
     train_models()
