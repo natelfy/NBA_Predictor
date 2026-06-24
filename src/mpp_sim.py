@@ -79,22 +79,34 @@ def picks_modele(P):
     return [max(OUTS, key=lambda k: pm['p_model'][k]) for pm in P]
 
 
-def picks_valeur(P, edge_min=0.0):
-    """Meilleure E[points] PARMI les issues a edge positif (sinon repli sur le modele)."""
+EDGE_CAP = 0.22    # edge au-delà duquel on suspecte une ERREUR du modèle (pas une vraie value)
+PROB_FLOOR = 0.12  # proba mini d'un pari (évite les longshots 6 % à grosse cote) ; garde les nuls (~25-30 %)
+
+
+def _trustworthy(pm, k, edge_min, edge_cap, prob_floor):
+    return edge_min <= pm['edge'][k] <= edge_cap and pm['p_model'][k] >= prob_floor
+
+
+def picks_valeur(P, edge_min=0.0, edge_cap=EDGE_CAP, prob_floor=PROB_FLOOR):
+    """Meilleure E[points] parmi les issues à edge FIABLE ET proba >= plancher.
+    Si rien de fiable -> on suit le FAVORI de la foule (on ne parie ni l'erreur, ni le longshot)."""
     out = []
     for pm in P:
-        cand = [k for k in OUTS if pm['edge'][k] >= edge_min]
-        if not cand:
-            cand = list(OUTS)
-        out.append(max(cand, key=lambda k: pm['e_points'][k]))
+        cand = [k for k in OUTS if _trustworthy(pm, k, edge_min, edge_cap, prob_floor)]
+        if cand:
+            out.append(max(cand, key=lambda k: pm['e_points'][k]))
+        else:
+            out.append(max(OUTS, key=lambda k: pm['p_crowd'][k]))   # repli prudent = favori foule
     return out
 
 
-def picks_valeur_topK(P, K, edge_min=0.03):
-    """Se differencie SEULEMENT sur les K matchs au plus fort edge ; favori ailleurs."""
+def picks_valeur_topK(P, K, edge_min=0.03, edge_cap=EDGE_CAP, prob_floor=PROB_FLOOR):
+    """Différenciation sur les K matchs au plus fort edge FIABLE ; favori ailleurs.
+    Exclut les edges énormes (erreur modèle) ET les longshots (proba < plancher)."""
     fav = picks_favori(P)
-    val = picks_valeur(P, edge_min)
-    diffs = sorted([(i, P[i]['edge'][val[i]]) for i in range(len(P)) if val[i] != fav[i]],
+    val = picks_valeur(P, edge_min, edge_cap, prob_floor)
+    diffs = sorted([(i, P[i]['edge'][val[i]]) for i in range(len(P))
+                    if val[i] != fav[i] and _trustworthy(P[i], val[i], edge_min, edge_cap, prob_floor)],
                    key=lambda x: -x[1])
     keep = {i for i, _ in diffs[:K]}
     return [val[i] if i in keep else fav[i] for i in range(len(P))]

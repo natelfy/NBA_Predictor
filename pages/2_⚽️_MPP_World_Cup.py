@@ -193,7 +193,7 @@ if st.button("🎯 Calculer la stratégie du jour", type="primary"):
                             'NUL': 'MATCH NUL'}[d['pick']]
                     sc = f"{d['score'][0]}-{d['score'][1]}"
                     if d['contrarian']:
-                        suspect = d['edge'] > 0.22          # écart vs 599 joueurs : + probable = erreur modèle que value
+                        suspect = d['edge'] > mpp_sim.EDGE_CAP   # cohérent avec l'exclusion du simulateur
                         tag = ("⚠️ écart ÉNORME vs foule → probable limite du modèle sur cette équipe (À VÉRIFIER), "
                                "pas forcément une vraie valeur" if suspect else "COUP CONTRARIAN")
                         line = (f"🎯 **{d['match']}** → **{name}** (score {sc}) · "

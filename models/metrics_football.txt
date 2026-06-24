@@ -1,5 +1,5 @@
 RAPPORT D'ENTRAINEMENT - FOOTBALL ORACLE (V3)
-Date : 2026-06-24 09:41:24
+Date : 2026-06-24 14:50:14
 Tailles : Train 34564 | Val 7407 | Test 7407
 
 --- CLASSIFICATION 1X2 (modele CALIBRE, mesure sur TEST intact) ---
