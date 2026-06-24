@@ -142,8 +142,9 @@ def print_radar(path=CSV_PATH):
         mean_p = sum(r['p'][k] for r in recs) / n          # proba moyenne assignée à la classe k
         freq = base[k]
         flag = ""
-        if k == 1 and mean_p - freq > 0.04:
-            flag = "  ⚠️ P(nul) plutôt surévaluée"
+        if k == 1 and abs(mean_p - freq) > 0.04:
+            flag = ("  ⚠️ P(nul) surévaluée" if mean_p > freq
+                    else "  ⚠️ P(nul) SOUS-évaluée → les nuls sont un filon (lean draws)")
         print(f"    {CLASSES[k]:<9} : n={nb:<3} recall={recall:4.0%}  "
               f"P_moy={mean_p:4.0%} vs réel={freq:4.0%}{flag}")
 
@@ -155,11 +156,16 @@ def print_radar(path=CSV_PATH):
         mean_fav_p = sum(max(r['p'][2], r['p'][0]) for r in fav) / len(fav)
         mean_nul_p = sum(r['p'][1] for r in fav) / len(fav)
         real_nul = sum(1 for r in fav if r['act'] == 1) / len(fav)
+        fav_flag = "  ⚠️ modèle trop confiant sur les favoris" if mean_fav_p - win_rate > 0.05 else ""
         print(f"\n  Gros favoris (P≥60%, n={len(fav)}) : le favori gagne {win_rate:.0%} "
-              f"(prédit {mean_fav_p:.0%})")
-        print(f"    P(nul) moyenne prédite {mean_nul_p:.0%} vs nuls réels {real_nul:.0%}"
-              + ("  ⚠️ nul surévalué -> prudence sur 'nul contrarian' contre un gros favori"
-                 if mean_nul_p - real_nul > 0.05 else "  ✅ cohérent"))
+              f"(prédit {mean_fav_p:.0%}){fav_flag}")
+        if mean_nul_p - real_nul > 0.05:
+            nul_flag = "  ⚠️ nul surévalué → prudence sur 'nul contrarian' contre un gros favori"
+        elif real_nul - mean_nul_p > 0.05:
+            nul_flag = "  ⚠️ nul SOUS-évalué → sur gros favori le nul tombe + souvent que prévu (bon spot contrarian)"
+        else:
+            nul_flag = "  ✅ cohérent"
+        print(f"    P(nul) moyenne prédite {mean_nul_p:.0%} vs nuls réels {real_nul:.0%}{nul_flag}")
 
     # Verdict synthétique
     print("\n  VERDICT :")

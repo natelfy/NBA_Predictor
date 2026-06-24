@@ -8,6 +8,7 @@ sys.path.append(os.path.abspath('src'))
 from mpp_oracle import prepare_live_inference_features
 import score_model as sm
 import mpp_sim
+import context_signals
 
 st.set_page_config(page_title="MPP World Cup Oracle", page_icon="⚽", layout="wide")
 st.title("⚽ MPP Oracle — Stratégie du jour (P top-3)")
@@ -42,8 +43,14 @@ def load_upcoming_matches():
         return pd.DataFrame()
 
 
+@st.cache_data
+def load_context_signals():
+    return context_signals.load_signals()   # (squad_power, fatigue_index) — contexte affiché
+
+
 clf, reg, features_list, history_df, ratings = load_oracle_environment()
 upcoming_matches = load_upcoming_matches()
+squad_d, fatigue_d = load_context_signals()
 if clf is None:
     st.stop()
 
@@ -146,11 +153,16 @@ if st.button("🎯 Calculer la stratégie du jour", type="primary"):
                     cotes=cote, lambdas=lambdas))
 
                 edge = {k: p_model[k] - p_crowd[k] for k in OUTS}
+                mc = context_signals.match_context(t1, t2, squad_d, fatigue_d)
+                sp1, sp2 = mc['t1']['squad_power'], mc['t2']['squad_power']
+                talent = f"{sp1:.0f} vs {sp2:.0f}" if (sp1 is not None and sp2 is not None) else "n/a"
                 rows.append({
                     'Match': f"{t1} vs {t2}",
                     'Modèle': f"T1 {p_model['T1']:.0%} / N {p_model['NUL']:.0%} / T2 {p_model['T2']:.0%}",
                     'Foule': f"T1 {p_crowd['T1']:.0%} / N {p_crowd['NUL']:.0%} / T2 {p_crowd['T2']:.0%}",
-                    'Meilleur edge': f"{max(edge, key=edge.get)} ({max(edge.values()) * 100:+.0f})",
+                    'Talent': talent,
+                    'Edge NUL': f"{edge['NUL'] * 100:+.0f}",
+                    'Contexte': mc['note'],
                 })
 
             rec = mpp_sim.recommend(slate, gap=gap_3e, trials=TRIALS, competitor=COMPETITOR)
@@ -163,6 +175,9 @@ if st.button("🎯 Calculer la stratégie du jour", type="primary"):
                 cB.info(f"Meilleure stratégie : **{rec['best']}**. "
                         + ("⚠️ Long shot honnête : vise les coups contrarian ci-dessous et relance chaque jour."
                            if p < 0.10 else "Profil jouable : tiens cette ligne et relance chaque jour."))
+                st.caption("📌 Radar live : le modèle **sous-estime les nuls** — sur un match à talent serré "
+                           "ou face à un gros favori, le **NUL** est un meilleur pari contrarian que l'EV ne le "
+                           "montre (voir colonnes *Talent* / *Contexte* dans le détail).")
 
                 st.markdown("### ✅ Tes picks du jour")
                 for d in rec['picks']:
