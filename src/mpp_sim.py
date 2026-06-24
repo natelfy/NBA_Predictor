@@ -163,8 +163,7 @@ def recommend(matches, gap, trials=20000, seed=42, competitor='favori'):
         'favori (comme la foule)': picks_favori(P),
         'modele (argmax proba)': picks_modele(P),
         'valeur (edge>0)': picks_valeur(P, edge_min=0.0),
-        'valeur top-2 edges': picks_valeur_topK(P, 2),
-        'valeur top-4 edges': picks_valeur_topK(P, 4),
+        'valeur top-3 edges': picks_valeur_topK(P, 3),
     }
     table = {}
     for name, yp in cands.items():

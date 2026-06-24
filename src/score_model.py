@@ -21,6 +21,15 @@ import os
 MAX_GOALS = 8          # grille de scores 0..MAX_GOALS
 DEFAULT_RHO = -0.05    # correction Dixon-Coles (faible) sur les petits scores
 
+# Bonus de score exact CONNUS (valeurs rassemblees par l'utilisateur sur les matchs passes).
+# Sert de table par defaut -> plus besoin de saisie par match. Edite ICI si tu confirmes
+# une nouvelle valeur reelle ; les scores absents utilisent default_bonus() (heuristique).
+KNOWN_BONUS = {
+    (0, 0): 30, (1, 1): 15, (2, 2): 40, (3, 3): 80,
+    (1, 0): 20, (2, 0): 25, (2, 1): 20, (3, 0): 35, (3, 1): 35, (3, 2): 45, (4, 0): 50, (4, 1): 50, (4, 2): 60,
+    (0, 1): 20, (0, 2): 25, (1, 2): 20, (0, 3): 35, (1, 3): 35, (2, 3): 45, (0, 4): 50, (1, 4): 50, (2, 4): 60,
+}
+
 
 def _pois(lmbda, k):
     return (lmbda ** k) * exp(-lmbda) / factorial(k)
@@ -104,15 +113,18 @@ def default_bonus(i, j):
 def exact_score_ev(score_m, bonus_known=None):
     """
     E[bonus de score exact] PAR issue + meilleur score (i,j) PAR issue.
-    bonus_known : dict {(i,j): bonus_reel MPP} (sinon default_bonus).
-    Le 'meilleur score' est cherche DANS chaque issue -> coherence issue<->score garantie.
+    Source des bonus : KNOWN_BONUS (valeurs connues) puis bonus_known (override ponctuel),
+    enfin default_bonus() pour les scores inconnus. Le 'meilleur score' est cherche DANS
+    chaque issue -> coherence issue<->score garantie.
     """
-    bonus_known = bonus_known or {}
+    bk = dict(KNOWN_BONUS)
+    if bonus_known:
+        bk.update(bonus_known)
     eb = {'T1': 0.0, 'NUL': 0.0, 'T2': 0.0}
     best_score = {'T1': (1, 0), 'NUL': (1, 1), 'T2': (0, 1)}
     best_ev = {'T1': -1.0, 'NUL': -1.0, 'T2': -1.0}
     for (i, j), pr in score_m.items():
-        bonus = bonus_known.get((i, j), default_bonus(i, j))
+        bonus = bk.get((i, j), default_bonus(i, j))
         ev = pr * bonus
         issue = 'T1' if i > j else ('NUL' if i == j else 'T2')
         eb[issue] += ev
