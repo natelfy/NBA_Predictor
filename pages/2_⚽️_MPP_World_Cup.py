@@ -227,8 +227,9 @@ if st.button("🎯 Calculer la stratégie du jour", type="primary"):
 
                 with st.expander("Détail modèle vs foule par match"):
                     st.table(pd.DataFrame(rows))
-                st.caption("On ne grimpe qu'en ayant raison là où la foule a tort (edge>0). "
-                           "x2 déjà dépensé. Relance ce calcul à chaque journée.")
+                st.caption("Stratégie (validée par back-test modèle vs foule) : on SUIT la foule sur le "
+                           "vainqueur (elle nous bat) et on se différencie UNIQUEMENT sur les NULS qu'elle "
+                           "sous-cote (ton seul edge réel). x2 déjà dépensé. Relance à chaque journée.")
         except Exception as e:
             with results_box:
                 st.error("❌ Le calcul a échoué — détail ci-dessous (copie-le moi pour que je corrige).")

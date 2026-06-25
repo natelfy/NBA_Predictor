@@ -81,15 +81,18 @@ def picks_modele(P):
 
 EDGE_CAP = 0.22    # edge au-delà duquel on suspecte une ERREUR du modèle (pas une vraie value)
 PROB_FLOOR = 0.12  # proba mini d'un pari (évite les longshots 6 % à grosse cote) ; garde les nuls (~25-30 %)
-CROWD_DOMINANT = 0.78  # si la foule (599 j.) est >= ça sur une issue, on ne parie PAS contre (désaccord modèle = ~erreur)
+# Back-test MODÈLE vs FOULE : le modèle ne bat la foule QUE sur le NUL (la foule sous-cote
+# massivement les nuls). Sur le vainqueur, la foule nous bat -> on la suit. Donc on ne se
+# différencie QUE via le nul sous-coté. (Réversible : mettre DIFF_ONLY_DRAW = False.)
+DIFF_ONLY_DRAW = True
 
 
 def _trustworthy(pm, k, edge_min, edge_cap, prob_floor):
     if not (edge_min <= pm['edge'][k] <= edge_cap and pm['p_model'][k] >= prob_floor):
         return False
     crowd_fav = max(OUTS, key=lambda o: pm['p_crowd'][o])
-    if pm['p_crowd'][crowd_fav] >= CROWD_DOMINANT and k != crowd_fav:
-        return False   # foule à favori dominant -> on ne parie pas le faux nul/outsider (erreur modèle)
+    if DIFF_ONLY_DRAW and k != crowd_fav and k != 'NUL':
+        return False   # pas de vainqueur contrarian : la foule nous bat sur le résultat
     return True
 
 
