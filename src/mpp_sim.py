@@ -81,10 +81,16 @@ def picks_modele(P):
 
 EDGE_CAP = 0.22    # edge au-delà duquel on suspecte une ERREUR du modèle (pas une vraie value)
 PROB_FLOOR = 0.12  # proba mini d'un pari (évite les longshots 6 % à grosse cote) ; garde les nuls (~25-30 %)
+CROWD_DOMINANT = 0.78  # si la foule (599 j.) est >= ça sur une issue, on ne parie PAS contre (désaccord modèle = ~erreur)
 
 
 def _trustworthy(pm, k, edge_min, edge_cap, prob_floor):
-    return edge_min <= pm['edge'][k] <= edge_cap and pm['p_model'][k] >= prob_floor
+    if not (edge_min <= pm['edge'][k] <= edge_cap and pm['p_model'][k] >= prob_floor):
+        return False
+    crowd_fav = max(OUTS, key=lambda o: pm['p_crowd'][o])
+    if pm['p_crowd'][crowd_fav] >= CROWD_DOMINANT and k != crowd_fav:
+        return False   # foule à favori dominant -> on ne parie pas le faux nul/outsider (erreur modèle)
+    return True
 
 
 def picks_valeur(P, edge_min=0.0, edge_cap=EDGE_CAP, prob_floor=PROB_FLOOR):
@@ -110,6 +116,20 @@ def picks_valeur_topK(P, K, edge_min=0.03, edge_cap=EDGE_CAP, prob_floor=PROB_FL
                    key=lambda x: -x[1])
     keep = {i for i, _ in diffs[:K]}
     return [val[i] if i in keep else fav[i] for i in range(len(P))]
+
+
+def sanitize(picks, P):
+    """Filet de sécurité commun à TOUTES les stratégies : tout pari contrarian NON fiable
+    (edge énorme = erreur modèle, longshot, ou contre un favori dominant de la foule) ->
+    repli sur le favori de la foule. Garantit qu'aucune stratégie ne recommande un mauvais pari."""
+    fav = picks_favori(P)
+    out = []
+    for i, k in enumerate(picks):
+        if k != fav[i] and not _trustworthy(P[i], k, 0.0, EDGE_CAP, PROB_FLOOR):
+            out.append(fav[i])
+        else:
+            out.append(k)
+    return out
 
 
 # ------------------------------- Monte-Carlo --------------------------------------
@@ -162,26 +182,30 @@ def simulate(P, your_picks, comp_picks, gap, trials=20000, seed=42):
 
 
 # ------------------------- API haut niveau : recommander --------------------------
-def recommend(matches, gap, trials=20000, seed=42, competitor='favori'):
+def recommend(matches, gap, trials=20000, seed=42, competitor='favori', objective='target'):
     """
     Compare les strategies et renvoie la meilleure + les picks recommandes.
     competitor : strategie supposee de la 'ligne du 3e' ('favori' par defaut ;
-                 mets 'valeur' pour un concurrent plus agressif = scenario prudent).
+                 'valeur' = concurrent plus agressif = scenario prudent).
+    objective  : 'target' -> maximise P(atteindre l'objectif du jour) (defaut, sain) ;
+                 'ceiling' -> maximise le PLAFOND (net p90) = mode chasse fin de tournoi.
     """
     P = [prep_match(m) for m in matches]
     comp = picks_valeur(P) if competitor == 'valeur' else picks_favori(P)
 
-    cands = {
+    raw_cands = {
         'favori (comme la foule)': picks_favori(P),
         'modele (argmax proba)': picks_modele(P),
         'valeur (edge>0)': picks_valeur(P, edge_min=0.0),
         'valeur top-3 edges': picks_valeur_topK(P, 3),
     }
+    cands = {name: sanitize(pk, P) for name, pk in raw_cands.items()}   # filet commun anti-mauvais-pari
     table = {}
     for name, yp in cands.items():
         table[name] = simulate(P, yp, comp, gap, trials, seed)
 
-    best_name = max(table, key=lambda n: table[n]['p_top3'])
+    key = 'net_p90' if objective == 'ceiling' else 'p_top3'
+    best_name = max(table, key=lambda n: table[n][key])
     best_picks = cands[best_name]
     fav = picks_favori(P)
     detail = []

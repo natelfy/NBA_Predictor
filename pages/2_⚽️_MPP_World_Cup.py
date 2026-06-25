@@ -9,6 +9,7 @@ from mpp_oracle import prepare_live_inference_features
 import score_model as sm
 import mpp_sim
 import context_signals
+import live_calibration
 
 st.set_page_config(page_title="MPP World Cup Oracle", page_icon="⚽", layout="wide")
 st.title("⚽ MPP Oracle — Stratégie du jour (P top-3)")
@@ -48,9 +49,15 @@ def load_context_signals():
     return context_signals.load_signals()   # (squad_power, fatigue_index) — contexte affiché
 
 
+@st.cache_data
+def load_calib():
+    return live_calibration.load_calibration()   # corrige les biais mesurés sur les matchs WC joués
+
+
 clf, reg, features_list, history_df, ratings = load_oracle_environment()
 upcoming_matches = load_upcoming_matches()
 squad_d, fatigue_d = load_context_signals()
+CALIB = load_calib()
 if clf is None:
     st.stop()
 
@@ -62,7 +69,12 @@ st.sidebar.header("🎯 Ta situation")
 gap_3e = st.sidebar.number_input("Points à combler sur le 3e", value=505, step=10)
 n_remaining = st.sidebar.number_input("Matchs restants (estim. jusqu'à la fin)",
                                       value=int(max(len(upcoming_matches), 30)), step=5, min_value=1)
-st.sidebar.caption(f"team_ratings.json : {'✅ chargé (scores ajustés)' if ratings else '❌ absent (fallback goal_diff)'}")
+chase = st.sidebar.checkbox("⚔️ Mode chasse (fin de tournoi)", value=False,
+                            help="Maximise le PLAFOND de gain (variance) au lieu de l'objectif du jour. "
+                                 "À n'utiliser que si tu es loin ET qu'il reste peu de matchs : ça augmente "
+                                 "la (petite) proba de top-3 au prix d'une place moyenne plus basse.")
+st.sidebar.caption(f"ratings : {'✅' if ratings else '❌'}")
+st.sidebar.caption(live_calibration.describe(CALIB))
 
 # Réglages internes (volontairement non exposés pour garder l'UI simple)
 COMPETITOR = 'favori'   # la 'ligne du 3e' suit la foule (hypothèse réaliste)
@@ -105,6 +117,7 @@ def model_probs_and_lambdas(t1, t2):
     probs = clf.predict_proba(X)[0]                      # [T2, NUL, T1]
     goal_diff = float(reg.predict(X)[0])
     p_model = {'T1': float(probs[2]), 'NUL': float(probs[1]), 'T2': float(probs[0])}
+    p_model = live_calibration.correct(p_model, CALIB)   # corrige le biais nuls/favoris mesuré live
     if ratings is not None:
         lambdas = sm.lambdas_from_ratings(t1, t2, ratings, 0)
     else:
@@ -171,7 +184,8 @@ if st.button("🎯 Calculer la stratégie du jour", type="primary"):
             # (combler 505 d'un coup sur un seul jour est impossible -> P≈0 et choix non fiable).
             n_today = len(slate)
             daily_target = max(1.0, gap_3e * n_today / max(n_remaining, n_today))
-            rec = mpp_sim.recommend(slate, gap=daily_target, trials=TRIALS, competitor=COMPETITOR)
+            rec = mpp_sim.recommend(slate, gap=daily_target, trials=TRIALS, competitor=COMPETITOR,
+                                    objective='ceiling' if chase else 'target')
 
             with results_box:
                 p = rec['p_top3']
