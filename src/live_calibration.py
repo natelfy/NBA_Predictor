@@ -23,10 +23,15 @@ _ACT = {'T1': 2, 'NUL': 1, 'T2': 0}
 _PCOL = {'T1': 'PROB_T1', 'NUL': 'PROB_NUL', 'T2': 'PROB_T2'}
 
 
-def load_calibration(csv_path='data/mpp_live_tracking.csv', min_n=30, alpha=0.5, max_shift=0.10):
+def load_calibration(csv_path='data/mpp_live_tracking.csv', min_n=30, alpha=0.5,
+                     max_shift=0.10, half_life=12):
     """
-    Renvoie {'bias':{T1,NUL,T2}, 'n', 'alpha'} ou None si pas assez de matchs.
-    bias_k = alpha * (frequence_reelle_k - proba_moyenne_predite_k), borne a +/- max_shift.
+    Renvoie {'bias':{T1,NUL,T2}, 'n', 'eff_n', 'alpha'} ou None si pas assez de matchs.
+    bias_k = alpha * (freq_reelle_k - proba_moyenne_predite_k), borne a +/- max_shift.
+
+    PONDERE PAR RECENCE : les matchs RECENTS pesent plus (poids divise par 2 tous les
+    `half_life` matchs). -> s'adapte vite au changement de regime 90' (poules) -> 120'
+    (phase finale, ou les nuls sont PLUS RARES car la prolongation casse les egalites).
     """
     if not os.path.exists(csv_path):
         return None
@@ -35,6 +40,7 @@ def load_calibration(csv_path='data/mpp_live_tracking.csv', min_n=30, alpha=0.5,
         for r in csv.DictReader(f):
             try:
                 rows.append({
+                    'date': str(r.get('DATE', '')),
                     'act': int(float(r['ACTUAL_CLASS'])),
                     'p': {k: float(r[_PCOL[k]]) for k in _ACT},
                 })
@@ -43,13 +49,18 @@ def load_calibration(csv_path='data/mpp_live_tracking.csv', min_n=30, alpha=0.5,
     n = len(rows)
     if n < min_n:
         return None
+    rows.sort(key=lambda r: r['date'])                  # chronologique : récents en dernier
+    decay = 0.5 ** (1.0 / max(1, half_life))
+    w = [decay ** (n - 1 - i) for i in range(n)]        # récent -> ~1, ancien -> décroît
+    W = sum(w)
     bias = {}
     for k, code in _ACT.items():
-        mean_pred = sum(x['p'][k] for x in rows) / n
-        freq = sum(1 for x in rows if x['act'] == code) / n
+        mean_pred = sum(w[i] * rows[i]['p'][k] for i in range(n)) / W
+        freq = sum(w[i] * (1.0 if rows[i]['act'] == code else 0.0) for i in range(n)) / W
         raw = alpha * (freq - mean_pred)
         bias[k] = max(-max_shift, min(max_shift, raw))
-    return {'bias': bias, 'n': n, 'alpha': alpha}
+    eff_n = (W * W) / sum(x * x for x in w)             # taille d'échantillon effective (Kish)
+    return {'bias': bias, 'n': n, 'eff_n': eff_n, 'alpha': alpha, 'half_life': half_life}
 
 
 def correct(p_model, calib):
@@ -65,7 +76,8 @@ def describe(calib):
     if not calib:
         return "calibration live : ❌ inactive (< matchs requis)"
     b = calib['bias']
-    return (f"calibration live : ✅ active (n={calib['n']}, α={calib['alpha']}) | "
+    eff = calib.get('eff_n', calib['n'])
+    return (f"calibration live : ✅ active (n={calib['n']}, ~{eff:.0f} récents pondérés, α={calib['alpha']}) | "
             f"nudge T1 {b['T1']*100:+.0f} / NUL {b['NUL']*100:+.0f} / T2 {b['T2']*100:+.0f}")
 
 
