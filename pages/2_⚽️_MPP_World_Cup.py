@@ -10,6 +10,7 @@ import score_model as sm
 import mpp_sim
 import context_signals
 import live_calibration
+import jackpot
 
 st.set_page_config(page_title="MPP World Cup Oracle", page_icon="⚽", layout="wide")
 st.title("⚽ MPP Oracle — Stratégie du jour (P top-3)")
@@ -163,7 +164,7 @@ if st.button("🎯 Calculer la stratégie du jour", type="primary"):
                 tot = max(cp['T1'] + cp['NUL'] + cp['T2'], 1)
                 p_crowd = {k: cp[k] / tot for k in OUTS}     # normalisé à 1
 
-                slate.append(mpp_sim.build_match(            # bonus via score_model.KNOWN_BONUS
+                slate.append(mpp_sim.build_match(            # bonus via barème MPP (score_model.bonus_map)
                     name=f"{t1} vs {t2}", p_model=p_model, p_crowd=p_crowd,
                     cotes=cote, lambdas=lambdas))
 
@@ -197,9 +198,10 @@ if st.button("🎯 Calculer la stratégie du jour", type="primary"):
                         f"Meilleure stratégie : **{rec['best']}**. "
                         + ("⚠️ Reste un long shot — tiens la ligne et relance chaque jour."
                            if p < 0.15 else "Profil jouable : tiens cette ligne et relance chaque jour."))
-                st.caption("📌 Radar live : le modèle **sous-estime les nuls** — sur un match à talent serré "
-                           "ou face à un gros favori, le **NUL** est un meilleur pari contrarian que l'EV ne le "
-                           "montre (voir colonnes *Talent* / *Contexte* dans le détail).")
+                st.caption("📌 Calibration live : le biais sur les nuls **dépend du régime** — nuls sous-estimés "
+                           "en poules (90'), mais **plus rares en phase finale (120')** où la prolongation casse "
+                           "les égalités. L'outil se recalibre seul (pondéré par récence) : fie-toi à l'**edge "
+                           "affiché**, pas à une règle figée.")
 
                 st.markdown("### ✅ Tes picks du jour")
                 for d in rec['picks']:
@@ -233,4 +235,52 @@ if st.button("🎯 Calculer la stratégie du jour", type="primary"):
         except Exception as e:
             with results_box:
                 st.error("❌ Le calcul a échoué — détail ci-dessous (copie-le moi pour que je corrige).")
+                st.exception(e)
+
+
+# =====================================================================
+# 🎰 MODE JACKPOT : scores exacts (baroud d'honneur pour très gros écart)
+# =====================================================================
+if st.button("🎰 Mode JACKPOT : scores exacts à jouer (baroud d'honneur)"):
+    with st.spinner("Recherche des scores exacts à plus fort upside…"):
+        try:
+            jslate = []
+            for it in slate_inputs:
+                t1, t2, cote = it['t1'], it['t2'], it['cote']
+                _, lambdas = model_probs_and_lambdas(t1, t2)
+                jslate.append(jackpot.build_match(
+                    name=f"{t1} vs {t2}", cotes=cote, lambdas=lambdas))
+            n_today = len(jslate)
+            daily_target = max(1.0, gap_3e * n_today / max(n_remaining, n_today))
+            jrec = jackpot.recommend(jslate, gap=daily_target, trials=TRIALS)
+
+            with results_box:
+                st.markdown("## 🎰 Mode JACKPOT — scores exacts")
+                st.metric("P(objectif du jour) — indicatif, OPTIMISTE", f"{jrec['p_top3']:.1%}")
+                st.caption(f"Profil retenu : **{jrec['best']}**. Le **bonus suit le barème officiel MPP** "
+                           f"(paliers +20/30/50/70/**100 max**, selon la part des bons-résultat ayant le score) "
+                           f"— estimé via P(score|issue), **rien à saisir**. ⚠️ Ce P est **optimiste** "
+                           f"(simulateur à 1 concurrent, pas les ~598 autres) — le vrai chiffre est plus bas.")
+
+                st.markdown("### 🎯 Scores exacts à jouer")
+                for d in jrec['picks']:
+                    i, j = d['score']
+                    st.success(f"**{d['match']}** → **{i} - {j}** ({d['issue']}) · P {d['p']:.0%} · "
+                               f"cote {d['cote']:.0f} + bonus {d['bonus']:.0f} = **{d['cote'] + d['bonus']:.0f} pts** si exact")
+                    alts = " · ".join(f"{r['score'][0]}-{r['score'][1]} (P{r['p']*100:.0f}%·{r['cote']+r['bonus']:.0f}pts)"
+                                      for r in d['alts'])
+                    st.caption(f"alternatives : {alts}")
+
+                st.markdown("### Comparaison des profils")
+                st.table(pd.DataFrame([{'Profil': n, 'P(top-3) indic.': f"{r['p_top3']:.1%}",
+                                        'Net p90': f"{r['net_p90']:+.0f}", 'Net max': f"{r['net_max']:+.0f}"}
+                                       for n, r in jrec['table'].items()]))
+                st.caption("💡 Clé : le bonus est **plafonné à +100**, petit face à la cote d'une issue rare "
+                           "(nul/upset à 120-180). Le vrai levier reste donc de trouver le bon **RÉSULTAT rare** ; "
+                           "le score exact n'est qu'un bonus. Ne sacrifie pas de proba pour un score absurde "
+                           "(au-delà d'« ultra rare » < 0,5 %, le bonus ne monte plus). À très gros écart c'est "
+                           "une **loterie** — ce mode maximise ta petite chance, il ne la crée pas.")
+        except Exception as e:
+            with results_box:
+                st.error("❌ Le calcul Jackpot a échoué — détail :")
                 st.exception(e)

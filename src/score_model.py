@@ -21,14 +21,20 @@ import os
 MAX_GOALS = 8          # grille de scores 0..MAX_GOALS
 DEFAULT_RHO = -0.05    # correction Dixon-Coles (faible) sur les petits scores
 
-# Bonus de score exact CONNUS (valeurs rassemblees par l'utilisateur sur les matchs passes).
-# Sert de table par defaut -> plus besoin de saisie par match. Edite ICI si tu confirmes
-# une nouvelle valeur reelle ; les scores absents utilisent default_bonus() (heuristique).
-KNOWN_BONUS = {
-    (0, 0): 30, (1, 1): 15, (2, 2): 40, (3, 3): 80,
-    (1, 0): 20, (2, 0): 25, (2, 1): 20, (3, 0): 35, (3, 1): 35, (3, 2): 45, (4, 0): 50, (4, 1): 50, (4, 2): 60,
-    (0, 1): 20, (0, 2): 25, (1, 2): 20, (0, 3): 35, (1, 3): 35, (2, 3): 45, (0, 4): 50, (1, 4): 50, (2, 4): 60,
-}
+# --- BONUS DE SCORE EXACT : BAREME OFFICIEL MPP (fonction en PALIERS, plafonnee) ---
+# Le bonus depend de la PART des joueurs AYANT LE BON RESULTAT qui ont aussi le score exact
+# (rarete du pronostic dans la foule), PAS d'une cote/proba continue :
+#     part > 30%      -> +20   ("exact")
+#     20 % - 30 %     -> +30   ("rare")
+#     5 % - 20 %      -> +50   ("tres rare")
+#     0,5 % - 5 %     -> +70   ("mega rare")
+#     < 0,5 %         -> +100  ("ultra rare")
+# On ne connait pas les picks exacts de la foule -> PROXY : la part est approchee par
+# P(score | issue) du modele. [A VERIFIER] la foule est PLUS concentree que le modele sur
+# les scores "evidents" (1-0, 1-1...), donc on SUR-estime un peu les paliers des scores rares.
+# Plafond dur a +100 : viser plus rare qu'ultra-rare ne rapporte RIEN de plus.
+BONUS_TIERS = [(0.30, 20.0), (0.20, 30.0), (0.05, 50.0), (0.005, 70.0)]   # (seuil part, bonus) ; sinon 100
+BONUS_MAX = 100.0
 
 
 def _pois(lmbda, k):
@@ -97,40 +103,49 @@ def outcome_probs(score_m):
     return p
 
 
-def default_bonus(i, j):
+def bonus_from_share(share):
+    """Bareme MPP officiel : bonus selon la PART des joueurs (ayant le BON RESULTAT) qui ont
+    le score exact. `share` in [0,1]. Fonction en paliers, plafonnee a +100."""
+    for thr, pts in BONUS_TIERS:
+        if share >= thr:
+            return pts
+    return BONUS_MAX
+
+
+def bonus_map(score_m, bonus_known=None):
     """
-    Bonus de score exact par defaut quand la vraie valeur MPP est inconnue.
-    Hypothese : MPP paie ~ l'inverse de la popularite -> plus de buts = plus rare = plus de bonus,
-    et les nuls 'larges' (2-2, 3-3) sont rares. Plafonne pour rester prudent.
-    A REMPLACER par la vraie valeur MPP des qu'elle est connue (saisie par match).
+    {score (i,j): bonus MPP} pour CE match. Bonus = bareme officiel applique a la part
+    approchee P(score | issue) (proxy de la part de foule ayant le bon resultat).
+    override ponctuel : bonus_known {score: bonus} si tu connais le vrai palier d'un score.
     """
-    base = 15 + 7 * (i + j)
-    if i == j:
-        base += 5
-    return float(min(base, 120))
+    bk = dict(bonus_known) if bonus_known else {}
+    p_issue = outcome_probs(score_m)
+    out = {}
+    for (i, j), pr in score_m.items():
+        issue = 'T1' if i > j else ('NUL' if i == j else 'T2')
+        denom = p_issue[issue]
+        share = (pr / denom) if denom > 1e-12 else 0.0
+        out[(i, j)] = bk.get((i, j), bonus_from_share(share))
+    return out
 
 
 def exact_score_ev(score_m, bonus_known=None):
     """
-    E[bonus de score exact] PAR issue + meilleur score (i,j) PAR issue.
-    Source des bonus : KNOWN_BONUS (valeurs connues) puis bonus_known (override ponctuel),
-    enfin default_bonus() pour les scores inconnus. Le 'meilleur score' est cherche DANS
-    chaque issue -> coherence issue<->score garantie.
+    Score le PLUS PROBABLE (modal) PAR issue + E[bonus] si tu nommes ce score.
+    Bonus = bareme officiel MPP (bonus_map, paliers plafonnes a +100). On affiche le score
+    MODAL (le plus probable) par issue -> lisible et coherent issue<->score.
     """
-    bk = dict(KNOWN_BONUS)
-    if bonus_known:
-        bk.update(bonus_known)
-    eb = {'T1': 0.0, 'NUL': 0.0, 'T2': 0.0}
+    bmap = bonus_map(score_m, bonus_known)
     best_score = {'T1': (1, 0), 'NUL': (1, 1), 'T2': (0, 1)}
-    best_ev = {'T1': -1.0, 'NUL': -1.0, 'T2': -1.0}
+    best_p = {'T1': -1.0, 'NUL': -1.0, 'T2': -1.0}
     for (i, j), pr in score_m.items():
-        bonus = bk.get((i, j), default_bonus(i, j))
-        ev = pr * bonus
         issue = 'T1' if i > j else ('NUL' if i == j else 'T2')
-        eb[issue] += ev
-        if ev > best_ev[issue]:
-            best_ev[issue] = ev
+        if pr > best_p[issue]:
+            best_p[issue] = pr
             best_score[issue] = (i, j)
+    eb = {}
+    for k, s in best_score.items():
+        eb[k] = score_m.get(s, 0.0) * bmap.get(s, BONUS_MAX)   # E[bonus] en nommant le score modal
     return eb, best_score
 
 

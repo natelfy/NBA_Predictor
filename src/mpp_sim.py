@@ -19,7 +19,7 @@ foule a TORT (edge = proba_modele - %_foule > 0), ce qui paie la grosse cote.
 Le simulateur classe donc les strategies par P(top-3) et te donne les picks.
 
 Barreme MPP : points = cote de l'issue si correcte + bonus de score exact
-(reel si saisi, sinon score_model.default_bonus). Le x2 est deja depense -> ignore.
+(paliers officiels +20/30/50/70/100 selon rarete, score_model.bonus_map). x2 deja depense -> ignore.
 
 Entrees fournies par l'utilisateur (il VOIT cotes, %-foule, et bonus connus) :
   match = {
@@ -37,7 +37,7 @@ ISOLATION : aucun fichier NBA.
 import random
 import statistics
 from score_model import (score_matrix, outcome_probs, exact_score_ev,
-                         default_bonus, lambdas_from_goal_diff, lambdas_from_ratings)
+                         bonus_map, lambdas_from_goal_diff, lambdas_from_ratings)
 
 OUTS = ['T1', 'NUL', 'T2']
 
@@ -51,6 +51,7 @@ def prep_match(m):
     ops = outcome_probs(sm)
     bonus_known = m.get('bonus_known') or {}
     eb, best_score = exact_score_ev(sm, bonus_known)
+    bmap = bonus_map(sm, bonus_known)
     p_model, p_crowd, cotes = m['p_model'], m['p_crowd'], m['cotes']
 
     e_points = {k: p_model[k] * cotes[k] + eb[k] for k in OUTS}   # E[points] = issue + bonus
@@ -59,7 +60,7 @@ def prep_match(m):
         s = best_score[k]
         po = ops[k] if ops[k] > 1e-9 else 1e-9
         nail[k] = min(1.0, sm.get(s, 0.0) / po)                  # P(score exact | issue k)
-        bonus_val[k] = bonus_known.get(s, default_bonus(s[0], s[1]))
+        bonus_val[k] = bmap.get(s, 0.0)                          # bonus MPP du score modal
     return {
         'name': m.get('name', '?'),
         'p_model': p_model, 'p_crowd': p_crowd, 'cotes': cotes,
