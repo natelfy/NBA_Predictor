@@ -98913,12 +98913,12 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 ,2026-06-30,,Mexico,Ecuador,2.0,0.0,1,World Cup,2026-06-30 00:00:00_Ecuador_Mexico,1937.9197919648348,1.9,0.2
 ,2026-06-30,,Norway,Ivory Coast,2.0,1.0,0,World Cup,2026-06-30 00:00:00_Ivory Coast_Norway,1853.2146171119798,2.2,1.3
 ,2026-06-30,,Sweden,France,0.0,3.0,0,World Cup,2026-06-30 00:00:00_France_Sweden,1725.290655493949,1.8,2.1
-,2026-07-01,,Belgium,Senegal,,,1,World Cup,2026-07-01 00:00:00_Belgium_Senegal,1903.3380062752149,3.1,0.8
-,2026-07-01,,Bosnia and Herzegovina,United States,,,0,World Cup,2026-07-01 00:00:00_Bosnia and Herzegovina_United States,1608.4686032432596,1.6,1.2
-,2026-07-01,,DR Congo,England,,,0,World Cup,2026-07-01 00:00:00_DR Congo_England,1704.5665193086784,1.2,0.5
-,2026-07-01,,England,DR Congo,,,1,World Cup,2026-07-01 00:00:00_DR Congo_England,1959.818415188412,2.0,0.4
-,2026-07-01,,Senegal,Belgium,,,0,World Cup,2026-07-01 00:00:00_Belgium_Senegal,1789.253816915115,1.9,1.4
-,2026-07-01,,United States,Bosnia and Herzegovina,,,1,World Cup,2026-07-01 00:00:00_Bosnia and Herzegovina_United States,1841.7239861806506,2.3,1.8
+,2026-07-01,,Belgium,Senegal,3.0,2.0,1,World Cup,2026-07-01 00:00:00_Belgium_Senegal,1903.3380062752149,3.1,0.8
+,2026-07-01,,Bosnia and Herzegovina,United States,0.0,2.0,0,World Cup,2026-07-01 00:00:00_Bosnia and Herzegovina_United States,1608.4686032432596,1.6,1.2
+,2026-07-01,,DR Congo,England,1.0,2.0,0,World Cup,2026-07-01 00:00:00_DR Congo_England,1704.5665193086784,1.2,0.5
+,2026-07-01,,England,DR Congo,2.0,1.0,1,World Cup,2026-07-01 00:00:00_DR Congo_England,1959.818415188412,2.0,0.4
+,2026-07-01,,Senegal,Belgium,2.0,3.0,0,World Cup,2026-07-01 00:00:00_Belgium_Senegal,1789.253816915115,1.9,1.4
+,2026-07-01,,United States,Bosnia and Herzegovina,2.0,0.0,1,World Cup,2026-07-01 00:00:00_Bosnia and Herzegovina_United States,1841.7239861806506,2.3,1.8
 ,2026-07-02,,Algeria,Switzerland,,,0,World Cup,2026-07-02 00:00:00_Algeria_Switzerland,1831.2165118927742,1.8,1.0
 ,2026-07-02,,Austria,Spain,,,0,World Cup,2026-07-02 00:00:00_Austria_Spain,1847.7907834199532,2.6,0.9
 ,2026-07-02,,Croatia,Portugal,,,0,World Cup,2026-07-02 00:00:00_Croatia_Portugal,1903.7168675373575,1.9,1.5

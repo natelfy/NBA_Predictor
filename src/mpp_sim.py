@@ -82,10 +82,15 @@ def picks_modele(P):
 
 EDGE_CAP = 0.22    # edge au-delà duquel on suspecte une ERREUR du modèle (pas une vraie value)
 PROB_FLOOR = 0.12  # proba mini d'un pari (évite les longshots 6 % à grosse cote) ; garde les nuls (~25-30 %)
-# Back-test MODÈLE vs FOULE : le modèle ne bat la foule QUE sur le NUL (la foule sous-cote
-# massivement les nuls). Sur le vainqueur, la foule nous bat -> on la suit. Donc on ne se
-# différencie QUE via le nul sous-coté. (Réversible : mettre DIFF_ONLY_DRAW = False.)
-DIFF_ONLY_DRAW = True
+# Back-test MODÈLE vs FOULE (PHASE DE POULES, 90') : le modèle ne battait la foule que sur
+# le NUL -> doctrine "différenciation par le nul uniquement" (DIFF_ONLY_DRAW=True).
+# CHANGEMENT DE RÉGIME (élimination directe, 120') : la prolongation ÉCRASE les nuls
+# (~10-12 % réels) et transfère cette masse vers les VICTOIRES-surprises ; la foule a en
+# plus appris à jouer le nul sur les matchs serrés (19-28 % vs 4-9 % en poules) -> l'edge
+# "nul" est arbitré. La différenciation passe donc par l'issue rare la MOINS jouée, nul OU
+# vainqueur contrarian, filtrée par les mêmes garde-fous (edge_min/EDGE_CAP/PROB_FLOOR).
+# (Réversible : remettre True si on revenait à un régime 90'.)
+DIFF_ONLY_DRAW = False
 
 
 def _trustworthy(pm, k, edge_min, edge_cap, prob_floor):
