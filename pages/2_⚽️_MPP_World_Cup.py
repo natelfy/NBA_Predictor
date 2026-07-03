@@ -229,10 +229,10 @@ if st.button("🎯 Calculer la stratégie du jour", type="primary"):
 
                 with st.expander("Détail modèle vs foule par match"):
                     st.table(pd.DataFrame(rows))
-                st.caption("Stratégie (régime 120', élimination directe) : la prolongation écrase les nuls et "
-                           "la foule a appris à les jouer sur les matchs serrés → on se différencie sur "
-                           "l'**issue rare la moins jouée par la foule** (nul OU vainqueur contrarian), avec les "
-                           "mêmes garde-fous anti-erreur-modèle. x2 déjà dépensé. Relance à chaque journée.")
+                st.caption("Stratégie **LIGNE C** (hybride discipliné, régime 120') : on SUIT la foule par défaut, "
+                           "et on ne dégaine un coup contrarian (nul OU vainqueur) que sur un **empilement de la "
+                           "foule ≥ 75 %** ou un **edge ≥ +10**, à raison de **2 coups max par journée** — garde-fous "
+                           "anti-erreur-modèle inchangés. x2 déjà dépensé. Relance à chaque journée.")
         except Exception as e:
             with results_box:
                 st.error("❌ Le calcul a échoué — détail ci-dessous (copie-le moi pour que je corrige).")

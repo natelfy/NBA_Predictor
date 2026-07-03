@@ -82,6 +82,10 @@ def picks_modele(P):
 
 EDGE_CAP = 0.22    # edge au-delà duquel on suspecte une ERREUR du modèle (pas une vraie value)
 PROB_FLOOR = 0.12  # proba mini d'un pari (évite les longshots 6 % à grosse cote) ; garde les nuls (~25-30 %)
+# --- LIGNE C (hybride discipliné) : on ne dégaine un coup contrarian QUE là où il a du levier ---
+CROWD_STACK_MIN = 0.75   # ... si la foule s'EMPILE à >= 75 % sur une issue (vraie exposition)
+EDGE_STRONG = 0.10       # ... OU si l'edge est FORT (>= +10 pts de proba)
+MAX_CONTRARIAN = 2       # au plus 2 coups contrarian par journée ; favori partout ailleurs
 # Back-test MODÈLE vs FOULE (PHASE DE POULES, 90') : le modèle ne battait la foule que sur
 # le NUL -> doctrine "différenciation par le nul uniquement" (DIFF_ONLY_DRAW=True).
 # CHANGEMENT DE RÉGIME (élimination directe, 120') : la prolongation ÉCRASE les nuls
@@ -99,6 +103,10 @@ def _trustworthy(pm, k, edge_min, edge_cap, prob_floor):
     crowd_fav = max(OUTS, key=lambda o: pm['p_crowd'][o])
     if DIFF_ONLY_DRAW and k != crowd_fav and k != 'NUL':
         return False   # pas de vainqueur contrarian : la foule nous bat sur le résultat
+    # LIGNE C : sans EMPILEMENT de la foule ni edge FORT, un contrarian ne différencie
+    # presque pas (l'issue est déjà couverte) et brûle de l'EV -> on suit la foule.
+    if k != crowd_fav and pm['p_crowd'][crowd_fav] < CROWD_STACK_MIN and pm['edge'][k] < EDGE_STRONG:
+        return False
     return True
 
 
@@ -129,8 +137,8 @@ def picks_valeur_topK(P, K, edge_min=0.03, edge_cap=EDGE_CAP, prob_floor=PROB_FL
 
 def sanitize(picks, P):
     """Filet de sécurité commun à TOUTES les stratégies : tout pari contrarian NON fiable
-    (edge énorme = erreur modèle, longshot, ou contre un favori dominant de la foule) ->
-    repli sur le favori de la foule. Garantit qu'aucune stratégie ne recommande un mauvais pari."""
+    (edge énorme = erreur modèle, longshot, sans levier ligne C) -> repli sur le favori de
+    la foule ; puis discipline LIGNE C : au plus MAX_CONTRARIAN coups (les plus forts edges)."""
     fav = picks_favori(P)
     out = []
     for i, k in enumerate(picks):
@@ -138,6 +146,10 @@ def sanitize(picks, P):
             out.append(fav[i])
         else:
             out.append(k)
+    idx = [i for i in range(len(out)) if out[i] != fav[i]]
+    if len(idx) > MAX_CONTRARIAN:
+        keep = set(sorted(idx, key=lambda i: -P[i]['edge'][out[i]])[:MAX_CONTRARIAN])
+        out = [out[i] if (out[i] == fav[i] or i in keep) else fav[i] for i in range(len(out))]
     return out
 
 

@@ -98919,12 +98919,12 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 ,2026-07-01,,England,DR Congo,2.0,1.0,1,World Cup,2026-07-01 00:00:00_DR Congo_England,1959.818415188412,2.0,0.4
 ,2026-07-01,,Senegal,Belgium,2.0,3.0,0,World Cup,2026-07-01 00:00:00_Belgium_Senegal,1789.253816915115,1.9,1.4
 ,2026-07-01,,United States,Bosnia and Herzegovina,2.0,0.0,1,World Cup,2026-07-01 00:00:00_Bosnia and Herzegovina_United States,1841.7239861806506,2.3,1.8
-,2026-07-02,,Algeria,Switzerland,,,0,World Cup,2026-07-02 00:00:00_Algeria_Switzerland,1831.2165118927742,1.8,1.0
-,2026-07-02,,Austria,Spain,,,0,World Cup,2026-07-02 00:00:00_Austria_Spain,1847.7907834199532,2.6,0.9
-,2026-07-02,,Croatia,Portugal,,,0,World Cup,2026-07-02 00:00:00_Croatia_Portugal,1903.7168675373575,1.9,1.5
-,2026-07-02,,Portugal,Croatia,,,1,World Cup,2026-07-02 00:00:00_Croatia_Portugal,1892.7730232987267,2.2,0.7
-,2026-07-02,,Spain,Austria,,,1,World Cup,2026-07-02 00:00:00_Austria_Spain,1968.6612678088973,2.2,0.4
-,2026-07-02,,Switzerland,Algeria,,,1,World Cup,2026-07-02 00:00:00_Algeria_Switzerland,1808.450265572627,2.0,1.1
+,2026-07-02,,Algeria,Switzerland,0.0,2.0,0,World Cup,2026-07-02 00:00:00_Algeria_Switzerland,1781.2165118927742,1.8,1.0
+,2026-07-02,,Austria,Spain,0.0,3.0,0,World Cup,2026-07-02 00:00:00_Austria_Spain,1797.7907834199534,2.6,0.9
+,2026-07-02,,Croatia,Portugal,1.0,2.0,0,World Cup,2026-07-02 00:00:00_Croatia_Portugal,1853.7168675373575,1.9,1.5
+,2026-07-02,,Portugal,Croatia,2.0,1.0,1,World Cup,2026-07-02 00:00:00_Croatia_Portugal,1942.7730232987267,2.2,0.7
+,2026-07-02,,Spain,Austria,3.0,0.0,1,World Cup,2026-07-02 00:00:00_Austria_Spain,2018.6612678088973,2.2,0.4
+,2026-07-02,,Switzerland,Algeria,2.0,0.0,1,World Cup,2026-07-02 00:00:00_Algeria_Switzerland,1858.450265572627,2.0,1.1
 ,2026-07-03,,Argentina,Cape Verde,,,1,World Cup,2026-07-03 00:00:00_Argentina_Cape Verde,1996.0397316567648,2.6,0.3
 ,2026-07-03,,Australia,Egypt,,,1,World Cup,2026-07-03 00:00:00_Australia_Egypt,1773.4039191749073,1.0,1.1
 ,2026-07-03,,Cape Verde,Argentina,,,0,World Cup,2026-07-03 00:00:00_Argentina_Cape Verde,1678.3339399032493,1.2,1.1
