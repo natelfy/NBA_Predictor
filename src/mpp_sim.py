@@ -61,9 +61,12 @@ def prep_match(m):
         po = ops[k] if ops[k] > 1e-9 else 1e-9
         nail[k] = min(1.0, sm.get(s, 0.0) / po)                  # P(score exact | issue k)
         bonus_val[k] = bmap.get(s, 0.0)                          # bonus MPP du score modal
+    inv = {k: 1.0 / max(cotes[k], 1e-9) for k in OUTS}
+    s_inv = sum(inv.values())
+    p_imp = {k: inv[k] / s_inv for k in OUTS}                    # probas implicites des cotes
     return {
         'name': m.get('name', '?'),
-        'p_model': p_model, 'p_crowd': p_crowd, 'cotes': cotes,
+        'p_model': p_model, 'p_crowd': p_crowd, 'cotes': cotes, 'p_imp': p_imp,
         'e_points': e_points, 'best_score': best_score,
         'nail': nail, 'bonus_val': bonus_val,
         'edge': {k: p_model[k] - p_crowd[k] for k in OUTS},      # avantage vs foule OBSERVEE
@@ -86,6 +89,12 @@ PROB_FLOOR = 0.12  # proba mini d'un pari (évite les longshots 6 % à grosse co
 CROWD_STACK_MIN = 0.75   # ... si la foule s'EMPILE à >= 75 % sur une issue (vraie exposition)
 EDGE_STRONG = 0.10       # ... OU si l'edge est FORT (>= +10 pts de proba)
 MAX_CONTRARIAN = 2       # au plus 2 coups contrarian par journée ; favori partout ailleurs
+# TRIANGULATION PAR LES COTES : un edge modèle > EDGE_CAP est normalement SUSPECT (erreur
+# modèle probable)... SAUF si les probas implicites des cotes (bookmakers) confirment le
+# modèle CONTRE la foule (p_implicite - p_foule >= BOOKIE_CONFIRM). 2 sources indépendantes
+# d'accord contre la foule = biais de foule réel, pas une erreur (cas Australie-Égypte :
+# cotes ~30/32/37 vs foule 13/25/62).
+BOOKIE_CONFIRM = 0.10
 # Back-test MODÈLE vs FOULE (PHASE DE POULES, 90') : le modèle ne battait la foule que sur
 # le NUL -> doctrine "différenciation par le nul uniquement" (DIFF_ONLY_DRAW=True).
 # CHANGEMENT DE RÉGIME (élimination directe, 120') : la prolongation ÉCRASE les nuls
@@ -98,7 +107,11 @@ DIFF_ONLY_DRAW = False
 
 
 def _trustworthy(pm, k, edge_min, edge_cap, prob_floor):
-    if not (edge_min <= pm['edge'][k] <= edge_cap and pm['p_model'][k] >= prob_floor):
+    if pm['edge'][k] < edge_min or pm['p_model'][k] < prob_floor:
+        return False
+    # Edge énorme : suspect (erreur modèle)... sauf si les COTES confirment le modèle
+    # contre la foule (2 sources indépendantes d'accord = biais de foule réel).
+    if pm['edge'][k] > edge_cap and (pm['p_imp'][k] - pm['p_crowd'][k]) < BOOKIE_CONFIRM:
         return False
     crowd_fav = max(OUTS, key=lambda o: pm['p_crowd'][o])
     if DIFF_ONLY_DRAW and k != crowd_fav and k != 'NUL':
@@ -235,7 +248,7 @@ def recommend(matches, gap, trials=20000, seed=42, competitor='favori', objectiv
         detail.append({
             'match': pm['name'], 'pick': k, 'score': pm['best_score'][k],
             'p_model': pm['p_model'][k], 'p_crowd': pm['p_crowd'][k],
-            'edge': pm['edge'][k], 'cote': pm['cotes'][k],
+            'edge': pm['edge'][k], 'cote': pm['cotes'][k], 'p_imp': pm['p_imp'][k],
             'contrarian': k != fav[idx],
         })
     return {'best': best_name, 'p_top3': table[best_name]['p_top3'],

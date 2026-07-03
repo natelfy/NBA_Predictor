@@ -209,9 +209,13 @@ if st.button("🎯 Calculer la stratégie du jour", type="primary"):
                             'NUL': 'MATCH NUL'}[d['pick']]
                     sc = f"{d['score'][0]}-{d['score'][1]}"
                     if d['contrarian']:
-                        suspect = d['edge'] > mpp_sim.EDGE_CAP   # cohérent avec l'exclusion du simulateur
+                        big = d['edge'] > mpp_sim.EDGE_CAP
+                        bookie_ok = (d.get('p_imp', 0.0) - d['p_crowd']) >= mpp_sim.BOOKIE_CONFIRM
+                        suspect = big and not bookie_ok          # cohérent avec l'exclusion du simulateur
                         tag = ("⚠️ écart ÉNORME vs foule → probable limite du modèle sur cette équipe (À VÉRIFIER), "
-                               "pas forcément une vraie valeur" if suspect else "COUP CONTRARIAN")
+                               "pas forcément une vraie valeur" if suspect else
+                               ("COUP CONTRARIAN — biais de foule CONFIRMÉ par les cotes (bookmakers d'accord "
+                                "avec le modèle contre la foule)" if big else "COUP CONTRARIAN"))
                         line = (f"🎯 **{d['match']}** → **{name}** (score {sc}) · "
                                 f"modèle {d['p_model']:.0%} vs foule {d['p_crowd']:.0%} "
                                 f"(**edge {d['edge'] * 100:+.0f}**, cote {d['cote']}) — {tag}")
