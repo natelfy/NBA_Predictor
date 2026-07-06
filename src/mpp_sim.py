@@ -95,6 +95,13 @@ MAX_CONTRARIAN = 2       # au plus 2 coups contrarian par journée ; favori part
 # d'accord contre la foule = biais de foule réel, pas une erreur (cas Australie-Égypte :
 # cotes ~30/32/37 vs foule 13/25/62).
 BOOKIE_CONFIRM = 0.10
+# LEÇON NORVÈGE-BRÉSIL (05/07) : la foule mettait le Brésil 13 pts AU-DESSUS des bookmakers
+# (59% vs 46% implicite) -> biais de foule MODÉRÉ, sous les seuils stack/edge -> ticket
+# Norvège (EV-neutre, +130 de swing) refusé... et la Norvège a gagné. 3e déclencheur :
+# le favori de la foule est SUR-PARIÉ vs bookmakers d'au moins CROWD_BIAS_MIN -> un
+# contrarian EV-défendable est autorisé (à ce stade, tout pari à coût ~nul doit être pris).
+# Même échelle que BOOKIE_CONFIRM : 10 pts de divergence = significatif.
+CROWD_BIAS_MIN = 0.10
 # Back-test MODÈLE vs FOULE (PHASE DE POULES, 90') : le modèle ne battait la foule que sur
 # le NUL -> doctrine "différenciation par le nul uniquement" (DIFF_ONLY_DRAW=True).
 # CHANGEMENT DE RÉGIME (élimination directe, 120') : la prolongation ÉCRASE les nuls
@@ -116,10 +123,14 @@ def _trustworthy(pm, k, edge_min, edge_cap, prob_floor):
     crowd_fav = max(OUTS, key=lambda o: pm['p_crowd'][o])
     if DIFF_ONLY_DRAW and k != crowd_fav and k != 'NUL':
         return False   # pas de vainqueur contrarian : la foule nous bat sur le résultat
-    # LIGNE C : sans EMPILEMENT de la foule ni edge FORT, un contrarian ne différencie
-    # presque pas (l'issue est déjà couverte) et brûle de l'EV -> on suit la foule.
-    if k != crowd_fav and pm['p_crowd'][crowd_fav] < CROWD_STACK_MIN and pm['edge'][k] < EDGE_STRONG:
-        return False
+    # LIGNE C : sans EMPILEMENT de la foule, ni edge FORT, ni favori SUR-PARIÉ vs les
+    # bookmakers (leçon Norvège), un contrarian ne différencie presque pas (l'issue est
+    # déjà couverte) et brûle de l'EV -> on suit la foule.
+    if k != crowd_fav:
+        crowd_bias = pm['p_crowd'][crowd_fav] - pm['p_imp'][crowd_fav]
+        if (pm['p_crowd'][crowd_fav] < CROWD_STACK_MIN and pm['edge'][k] < EDGE_STRONG
+                and crowd_bias < CROWD_BIAS_MIN):
+            return False
     return True
 
 
@@ -238,8 +249,14 @@ def recommend(matches, gap, trials=20000, seed=42, competitor='favori', objectiv
     for name, yp in cands.items():
         table[name] = simulate(P, yp, comp, gap, trials, seed)
 
-    key = 'net_p90' if objective == 'ceiling' else 'p_top3'
-    best_name = max(table, key=lambda n: table[n][key])
+    # Départage : P(objectif) sature souvent à 0.0 sur les petites journées -> sans
+    # tie-break, max() rendrait la 1re stratégie de la liste ('favori') et CACHERAIT des
+    # tickets légitimes. On départage par plafond (net_p90) puis médiane.
+    if objective == 'ceiling':
+        keyf = lambda n: (table[n]['net_p90'], table[n]['p_top3'], table[n]['net_median'])
+    else:
+        keyf = lambda n: (table[n]['p_top3'], table[n]['net_p90'], table[n]['net_median'])
+    best_name = max(table, key=keyf)
     best_picks = cands[best_name]
     fav = picks_favori(P)
     detail = []
