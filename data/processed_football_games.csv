@@ -84843,8 +84843,8 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 42421.0,2019-03-26,Friendly,Czech Republic,Brazil,1.0,3.0,1,Friendly,2019-03-26 00:00:00_Brazil_Czech Republic,1696.6359787220736,1.1,1.9
 42422.0,2019-03-26,Friendly,Ghana,Mauritania,3.0,1.0,1,Friendly,2019-03-26 00:00:00_Ghana_Mauritania,1667.7299449901038,1.7,0.6
 42422.0,2019-03-26,Friendly,Mauritania,Ghana,1.0,3.0,0,Friendly,2019-03-26 00:00:00_Ghana_Mauritania,1463.0346683789182,1.0,1.0
-42423.0,2019-03-26,Friendly,Estonia,Gibraltar,1.0,0.0,0,Friendly,2019-03-26 00:00:00_Estonia_Gibraltar,1525.0353256172916,0.7,1.4
-42423.0,2019-03-26,Friendly,Gibraltar,Estonia,0.0,1.0,1,Friendly,2019-03-26 00:00:00_Estonia_Gibraltar,1345.9564246283262,0.6,2.6
+42423.0,2019-03-26,Friendly,Estonia,Gibraltar,1.0,0.0,0,Friendly,2019-03-26 00:00:00_Estonia_Gibraltar,1525.0353256172918,0.7,1.4
+42423.0,2019-03-26,Friendly,Gibraltar,Estonia,0.0,1.0,1,Friendly,2019-03-26 00:00:00_Estonia_Gibraltar,1345.956424628326,0.6,2.6
 42424.0,2019-03-26,Friendly,Egypt,Nigeria,0.0,1.0,0,Friendly,2019-03-26 00:00:00_Egypt_Nigeria,1644.0578038059195,1.8,1.3
 42424.0,2019-03-26,Friendly,Nigeria,Egypt,1.0,0.0,1,Friendly,2019-03-26 00:00:00_Egypt_Nigeria,1699.4205233581574,1.9,0.9
 42425.0,2019-03-26,Friendly,Ivory Coast,Liberia,1.0,0.0,1,Friendly,2019-03-26 00:00:00_Ivory Coast_Liberia,1651.6293774877317,1.5,0.9
@@ -85030,7 +85030,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 42515.0,2019-06-07,UEFA Euro qualification,Serbia,Ukraine,0.0,5.0,0,Continental Cup,2019-06-07 00:00:00_Serbia_Ukraine,1716.3105484115367,1.4,1.0
 42515.0,2019-06-07,UEFA Euro qualification,Ukraine,Serbia,5.0,0.0,1,Continental Cup,2019-06-07 00:00:00_Serbia_Ukraine,1795.2391047583687,1.2,0.8
 42516.0,2019-06-07,UEFA Euro qualification,Georgia,Gibraltar,3.0,0.0,1,Continental Cup,2019-06-07 00:00:00_Georgia_Gibraltar,1533.4344257461876,1.3,0.6
-42516.0,2019-06-07,UEFA Euro qualification,Gibraltar,Georgia,0.0,3.0,0,Continental Cup,2019-06-07 00:00:00_Georgia_Gibraltar,1335.340518581252,0.6,2.1
+42516.0,2019-06-07,UEFA Euro qualification,Gibraltar,Georgia,0.0,3.0,0,Continental Cup,2019-06-07 00:00:00_Georgia_Gibraltar,1335.3405185812517,0.6,2.1
 42517.0,2019-06-07,UEFA Euro qualification,Denmark,Republic of Ireland,1.0,1.0,1,Continental Cup,2019-06-07 00:00:00_Denmark_Republic of Ireland,1793.7906118297794,1.2,1.0
 42517.0,2019-06-07,UEFA Euro qualification,Republic of Ireland,Denmark,1.0,1.0,0,Continental Cup,2019-06-07 00:00:00_Denmark_Republic of Ireland,1729.741377551067,0.6,0.9
 42518.0,2019-06-07,UEFA Euro qualification,Kosovo,Montenegro,1.0,1.0,0,Continental Cup,2019-06-07 00:00:00_Kosovo_Montenegro,1537.4899529027884,2.3,0.5
@@ -85081,7 +85081,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 42540.0,2019-06-08,UEFA Euro qualification,Wales,Croatia,1.0,2.0,0,Continental Cup,2019-06-08 00:00:00_Croatia_Wales,1696.6048358267103,0.9,1.1
 42541.0,2019-06-08,UEFA Euro qualification,Belarus,Germany,0.0,2.0,1,Continental Cup,2019-06-08 00:00:00_Belarus_Germany,1519.3379903729954,1.2,0.9
 42541.0,2019-06-08,UEFA Euro qualification,Germany,Belarus,2.0,0.0,0,Continental Cup,2019-06-08 00:00:00_Belarus_Germany,1909.7836321731954,1.4,1.4
-42542.0,2019-06-08,UEFA Euro qualification,Estonia,Northern Ireland,1.0,2.0,1,Continental Cup,2019-06-08 00:00:00_Estonia_Northern Ireland,1512.0946168797973,0.7,1.1
+42542.0,2019-06-08,UEFA Euro qualification,Estonia,Northern Ireland,1.0,2.0,1,Continental Cup,2019-06-08 00:00:00_Estonia_Northern Ireland,1512.0946168797975,0.7,1.1
 42542.0,2019-06-08,UEFA Euro qualification,Northern Ireland,Estonia,2.0,1.0,0,Continental Cup,2019-06-08 00:00:00_Estonia_Northern Ireland,1666.119376319264,0.9,1.1
 42543.0,2019-06-08,UEFA Euro qualification,Belgium,Kazakhstan,3.0,0.0,1,Continental Cup,2019-06-08 00:00:00_Belgium_Kazakhstan,1983.5826554723208,2.1,0.9
 42543.0,2019-06-08,UEFA Euro qualification,Kazakhstan,Belgium,0.0,3.0,0,Continental Cup,2019-06-08 00:00:00_Belgium_Kazakhstan,1437.8418969959143,1.5,1.1
@@ -85125,7 +85125,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 42562.0,2019-06-10,UEFA Euro qualification,Ukraine,Luxembourg,1.0,0.0,1,Continental Cup,2019-06-10 00:00:00_Luxembourg_Ukraine,1799.3341355237771,1.7,0.8
 42563.0,2019-06-10,UEFA Euro qualification,Denmark,Georgia,5.0,1.0,1,Continental Cup,2019-06-10 00:00:00_Denmark_Georgia,1801.0952084036608,1.3,1.1
 42563.0,2019-06-10,UEFA Euro qualification,Georgia,Denmark,1.0,5.0,0,Continental Cup,2019-06-10 00:00:00_Denmark_Georgia,1526.1298291723062,1.5,0.6
-42564.0,2019-06-10,UEFA Euro qualification,Gibraltar,Republic of Ireland,0.0,2.0,0,Continental Cup,2019-06-10 00:00:00_Gibraltar_Republic of Ireland,1331.596191157895,0.6,2.0
+42564.0,2019-06-10,UEFA Euro qualification,Gibraltar,Republic of Ireland,0.0,2.0,0,Continental Cup,2019-06-10 00:00:00_Gibraltar_Republic of Ireland,1331.5961911578947,0.6,2.0
 42564.0,2019-06-10,UEFA Euro qualification,Republic of Ireland,Gibraltar,2.0,0.0,1,Continental Cup,2019-06-10 00:00:00_Gibraltar_Republic of Ireland,1733.485704974424,0.7,0.8
 42565.0,2019-06-10,UEFA Euro qualification,Lithuania,Serbia,1.0,4.0,0,Continental Cup,2019-06-10 00:00:00_Lithuania_Serbia,1371.7250871237386,0.5,2.3
 42565.0,2019-06-10,UEFA Euro qualification,Serbia,Lithuania,4.0,1.0,1,Continental Cup,2019-06-10 00:00:00_Lithuania_Serbia,1721.270740996554,1.3,1.3
@@ -85167,7 +85167,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 42583.0,2019-06-11,Friendly,Tunisia,Croatia,2.0,1.0,0,Friendly,2019-06-11 00:00:00_Croatia_Tunisia,1702.4635555871166,1.7,1.2
 42584.0,2019-06-11,UEFA Euro qualification,Armenia,Greece,3.0,2.0,0,Continental Cup,2019-06-11 00:00:00_Armenia_Greece,1491.498909533828,1.8,1.2
 42584.0,2019-06-11,UEFA Euro qualification,Greece,Armenia,2.0,3.0,1,Continental Cup,2019-06-11 00:00:00_Armenia_Greece,1598.1705978558398,0.9,1.2
-42585.0,2019-06-11,UEFA Euro qualification,Estonia,Germany,0.0,8.0,0,Continental Cup,2019-06-11 00:00:00_Estonia_Germany,1508.4140360766355,0.8,1.2
+42585.0,2019-06-11,UEFA Euro qualification,Estonia,Germany,0.0,8.0,0,Continental Cup,2019-06-11 00:00:00_Estonia_Germany,1508.4140360766357,0.8,1.2
 42585.0,2019-06-11,UEFA Euro qualification,Germany,Estonia,8.0,0.0,1,Continental Cup,2019-06-11 00:00:00_Estonia_Germany,1913.4642129763572,1.4,1.3
 42586.0,2019-06-11,Friendly,Algeria,Burundi,1.0,1.0,0,Friendly,2019-06-11 00:00:00_Algeria_Burundi,1615.2125173878999,1.2,1.2
 42586.0,2019-06-11,Friendly,Burundi,Algeria,1.0,1.0,0,Friendly,2019-06-11 00:00:00_Algeria_Burundi,1454.7620182360592,1.4,1.0
@@ -85708,7 +85708,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 42854.0,2019-09-05,UEFA Euro qualification,Republic of Ireland,Switzerland,1.0,1.0,1,Continental Cup,2019-09-05 00:00:00_Republic of Ireland_Switzerland,1737.6569989878053,0.7,0.7
 42854.0,2019-09-05,UEFA Euro qualification,Switzerland,Republic of Ireland,1.0,1.0,0,Continental Cup,2019-09-05 00:00:00_Republic of Ireland_Switzerland,1802.8562064648352,2.0,1.3
 42855.0,2019-09-05,UEFA Euro qualification,Denmark,Gibraltar,6.0,0.0,0,Continental Cup,2019-09-05 00:00:00_Denmark_Gibraltar,1803.6078866001812,1.7,1.1
-42855.0,2019-09-05,UEFA Euro qualification,Gibraltar,Denmark,0.0,6.0,1,Continental Cup,2019-09-05 00:00:00_Denmark_Gibraltar,1329.0835129613745,0.5,2.2
+42855.0,2019-09-05,UEFA Euro qualification,Gibraltar,Denmark,0.0,6.0,1,Continental Cup,2019-09-05 00:00:00_Denmark_Gibraltar,1329.0835129613743,0.5,2.2
 42856.0,2019-09-05,UEFA Euro qualification,Faroe Islands,Sweden,0.0,4.0,1,Continental Cup,2019-09-05 00:00:00_Faroe Islands_Sweden,1280.8278477322958,0.8,2.2
 42856.0,2019-09-05,UEFA Euro qualification,Sweden,Faroe Islands,4.0,0.0,0,Continental Cup,2019-09-05 00:00:00_Faroe Islands_Sweden,1771.365465931024,1.4,1.1
 42857.0,2019-09-05,Friendly,Ecuador,Peru,1.0,0.0,0,Friendly,2019-09-05 00:00:00_Ecuador_Peru,1712.9671222612133,0.9,1.3
@@ -85762,7 +85762,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 42881.0,2019-09-06,UEFA Euro qualification,Germany,Netherlands,2.0,4.0,1,Continental Cup,2019-09-06 00:00:00_Germany_Netherlands,1889.7762112255307,2.2,1.1
 42881.0,2019-09-06,UEFA Euro qualification,Netherlands,Germany,4.0,2.0,0,Continental Cup,2019-09-06 00:00:00_Germany_Netherlands,1872.3437105971316,2.0,1.1
 42882.0,2019-09-06,UEFA Euro qualification,Belarus,Estonia,2.0,1.0,0,Continental Cup,2019-09-06 00:00:00_Belarus_Estonia,1527.3812701393476,1.1,0.9
-42882.0,2019-09-06,UEFA Euro qualification,Estonia,Belarus,1.0,2.0,1,Continental Cup,2019-09-06 00:00:00_Belarus_Estonia,1488.350954215714,0.8,1.9
+42882.0,2019-09-06,UEFA Euro qualification,Estonia,Belarus,1.0,2.0,1,Continental Cup,2019-09-06 00:00:00_Belarus_Estonia,1488.3509542157142,0.8,1.9
 42883.0,2019-09-06,Friendly,Mexico,United States,3.0,0.0,0,Friendly,2019-09-06 00:00:00_Mexico_United States,1867.4969783586298,2.9,1.0
 42883.0,2019-09-06,Friendly,United States,Mexico,0.0,3.0,1,Friendly,2019-09-06 00:00:00_Mexico_United States,1782.5362028095349,1.7,0.7
 42884.0,2019-09-06,Friendly,Mauritania,Tunisia,0.0,1.0,0,Friendly,2019-09-06 00:00:00_Mauritania_Tunisia,1460.6344082687806,1.0,1.7
@@ -85823,7 +85823,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 42911.0,2019-09-08,CONCACAF Nations League,Saint Kitts and Nevis,French Guiana,2.0,2.0,1,Nations League,2019-09-08 00:00:00_French Guiana_Saint Kitts and Nevis,1429.098202361229,2.0,1.4
 42912.0,2019-09-08,CONCACAF Nations League,Belize,Grenada,1.0,2.0,1,Nations League,2019-09-08 00:00:00_Belize_Grenada,1363.9744156456104,1.3,0.9
 42912.0,2019-09-08,CONCACAF Nations League,Grenada,Belize,2.0,1.0,0,Nations League,2019-09-08 00:00:00_Belize_Grenada,1342.9159440485432,1.4,3.0
-42913.0,2019-09-08,UEFA Euro qualification,Gibraltar,Switzerland,0.0,4.0,0,Continental Cup,2019-09-08 00:00:00_Gibraltar_Switzerland,1326.6281474735983,0.5,2.6
+42913.0,2019-09-08,UEFA Euro qualification,Gibraltar,Switzerland,0.0,4.0,0,Continental Cup,2019-09-08 00:00:00_Gibraltar_Switzerland,1326.6281474735981,0.5,2.6
 42913.0,2019-09-08,UEFA Euro qualification,Switzerland,Gibraltar,4.0,0.0,1,Continental Cup,2019-09-08 00:00:00_Gibraltar_Switzerland,1805.3115719526113,1.5,1.4
 42914.0,2019-09-08,UEFA Euro qualification,Greece,Liechtenstein,1.0,1.0,1,Continental Cup,2019-09-08 00:00:00_Greece_Liechtenstein,1565.316257186636,0.9,1.4
 42914.0,2019-09-08,UEFA Euro qualification,Liechtenstein,Greece,1.0,1.0,0,Continental Cup,2019-09-08 00:00:00_Greece_Liechtenstein,1228.2854327346668,0.6,2.8
@@ -86077,7 +86077,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 43038.0,2019-10-10,Friendly,Togo,Cape Verde,1.0,2.0,0,Friendly,2019-10-10 00:00:00_Cape Verde_Togo,1456.595924216278,1.5,1.0
 43039.0,2019-10-10,Friendly,Burkina Faso,Gabon,0.0,1.0,0,Friendly,2019-10-10 00:00:00_Burkina Faso_Gabon,1584.6360695257024,0.8,0.7
 43039.0,2019-10-10,Friendly,Gabon,Burkina Faso,1.0,0.0,0,Friendly,2019-10-10 00:00:00_Burkina Faso_Gabon,1502.6181319455136,0.6,0.5
-43040.0,2019-10-10,Friendly,Gibraltar,Kosovo,0.0,1.0,0,Friendly,2019-10-10 00:00:00_Gibraltar_Kosovo,1322.9138547455054,0.5,2.8
+43040.0,2019-10-10,Friendly,Gibraltar,Kosovo,0.0,1.0,0,Friendly,2019-10-10 00:00:00_Gibraltar_Kosovo,1322.9138547455052,0.5,2.8
 43040.0,2019-10-10,Friendly,Kosovo,Gibraltar,1.0,0.0,1,Friendly,2019-10-10 00:00:00_Gibraltar_Kosovo,1587.114638695804,2.5,1.4
 43041.0,2019-10-10,Friendly,Niger,Zambia,1.0,1.0,1,Friendly,2019-10-10 00:00:00_Niger_Zambia,1423.8746860959973,1.1,1.8
 43041.0,2019-10-10,Friendly,Zambia,Niger,1.0,1.0,0,Friendly,2019-10-10 00:00:00_Niger_Zambia,1524.5471968900606,1.5,1.5
@@ -86320,7 +86320,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 43160.0,2019-10-15,UEFA Euro qualification,Republic of Ireland,Switzerland,0.0,2.0,0,Continental Cup,2019-10-15 00:00:00_Republic of Ireland_Switzerland,1715.6105391288072,0.9,0.4
 43160.0,2019-10-15,UEFA Euro qualification,Switzerland,Republic of Ireland,2.0,0.0,1,Continental Cup,2019-10-15 00:00:00_Republic of Ireland_Switzerland,1801.5016811841674,1.8,1.2
 43161.0,2019-10-15,UEFA Euro qualification,Georgia,Gibraltar,3.0,2.0,0,Continental Cup,2019-10-15 00:00:00_Georgia_Gibraltar,1564.1228446059667,1.2,1.2
-43161.0,2019-10-15,UEFA Euro qualification,Gibraltar,Georgia,2.0,3.0,1,Continental Cup,2019-10-15 00:00:00_Georgia_Gibraltar,1314.6184394616018,0.4,2.9
+43161.0,2019-10-15,UEFA Euro qualification,Gibraltar,Georgia,2.0,3.0,1,Continental Cup,2019-10-15 00:00:00_Georgia_Gibraltar,1314.6184394616016,0.4,2.9
 43162.0,2019-10-19,Friendly,East Turkestan,West Papua,8.0,2.0,0,Friendly,2019-10-19 00:00:00_East Turkestan_West Papua,1510.0,1.2,1.2
 43162.0,2019-10-19,Friendly,West Papua,East Turkestan,2.0,8.0,0,Friendly,2019-10-19 00:00:00_East Turkestan_West Papua,1490.0,1.2,1.2
 43163.0,2019-11-07,Friendly,Egypt,Liberia,1.0,0.0,1,Friendly,2019-11-07 00:00:00_Egypt_Liberia,1679.459083943548,1.4,0.6
@@ -86484,7 +86484,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 43242.0,2019-11-15,UEFA Euro qualification,Malta,Spain,0.0,7.0,0,Continental Cup,2019-11-15 00:00:00_Malta_Spain,1249.2988812762783,0.3,2.4
 43242.0,2019-11-15,UEFA Euro qualification,Spain,Malta,7.0,0.0,1,Continental Cup,2019-11-15 00:00:00_Malta_Spain,1946.6651972846084,2.2,0.8
 43243.0,2019-11-15,UEFA Euro qualification,Denmark,Gibraltar,6.0,0.0,1,Continental Cup,2019-11-15 00:00:00_Denmark_Gibraltar,1815.2780038993797,2.4,0.8
-43243.0,2019-11-15,UEFA Euro qualification,Gibraltar,Denmark,0.0,6.0,0,Continental Cup,2019-11-15 00:00:00_Denmark_Gibraltar,1312.4715017120832,0.4,3.1
+43243.0,2019-11-15,UEFA Euro qualification,Gibraltar,Denmark,0.0,6.0,0,Continental Cup,2019-11-15 00:00:00_Denmark_Gibraltar,1312.471501712083,0.4,3.1
 43244.0,2019-11-16,UEFA Euro qualification,Kazakhstan,San Marino,3.0,1.0,0,Continental Cup,2019-11-16 00:00:00_Kazakhstan_San Marino,1417.92178733199,1.1,1.5
 43244.0,2019-11-16,UEFA Euro qualification,San Marino,Kazakhstan,1.0,3.0,1,Continental Cup,2019-11-16 00:00:00_Kazakhstan_San Marino,1008.9935876220045,0.0,4.6
 43245.0,2019-11-16,CONCACAF Nations League,Guatemala,Puerto Rico,5.0,0.0,1,Nations League,2019-11-16 00:00:00_Guatemala_Puerto Rico,1537.0513738566572,2.3,1.2
@@ -86589,7 +86589,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 43294.0,2019-11-18,UEFA Euro qualification,Spain,Romania,5.0,0.0,1,Continental Cup,2019-11-18 00:00:00_Romania_Spain,1954.2020513295747,2.7,0.5
 43295.0,2019-11-18,UEFA Euro qualification,Finland,Greece,1.0,2.0,0,Continental Cup,2019-11-18 00:00:00_Finland_Greece,1629.6248391444844,1.6,1.0
 43295.0,2019-11-18,UEFA Euro qualification,Greece,Finland,2.0,1.0,1,Continental Cup,2019-11-18 00:00:00_Finland_Greece,1624.0729869672862,1.1,1.5
-43296.0,2019-11-18,UEFA Euro qualification,Gibraltar,Switzerland,1.0,6.0,1,Continental Cup,2019-11-18 00:00:00_Gibraltar_Switzerland,1310.308664113301,0.2,3.1
+43296.0,2019-11-18,UEFA Euro qualification,Gibraltar,Switzerland,1.0,6.0,1,Continental Cup,2019-11-18 00:00:00_Gibraltar_Switzerland,1310.3086641133007,0.2,3.1
 43296.0,2019-11-18,UEFA Euro qualification,Switzerland,Gibraltar,6.0,1.0,0,Continental Cup,2019-11-18 00:00:00_Gibraltar_Switzerland,1811.7921986229032,1.9,1.0
 43297.0,2019-11-18,UEFA Euro qualification,Malta,Norway,1.0,2.0,1,Continental Cup,2019-11-18 00:00:00_Malta_Norway,1246.2707530014548,0.3,2.6
 43297.0,2019-11-18,UEFA Euro qualification,Norway,Malta,2.0,1.0,0,Continental Cup,2019-11-18 00:00:00_Malta_Norway,1687.0058772171365,1.9,1.0
@@ -86801,7 +86801,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 43400.0,2020-09-04,UEFA Nations League,Belarus,Albania,0.0,2.0,1,Nations League,2020-09-04 00:00:00_Albania_Belarus,1493.0275779000626,0.4,1.9
 43401.0,2020-09-05,UEFA Nations League,Azerbaijan,Luxembourg,1.0,2.0,1,Nations League,2020-09-05 00:00:00_Azerbaijan_Luxembourg,1402.7846166814822,0.8,2.0
 43401.0,2020-09-05,UEFA Nations League,Luxembourg,Azerbaijan,2.0,1.0,0,Nations League,2020-09-05 00:00:00_Azerbaijan_Luxembourg,1403.41053311932,0.8,2.3
-43402.0,2020-09-05,UEFA Nations League,Gibraltar,San Marino,1.0,0.0,1,Nations League,2020-09-05 00:00:00_Gibraltar_San Marino,1313.302480961168,0.3,3.3
+43402.0,2020-09-05,UEFA Nations League,Gibraltar,San Marino,1.0,0.0,1,Nations League,2020-09-05 00:00:00_Gibraltar_San Marino,1313.3024809611677,0.3,3.3
 43402.0,2020-09-05,UEFA Nations League,San Marino,Gibraltar,0.0,1.0,0,Nations League,2020-09-05 00:00:00_Gibraltar_San Marino,1005.5621976933724,0.1,5.1
 43403.0,2020-09-05,UEFA Nations League,Armenia,North Macedonia,1.0,2.0,0,Nations League,2020-09-05 00:00:00_Armenia_North Macedonia,1465.9237957651483,1.4,2.5
 43403.0,2020-09-05,UEFA Nations League,North Macedonia,Armenia,2.0,1.0,1,Nations League,2020-09-05 00:00:00_Armenia_North Macedonia,1565.035477751572,1.2,1.3
@@ -86889,7 +86889,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 43444.0,2020-10-07,Friendly,Montenegro,Latvia,1.0,1.0,1,Friendly,2020-10-07 00:00:00_Latvia_Montenegro,1545.4713136917817,0.8,1.7
 43445.0,2020-10-07,Friendly,Liechtenstein,Luxembourg,2.0,1.0,0,Friendly,2020-10-07 00:00:00_Liechtenstein_Luxembourg,1252.554116390197,0.4,2.9
 43445.0,2020-10-07,Friendly,Luxembourg,Liechtenstein,1.0,2.0,1,Friendly,2020-10-07 00:00:00_Liechtenstein_Luxembourg,1382.9864315232724,0.6,2.0
-43446.0,2020-10-07,Friendly,Gibraltar,Malta,0.0,2.0,0,Friendly,2020-10-07 00:00:00_Gibraltar_Malta,1301.2369045484509,0.4,3.2
+43446.0,2020-10-07,Friendly,Gibraltar,Malta,0.0,2.0,0,Friendly,2020-10-07 00:00:00_Gibraltar_Malta,1301.2369045484506,0.4,3.2
 43446.0,2020-10-07,Friendly,Malta,Gibraltar,2.0,0.0,1,Friendly,2020-10-07 00:00:00_Gibraltar_Malta,1252.5549804050297,0.4,2.8
 43447.0,2020-10-07,Friendly,Germany,Turkey,3.0,3.0,1,Friendly,2020-10-07 00:00:00_Germany_Turkey,1908.328918610999,3.1,0.9
 43447.0,2020-10-07,Friendly,Turkey,Germany,3.0,3.0,0,Friendly,2020-10-07 00:00:00_Germany_Turkey,1761.6056347961965,1.2,0.4
@@ -86969,7 +86969,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 43484.0,2020-10-10,Friendly,Panama,Costa Rica,1.0,0.0,0,Friendly,2020-10-10 00:00:00_Costa Rica_Panama,1592.8583970160064,1.1,1.9
 43485.0,2020-10-10,Friendly,Chad,Niger,0.0,2.0,0,Friendly,2020-10-10 00:00:00_Chad_Niger,1352.9139531117123,0.6,1.4
 43485.0,2020-10-10,Friendly,Niger,Chad,2.0,0.0,1,Friendly,2020-10-10 00:00:00_Chad_Niger,1400.8102166274248,0.7,1.8
-43486.0,2020-10-10,UEFA Nations League,Gibraltar,Liechtenstein,1.0,0.0,0,Nations League,2020-10-10 00:00:00_Gibraltar_Liechtenstein,1309.8448000901722,0.4,3.3
+43486.0,2020-10-10,UEFA Nations League,Gibraltar,Liechtenstein,1.0,0.0,0,Nations League,2020-10-10 00:00:00_Gibraltar_Liechtenstein,1309.844800090172,0.4,3.3
 43486.0,2020-10-10,UEFA Nations League,Liechtenstein,Gibraltar,0.0,1.0,1,Nations League,2020-10-10 00:00:00_Gibraltar_Liechtenstein,1243.9462208484756,0.6,2.4
 43487.0,2020-10-10,UEFA Nations League,Cyprus,Luxembourg,0.0,2.0,0,Nations League,2020-10-10 00:00:00_Cyprus_Luxembourg,1406.7333202598447,1.0,2.1
 43487.0,2020-10-10,UEFA Nations League,Luxembourg,Cyprus,2.0,0.0,1,Nations League,2020-10-10 00:00:00_Cyprus_Luxembourg,1393.9831117666743,0.6,2.1
@@ -87164,7 +87164,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 43582.0,2020-11-11,Friendly,Denmark,Sweden,2.0,0.0,1,Friendly,2020-11-11 00:00:00_Denmark_Sweden,1837.3602033174948,2.0,0.3
 43582.0,2020-11-11,Friendly,Sweden,Denmark,0.0,2.0,0,Friendly,2020-11-11 00:00:00_Denmark_Sweden,1774.4861038908678,1.1,1.0
 43583.0,2020-11-11,Friendly,Bulgaria,Gibraltar,3.0,0.0,1,Friendly,2020-11-11 00:00:00_Bulgaria_Gibraltar,1544.1600075984734,0.4,1.8
-43583.0,2020-11-11,Friendly,Gibraltar,Bulgaria,0.0,3.0,0,Friendly,2020-11-11 00:00:00_Bulgaria_Gibraltar,1305.6438670943667,0.5,3.0
+43583.0,2020-11-11,Friendly,Gibraltar,Bulgaria,0.0,3.0,0,Friendly,2020-11-11 00:00:00_Bulgaria_Gibraltar,1305.6438670943664,0.5,3.0
 43584.0,2020-11-11,Friendly,Belgium,Switzerland,2.0,1.0,1,Friendly,2020-11-11 00:00:00_Belgium_Switzerland,2001.4163720572049,3.6,0.7
 43584.0,2020-11-11,Friendly,Switzerland,Belgium,1.0,2.0,0,Friendly,2020-11-11 00:00:00_Belgium_Switzerland,1789.1025114094193,1.9,1.1
 43585.0,2020-11-11,Friendly,Albania,Kosovo,2.0,1.0,1,Friendly,2020-11-11 00:00:00_Albania_Kosovo,1545.8933998257758,1.3,1.2
@@ -87243,7 +87243,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 43621.0,2020-11-13,Friendly,Nepal,Bangladesh,0.0,2.0,0,Friendly,2020-11-13 00:00:00_Bangladesh_Nepal,1194.8063855213588,0.3,2.3
 43622.0,2020-11-13,FIFA World Cup qualification,Brazil,Venezuela,1.0,0.0,1,Qualifier,2020-11-13 00:00:00_Brazil_Venezuela,1998.5154165474044,2.1,0.9
 43622.0,2020-11-13,FIFA World Cup qualification,Venezuela,Brazil,0.0,1.0,0,Qualifier,2020-11-13 00:00:00_Brazil_Venezuela,1700.4147938030576,1.3,0.9
-43623.0,2020-11-14,UEFA Nations League,Gibraltar,San Marino,0.0,0.0,0,Nations League,2020-11-14 00:00:00_Gibraltar_San Marino,1298.6392333013437,0.5,3.1
+43623.0,2020-11-14,UEFA Nations League,Gibraltar,San Marino,0.0,0.0,0,Nations League,2020-11-14 00:00:00_Gibraltar_San Marino,1298.6392333013434,0.5,3.1
 43623.0,2020-11-14,UEFA Nations League,San Marino,Gibraltar,0.0,0.0,1,Nations League,2020-11-14 00:00:00_Gibraltar_San Marino,1011.001557825937,0.1,3.7
 43624.0,2020-11-14,African Cup of Nations qualification,Benin,Lesotho,1.0,0.0,1,Continental Cup,2020-11-14 00:00:00_Benin_Lesotho,1583.16288285719,0.9,0.8
 43624.0,2020-11-14,African Cup of Nations qualification,Lesotho,Benin,0.0,1.0,0,Continental Cup,2020-11-14 00:00:00_Benin_Lesotho,1373.5517298604414,0.9,1.1
@@ -87389,7 +87389,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 43694.0,2020-11-17,UEFA Nations League,Latvia,Andorra,5.0,0.0,0,Nations League,2020-11-17 00:00:00_Andorra_Latvia,1339.3673187899622,0.9,0.9
 43695.0,2020-11-17,UEFA Nations League,Switzerland,Ukraine,3.0,0.0,1,Nations League,2020-11-17 00:00:00_Switzerland_Ukraine,1803.873099105176,1.7,1.3
 43695.0,2020-11-17,UEFA Nations League,Ukraine,Switzerland,0.0,3.0,0,Nations League,2020-11-17 00:00:00_Switzerland_Ukraine,1800.6067377962313,1.1,2.2
-43696.0,2020-11-17,UEFA Nations League,Gibraltar,Liechtenstein,1.0,1.0,1,Nations League,2020-11-17 00:00:00_Gibraltar_Liechtenstein,1296.6509263105256,0.5,2.5
+43696.0,2020-11-17,UEFA Nations League,Gibraltar,Liechtenstein,1.0,1.0,1,Nations League,2020-11-17 00:00:00_Gibraltar_Liechtenstein,1296.6509263105254,0.5,2.5
 43696.0,2020-11-17,UEFA Nations League,Liechtenstein,Gibraltar,1.0,1.0,0,Nations League,2020-11-17 00:00:00_Gibraltar_Liechtenstein,1230.6141179283384,0.6,1.8
 43697.0,2020-11-17,Friendly,Bangladesh,Nepal,0.0,0.0,1,Friendly,2020-11-17 00:00:00_Bangladesh_Nepal,1201.5902109640926,1.2,0.9
 43697.0,2020-11-17,Friendly,Nepal,Bangladesh,0.0,0.0,0,Friendly,2020-11-17 00:00:00_Bangladesh_Nepal,1195.0073982439383,0.3,2.2
@@ -87495,7 +87495,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 43747.0,2021-03-24,FIFA World Cup qualification,Russia,Malta,3.0,1.0,0,Qualifier,2021-03-24 00:00:00_Malta_Russia,1761.5053796322366,1.6,1.8
 43748.0,2021-03-24,FIFA World Cup qualification,Latvia,Montenegro,1.0,2.0,1,Qualifier,2021-03-24 00:00:00_Latvia_Montenegro,1332.0950508478502,1.3,0.6
 43748.0,2021-03-24,FIFA World Cup qualification,Montenegro,Latvia,2.0,1.0,0,Qualifier,2021-03-24 00:00:00_Latvia_Montenegro,1544.5940783080841,1.3,1.0
-43749.0,2021-03-24,FIFA World Cup qualification,Gibraltar,Norway,0.0,3.0,1,Qualifier,2021-03-24 00:00:00_Gibraltar_Norway,1293.6953886335928,0.6,2.2
+43749.0,2021-03-24,FIFA World Cup qualification,Gibraltar,Norway,0.0,3.0,1,Qualifier,2021-03-24 00:00:00_Gibraltar_Norway,1293.6953886335925,0.6,2.2
 43749.0,2021-03-24,FIFA World Cup qualification,Norway,Gibraltar,3.0,0.0,0,Qualifier,2021-03-24 00:00:00_Gibraltar_Norway,1684.183204584059,2.0,1.1
 43750.0,2021-03-24,FIFA World Cup qualification,Netherlands,Turkey,2.0,4.0,0,Qualifier,2021-03-24 00:00:00_Netherlands_Turkey,1859.9937292976415,1.3,0.6
 43750.0,2021-03-24,FIFA World Cup qualification,Turkey,Netherlands,4.0,2.0,1,Qualifier,2021-03-24 00:00:00_Netherlands_Turkey,1781.7289056707114,1.4,1.4
@@ -87629,7 +87629,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 43814.0,2021-03-27,FIFA World Cup qualification,Turkey,Norway,3.0,0.0,0,Qualifier,2021-03-27 00:00:00_Norway_Turkey,1792.6247932298868,1.8,1.6
 43815.0,2021-03-27,FIFA World Cup qualification,Latvia,Netherlands,0.0,2.0,0,Qualifier,2021-03-27 00:00:00_Latvia_Netherlands,1330.723984486395,1.4,0.7
 43815.0,2021-03-27,FIFA World Cup qualification,Netherlands,Latvia,2.0,0.0,1,Qualifier,2021-03-27 00:00:00_Latvia_Netherlands,1861.3647956590967,1.5,1.0
-43816.0,2021-03-27,FIFA World Cup qualification,Gibraltar,Montenegro,1.0,4.0,0,Qualifier,2021-03-27 00:00:00_Gibraltar_Montenegro,1287.9689269068006,0.6,2.4
+43816.0,2021-03-27,FIFA World Cup qualification,Gibraltar,Montenegro,1.0,4.0,0,Qualifier,2021-03-27 00:00:00_Gibraltar_Montenegro,1287.9689269068003,0.6,2.4
 43816.0,2021-03-27,FIFA World Cup qualification,Montenegro,Gibraltar,4.0,1.0,1,Qualifier,2021-03-27 00:00:00_Gibraltar_Montenegro,1550.3205400348763,1.5,0.4
 43817.0,2021-03-27,FIFA World Cup qualification,Belgium,Czech Republic,1.0,1.0,0,Qualifier,2021-03-27 00:00:00_Belgium_Czech Republic,2009.1951548407394,2.8,1.0
 43817.0,2021-03-27,FIFA World Cup qualification,Czech Republic,Belgium,1.0,1.0,1,Qualifier,2021-03-27 00:00:00_Belgium_Czech Republic,1730.2460198533274,1.7,1.0
@@ -87785,7 +87785,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 43892.0,2021-03-30,FIFA World Cup qualification,United States Virgin Islands,Grenada,0.0,1.0,0,Qualifier,2021-03-30 00:00:00_Grenada_United States Virgin Islands,1176.9203731317662,0.6,2.2
 43893.0,2021-03-30,FIFA World Cup qualification,Aruba,Bermuda,0.0,5.0,0,Qualifier,2021-03-30 00:00:00_Aruba_Bermuda,1233.6778078644484,0.7,2.9
 43893.0,2021-03-30,FIFA World Cup qualification,Bermuda,Aruba,5.0,0.0,0,Qualifier,2021-03-30 00:00:00_Aruba_Bermuda,1462.1586746560627,1.1,2.0
-43894.0,2021-03-30,FIFA World Cup qualification,Gibraltar,Netherlands,0.0,7.0,1,Qualifier,2021-03-30 00:00:00_Gibraltar_Netherlands,1286.9025442776754,0.5,2.5
+43894.0,2021-03-30,FIFA World Cup qualification,Gibraltar,Netherlands,0.0,7.0,1,Qualifier,2021-03-30 00:00:00_Gibraltar_Netherlands,1286.9025442776751,0.5,2.5
 43894.0,2021-03-30,FIFA World Cup qualification,Netherlands,Gibraltar,7.0,0.0,0,Qualifier,2021-03-30 00:00:00_Gibraltar_Netherlands,1862.4311782882219,1.2,1.0
 43895.0,2021-03-30,FIFA World Cup qualification,Anguilla,Barbados,0.0,1.0,0,Qualifier,2021-03-30 00:00:00_Anguilla_Barbados,1105.9781510672456,0.3,5.7
 43895.0,2021-03-30,FIFA World Cup qualification,Barbados,Anguilla,1.0,0.0,0,Qualifier,2021-03-30 00:00:00_Anguilla_Barbados,1341.5165301166103,1.6,1.4
@@ -87977,7 +87977,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 43988.0,2021-06-04,Baltic Cup,Lithuania,Latvia,1.0,3.0,0,Other,2021-06-04 00:00:00_Latvia_Lithuania,1376.9681272272019,0.9,1.5
 43989.0,2021-06-04,Friendly,Kosovo,Malta,2.0,1.0,0,Friendly,2021-06-04 00:00:00_Kosovo_Malta,1528.254645419494,1.3,1.4
 43989.0,2021-06-04,Friendly,Malta,Kosovo,1.0,2.0,0,Friendly,2021-06-04 00:00:00_Kosovo_Malta,1282.6341858573928,1.3,1.3
-43990.0,2021-06-04,Friendly,Gibraltar,Slovenia,0.0,6.0,0,Friendly,2021-06-04 00:00:00_Gibraltar_Slovenia,1283.8476722296973,0.5,2.6
+43990.0,2021-06-04,Friendly,Gibraltar,Slovenia,0.0,6.0,0,Friendly,2021-06-04 00:00:00_Gibraltar_Slovenia,1283.847672229697,0.5,2.6
 43990.0,2021-06-04,Friendly,Slovenia,Gibraltar,6.0,0.0,1,Friendly,2021-06-04 00:00:00_Gibraltar_Slovenia,1587.5781474488438,1.4,0.5
 43991.0,2021-06-04,Friendly,Portugal,Spain,0.0,0.0,0,Friendly,2021-06-04 00:00:00_Portugal_Spain,1905.419973127904,2.1,0.6
 43991.0,2021-06-04,Friendly,Spain,Portugal,0.0,0.0,1,Friendly,2021-06-04 00:00:00_Portugal_Spain,1945.3238324858999,1.9,0.6
@@ -88088,7 +88088,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 44044.0,2021-06-07,Friendly,Faroe Islands,Liechtenstein,5.0,1.0,1,Friendly,2021-06-07 00:00:00_Faroe Islands_Liechtenstein,1304.1011075037636,0.8,1.8
 44044.0,2021-06-07,Friendly,Liechtenstein,Faroe Islands,1.0,5.0,0,Friendly,2021-06-07 00:00:00_Faroe Islands_Liechtenstein,1211.0816919042202,0.6,2.3
 44045.0,2021-06-07,Friendly,Andorra,Gibraltar,0.0,0.0,1,Friendly,2021-06-07 00:00:00_Andorra_Gibraltar,1160.272460667933,0.4,3.1
-44045.0,2021-06-07,Friendly,Gibraltar,Andorra,0.0,0.0,0,Friendly,2021-06-07 00:00:00_Andorra_Gibraltar,1280.3448988652685,0.4,2.6
+44045.0,2021-06-07,Friendly,Gibraltar,Andorra,0.0,0.0,0,Friendly,2021-06-07 00:00:00_Andorra_Gibraltar,1280.3448988652683,0.4,2.6
 44046.0,2021-06-07,FIFA World Cup qualification,Jordan,Nepal,3.0,0.0,0,Qualifier,2021-06-07 00:00:00_Jordan_Nepal,1584.5697287325515,0.8,1.0
 44046.0,2021-06-07,FIFA World Cup qualification,Nepal,Jordan,0.0,3.0,0,Qualifier,2021-06-07 00:00:00_Jordan_Nepal,1218.4313926639995,0.8,1.8
 44047.0,2021-06-08,FIFA World Cup qualification,Cuba,Saint Vincent and the Grenadines,1.0,0.0,0,Qualifier,2021-06-08 00:00:00_Cuba_Saint Vincent and the Grenadines,1415.2951383262869,0.7,2.8
@@ -88583,7 +88583,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 44291.0,2021-09-01,FIFA World Cup qualification,Malta,Cyprus,3.0,0.0,1,Qualifier,2021-09-01 00:00:00_Cyprus_Malta,1303.6180012435138,1.2,1.5
 44292.0,2021-09-01,FIFA World Cup qualification,Montenegro,Turkey,2.0,2.0,0,Qualifier,2021-09-01 00:00:00_Montenegro_Turkey,1541.8654460000835,1.4,0.8
 44292.0,2021-09-01,FIFA World Cup qualification,Turkey,Montenegro,2.0,2.0,1,Qualifier,2021-09-01 00:00:00_Montenegro_Turkey,1743.8491183577846,1.5,1.6
-44293.0,2021-09-01,FIFA World Cup qualification,Gibraltar,Latvia,1.0,3.0,0,Qualifier,2021-09-01 00:00:00_Gibraltar_Latvia,1268.1843901336244,0.3,2.6
+44293.0,2021-09-01,FIFA World Cup qualification,Gibraltar,Latvia,1.0,3.0,0,Qualifier,2021-09-01 00:00:00_Gibraltar_Latvia,1268.1843901336242,0.3,2.6
 44293.0,2021-09-01,FIFA World Cup qualification,Latvia,Gibraltar,3.0,1.0,1,Qualifier,2021-09-01 00:00:00_Gibraltar_Latvia,1359.0776961810288,1.8,1.9
 44294.0,2021-09-01,FIFA World Cup qualification,Netherlands,Norway,1.0,1.0,0,Qualifier,2021-09-01 00:00:00_Netherlands_Norway,1856.3425955144792,2.6,1.1
 44294.0,2021-09-01,FIFA World Cup qualification,Norway,Netherlands,1.0,1.0,1,Qualifier,2021-09-01 00:00:00_Netherlands_Norway,1683.1588933107107,1.3,1.1
@@ -88715,7 +88715,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 44357.0,2021-09-04,FIFA World Cup qualification,Russia,Cyprus,2.0,0.0,0,Qualifier,2021-09-04 00:00:00_Cyprus_Russia,1757.2456293306388,1.0,1.7
 44358.0,2021-09-04,FIFA World Cup qualification,Montenegro,Netherlands,0.0,4.0,0,Qualifier,2021-09-04 00:00:00_Montenegro_Netherlands,1537.6473028105036,1.4,1.0
 44358.0,2021-09-04,FIFA World Cup qualification,Netherlands,Montenegro,4.0,0.0,1,Qualifier,2021-09-04 00:00:00_Montenegro_Netherlands,1860.560738704059,2.5,1.1
-44359.0,2021-09-04,FIFA World Cup qualification,Gibraltar,Turkey,0.0,3.0,1,Qualifier,2021-09-04 00:00:00_Gibraltar_Turkey,1266.361601983182,0.4,2.7
+44359.0,2021-09-04,FIFA World Cup qualification,Gibraltar,Turkey,0.0,3.0,1,Qualifier,2021-09-04 00:00:00_Gibraltar_Turkey,1266.3616019831818,0.4,2.7
 44359.0,2021-09-04,FIFA World Cup qualification,Turkey,Gibraltar,3.0,0.0,0,Qualifier,2021-09-04 00:00:00_Gibraltar_Turkey,1745.671906508227,1.7,1.6
 44360.0,2021-09-04,FIFA World Cup qualification,Latvia,Norway,0.0,2.0,1,Qualifier,2021-09-04 00:00:00_Latvia_Norway,1355.0560117071,2.1,1.9
 44360.0,2021-09-04,FIFA World Cup qualification,Norway,Latvia,2.0,0.0,0,Qualifier,2021-09-04 00:00:00_Latvia_Norway,1687.1805777846396,1.3,1.0
@@ -88827,7 +88827,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 44413.0,2021-09-07,FIFA World Cup qualification,Israel,Denmark,0.0,5.0,0,Qualifier,2021-09-07 00:00:00_Denmark_Israel,1586.8367987380764,2.1,1.4
 44414.0,2021-09-07,FIFA World Cup qualification,Netherlands,Turkey,6.0,1.0,1,Qualifier,2021-09-07 00:00:00_Netherlands_Turkey,1870.7738091434712,2.7,0.7
 44414.0,2021-09-07,FIFA World Cup qualification,Turkey,Netherlands,1.0,6.0,0,Qualifier,2021-09-07 00:00:00_Netherlands_Turkey,1735.458836068815,1.6,1.4
-44415.0,2021-09-07,FIFA World Cup qualification,Gibraltar,Norway,1.0,5.0,0,Qualifier,2021-09-07 00:00:00_Gibraltar_Norway,1263.9172528677714,0.3,3.0
+44415.0,2021-09-07,FIFA World Cup qualification,Gibraltar,Norway,1.0,5.0,0,Qualifier,2021-09-07 00:00:00_Gibraltar_Norway,1263.9172528677711,0.3,3.0
 44415.0,2021-09-07,FIFA World Cup qualification,Norway,Gibraltar,5.0,1.0,1,Qualifier,2021-09-07 00:00:00_Gibraltar_Norway,1689.6249269000502,1.1,1.0
 44416.0,2021-09-07,FIFA World Cup qualification,Croatia,Slovenia,3.0,0.0,1,Qualifier,2021-09-07 00:00:00_Croatia_Slovenia,1799.5843155532602,1.3,1.0
 44416.0,2021-09-07,FIFA World Cup qualification,Slovenia,Croatia,0.0,3.0,0,Qualifier,2021-09-07 00:00:00_Croatia_Slovenia,1589.0964818372677,1.3,0.6
@@ -89025,7 +89025,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 44512.0,2021-10-08,FIFA World Cup qualification,Wales,Czech Republic,2.0,2.0,0,Qualifier,2021-10-08 00:00:00_Czech Republic_Wales,1751.3792396264873,0.7,1.1
 44513.0,2021-10-08,FIFA World Cup qualification,Belarus,Estonia,0.0,2.0,0,Qualifier,2021-10-08 00:00:00_Belarus_Estonia,1458.5016927546803,1.5,2.6
 44513.0,2021-10-08,FIFA World Cup qualification,Estonia,Belarus,2.0,0.0,1,Qualifier,2021-10-08 00:00:00_Belarus_Estonia,1477.7107552628017,1.0,1.8
-44514.0,2021-10-08,FIFA World Cup qualification,Gibraltar,Montenegro,0.0,3.0,1,Qualifier,2021-10-08 00:00:00_Gibraltar_Montenegro,1258.5954178633517,0.4,3.2
+44514.0,2021-10-08,FIFA World Cup qualification,Gibraltar,Montenegro,0.0,3.0,1,Qualifier,2021-10-08 00:00:00_Gibraltar_Montenegro,1258.5954178633515,0.4,3.2
 44514.0,2021-10-08,FIFA World Cup qualification,Montenegro,Gibraltar,3.0,0.0,0,Qualifier,2021-10-08 00:00:00_Gibraltar_Montenegro,1535.7396709840416,1.3,1.2
 44515.0,2021-10-08,FIFA World Cup qualification,Armenia,Iceland,1.0,1.0,0,Qualifier,2021-10-08 00:00:00_Armenia_Iceland,1543.0708838937016,1.2,1.4
 44515.0,2021-10-08,FIFA World Cup qualification,Iceland,Armenia,1.0,1.0,1,Qualifier,2021-10-08 00:00:00_Armenia_Iceland,1614.9084364932028,1.0,2.2
@@ -89153,7 +89153,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 44576.0,2021-10-11,FIFA World Cup qualification,Turkey,Latvia,2.0,1.0,0,Qualifier,2021-10-11 00:00:00_Latvia_Turkey,1736.6336882005296,1.2,1.8
 44577.0,2021-10-11,FIFA World Cup qualification,Montenegro,Norway,0.0,2.0,0,Qualifier,2021-10-11 00:00:00_Montenegro_Norway,1527.0506373129483,1.6,1.2
 44577.0,2021-10-11,FIFA World Cup qualification,Norway,Montenegro,2.0,0.0,1,Qualifier,2021-10-11 00:00:00_Montenegro_Norway,1700.2813697466202,1.6,0.9
-44578.0,2021-10-11,FIFA World Cup qualification,Gibraltar,Netherlands,0.0,6.0,0,Qualifier,2021-10-11 00:00:00_Gibraltar_Netherlands,1257.7435876557986,0.4,3.5
+44578.0,2021-10-11,FIFA World Cup qualification,Gibraltar,Netherlands,0.0,6.0,0,Qualifier,2021-10-11 00:00:00_Gibraltar_Netherlands,1257.7435876557984,0.4,3.5
 44578.0,2021-10-11,FIFA World Cup qualification,Netherlands,Gibraltar,6.0,0.0,1,Qualifier,2021-10-11 00:00:00_Gibraltar_Netherlands,1873.1505495725298,2.5,0.8
 44579.0,2021-10-11,FIFA World Cup qualification,Estonia,Wales,0.0,1.0,1,Qualifier,2021-10-11 00:00:00_Estonia_Wales,1472.5671569251006,1.2,1.8
 44579.0,2021-10-11,FIFA World Cup qualification,Wales,Estonia,1.0,0.0,0,Qualifier,2021-10-11 00:00:00_Estonia_Wales,1756.5228379641885,0.8,1.3
@@ -89377,7 +89377,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 44688.0,2021-11-13,FIFA World Cup qualification,Finland,Bosnia and Herzegovina,3.0,1.0,0,Qualifier,2021-11-13 00:00:00_Bosnia and Herzegovina_Finland,1664.3221028342393,0.5,1.0
 44689.0,2021-11-13,FIFA World Cup qualification,Cameroon,Malawi,4.0,0.0,0,Qualifier,2021-11-13 00:00:00_Cameroon_Malawi,1649.7789693220116,1.5,0.7
 44689.0,2021-11-13,FIFA World Cup qualification,Malawi,Cameroon,0.0,4.0,0,Qualifier,2021-11-13 00:00:00_Cameroon_Malawi,1436.1483023263588,0.7,1.6
-44690.0,2021-11-13,FIFA World Cup qualification,Gibraltar,Turkey,0.0,6.0,0,Qualifier,2021-11-13 00:00:00_Gibraltar_Turkey,1255.9523283978635,0.3,4.0
+44690.0,2021-11-13,FIFA World Cup qualification,Gibraltar,Turkey,0.0,6.0,0,Qualifier,2021-11-13 00:00:00_Gibraltar_Turkey,1255.9523283978633,0.3,4.0
 44690.0,2021-11-13,FIFA World Cup qualification,Turkey,Gibraltar,6.0,0.0,1,Qualifier,2021-11-13 00:00:00_Gibraltar_Turkey,1738.4249474584647,1.2,1.8
 44691.0,2021-11-13,FIFA World Cup qualification,Cape Verde,Central African Republic,2.0,1.0,1,Qualifier,2021-11-13 00:00:00_Cape Verde_Central African Republic,1548.2571610055002,1.0,0.9
 44691.0,2021-11-13,FIFA World Cup qualification,Central African Republic,Cape Verde,1.0,2.0,0,Qualifier,2021-11-13 00:00:00_Cape Verde_Central African Republic,1397.4702393250827,0.5,2.0
@@ -89481,7 +89481,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 44740.0,2021-11-16,FIFA World Cup qualification,Wales,Belgium,1.0,1.0,1,Qualifier,2021-11-16 00:00:00_Belgium_Wales,1769.9063387541833,1.4,1.1
 44741.0,2021-11-16,FIFA World Cup qualification,Czech Republic,Estonia,2.0,0.0,1,Qualifier,2021-11-16 00:00:00_Czech Republic_Estonia,1747.859038623846,1.7,1.0
 44741.0,2021-11-16,FIFA World Cup qualification,Estonia,Czech Republic,0.0,2.0,0,Qualifier,2021-11-16 00:00:00_Czech Republic_Estonia,1465.9773245882009,0.9,1.2
-44742.0,2021-11-16,FIFA World Cup qualification,Gibraltar,Latvia,1.0,3.0,1,Qualifier,2021-11-16 00:00:00_Gibraltar_Latvia,1245.6659842238328,0.3,4.3
+44742.0,2021-11-16,FIFA World Cup qualification,Gibraltar,Latvia,1.0,3.0,1,Qualifier,2021-11-16 00:00:00_Gibraltar_Latvia,1245.6659842238325,0.3,4.3
 44742.0,2021-11-16,FIFA World Cup qualification,Latvia,Gibraltar,3.0,1.0,0,Qualifier,2021-11-16 00:00:00_Gibraltar_Latvia,1379.2411200360896,1.2,1.9
 44743.0,2021-11-16,FIFA World Cup qualification,Netherlands,Norway,2.0,0.0,1,Qualifier,2021-11-16 00:00:00_Netherlands_Norway,1869.850164335144,2.8,0.8
 44743.0,2021-11-16,FIFA World Cup qualification,Norway,Netherlands,0.0,2.0,0,Qualifier,2021-11-16 00:00:00_Netherlands_Norway,1680.8456628806437,1.4,0.8
@@ -89937,7 +89937,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 44968.0,2022-03-23,Friendly,Guadeloupe,Cape Verde,0.0,2.0,0,Friendly,2022-03-23 00:00:00_Cape Verde_Guadeloupe,1432.8947308823103,2.6,1.1
 44969.0,2022-03-23,Friendly,Equatorial Guinea,Guinea-Bissau,0.0,3.0,0,Friendly,2022-03-23 00:00:00_Equatorial Guinea_Guinea-Bissau,1529.5689445277835,0.9,0.6
 44969.0,2022-03-23,Friendly,Guinea-Bissau,Equatorial Guinea,3.0,0.0,0,Friendly,2022-03-23 00:00:00_Equatorial Guinea_Guinea-Bissau,1457.9455030975516,0.8,1.4
-44970.0,2022-03-23,Friendly,Gibraltar,Grenada,0.0,0.0,1,Friendly,2022-03-23 00:00:00_Gibraltar_Grenada,1247.9450505562681,0.3,4.2
+44970.0,2022-03-23,Friendly,Gibraltar,Grenada,0.0,0.0,1,Friendly,2022-03-23 00:00:00_Gibraltar_Grenada,1247.945050556268,0.3,4.2
 44970.0,2022-03-23,Friendly,Grenada,Gibraltar,0.0,0.0,0,Friendly,2022-03-23 00:00:00_Gibraltar_Grenada,1323.9851275404094,0.7,1.8
 44971.0,2022-03-23,Friendly,Bahrain,India,2.0,1.0,1,Friendly,2022-03-23 00:00:00_Bahrain_India,1642.2822258475578,1.9,1.1
 44971.0,2022-03-23,Friendly,India,Bahrain,1.0,2.0,0,Friendly,2022-03-23 00:00:00_Bahrain_India,1405.190773744423,1.4,0.6
@@ -90068,7 +90068,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 45034.0,2022-03-26,Friendly,Malaysia,Singapore,1.0,2.0,0,Friendly,2022-03-26 00:00:00_Malaysia_Singapore,1395.7208489949678,1.3,2.3
 45034.0,2022-03-26,Friendly,Singapore,Malaysia,2.0,1.0,1,Friendly,2022-03-26 00:00:00_Malaysia_Singapore,1356.7131303328397,1.1,2.2
 45035.0,2022-03-26,Friendly,Faroe Islands,Gibraltar,0.0,0.0,0,Friendly,2022-03-26 00:00:00_Faroe Islands_Gibraltar,1298.154329157594,1.0,2.1
-45035.0,2022-03-26,Friendly,Gibraltar,Faroe Islands,0.0,0.0,1,Friendly,2022-03-26 00:00:00_Faroe Islands_Gibraltar,1249.421816515677,0.3,3.5
+45035.0,2022-03-26,Friendly,Gibraltar,Faroe Islands,0.0,0.0,1,Friendly,2022-03-26 00:00:00_Faroe Islands_Gibraltar,1249.4218165156767,0.3,3.5
 45036.0,2022-03-26,Friendly,Bulgaria,Qatar,1.0,2.0,0,Friendly,2022-03-26 00:00:00_Bulgaria_Qatar,1554.8371879133538,1.1,1.6
 45036.0,2022-03-26,Friendly,Qatar,Bulgaria,2.0,1.0,1,Friendly,2022-03-26 00:00:00_Bulgaria_Qatar,1719.104485042037,1.4,1.6
 45037.0,2022-03-26,Friendly,Finland,Iceland,1.0,1.0,0,Friendly,2022-03-26 00:00:00_Finland_Iceland,1658.7217866440571,0.8,1.0
@@ -90332,7 +90332,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 45166.0,2022-06-02,UEFA Nations League,Cyprus,Kosovo,0.0,2.0,1,Nations League,2022-06-02 00:00:00_Cyprus_Kosovo,1390.7009019799536,0.5,2.4
 45166.0,2022-06-02,UEFA Nations League,Kosovo,Cyprus,2.0,0.0,0,Nations League,2022-06-02 00:00:00_Cyprus_Kosovo,1547.4235265001996,1.1,1.2
 45167.0,2022-06-02,UEFA Nations League,Georgia,Gibraltar,4.0,0.0,1,Nations League,2022-06-02 00:00:00_Georgia_Gibraltar,1578.5533459776182,0.7,1.5
-45167.0,2022-06-02,UEFA Nations League,Gibraltar,Georgia,0.0,4.0,0,Nations League,2022-06-02 00:00:00_Georgia_Gibraltar,1246.772622233967,0.3,2.9
+45167.0,2022-06-02,UEFA Nations League,Gibraltar,Georgia,0.0,4.0,0,Nations League,2022-06-02 00:00:00_Georgia_Gibraltar,1246.7726222339668,0.3,2.9
 45168.0,2022-06-02,UEFA Nations League,Bulgaria,North Macedonia,1.0,1.0,1,Nations League,2022-06-02 00:00:00_Bulgaria_North Macedonia,1553.730178412238,1.2,1.8
 45168.0,2022-06-02,UEFA Nations League,North Macedonia,Bulgaria,1.0,1.0,0,Nations League,2022-06-02 00:00:00_Bulgaria_North Macedonia,1644.1299110308287,1.5,1.2
 45169.0,2022-06-02,UEFA Nations League,Estonia,San Marino,2.0,0.0,1,Nations League,2022-06-02 00:00:00_Estonia_San Marino,1452.6562530894057,0.7,1.5
@@ -90455,7 +90455,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 45227.0,2022-06-05,UEFA Nations League,Northern Ireland,Cyprus,0.0,0.0,0,Nations League,2022-06-05 00:00:00_Cyprus_Northern Ireland,1603.4590353529538,1.0,0.8
 45228.0,2022-06-05,UEFA Nations League,Greece,Kosovo,1.0,0.0,0,Nations League,2022-06-05 00:00:00_Greece_Kosovo,1674.3714771465689,0.9,0.9
 45228.0,2022-06-05,UEFA Nations League,Kosovo,Greece,0.0,1.0,1,Nations League,2022-06-05 00:00:00_Greece_Kosovo,1540.753427343417,1.2,1.2
-45229.0,2022-06-05,UEFA Nations League,Gibraltar,North Macedonia,0.0,2.0,1,Nations League,2022-06-05 00:00:00_Gibraltar_North Macedonia,1244.929138534212,0.3,3.3
+45229.0,2022-06-05,UEFA Nations League,Gibraltar,North Macedonia,0.0,2.0,1,Nations League,2022-06-05 00:00:00_Gibraltar_North Macedonia,1244.9291385342117,0.3,3.3
 45229.0,2022-06-05,UEFA Nations League,North Macedonia,Gibraltar,2.0,0.0,0,Nations League,2022-06-05 00:00:00_Gibraltar_North Macedonia,1645.9733947305838,1.6,1.0
 45230.0,2022-06-05,UEFA Nations League,Bulgaria,Georgia,2.0,5.0,1,Nations League,2022-06-05 00:00:00_Bulgaria_Georgia,1544.4434333814909,1.3,1.6
 45230.0,2022-06-05,UEFA Nations League,Georgia,Bulgaria,5.0,2.0,0,Nations League,2022-06-05 00:00:00_Bulgaria_Georgia,1587.8400910083653,1.1,1.2
@@ -90632,7 +90632,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 45316.0,2022-06-09,CONCACAF Nations League,Cayman Islands,Puerto Rico,0.0,3.0,1,Nations League,2022-06-09 00:00:00_Cayman Islands_Puerto Rico,1238.883035611143,0.6,2.6
 45316.0,2022-06-09,CONCACAF Nations League,Puerto Rico,Cayman Islands,3.0,0.0,0,Nations League,2022-06-09 00:00:00_Cayman Islands_Puerto Rico,1320.2473588085286,1.7,1.5
 45317.0,2022-06-09,UEFA Nations League,Bulgaria,Gibraltar,1.0,1.0,0,Nations League,2022-06-09 00:00:00_Bulgaria_Gibraltar,1537.470199468215,1.4,2.0
-45317.0,2022-06-09,UEFA Nations League,Gibraltar,Bulgaria,1.0,1.0,1,Nations League,2022-06-09 00:00:00_Bulgaria_Gibraltar,1251.9023724474878,0.2,3.2
+45317.0,2022-06-09,UEFA Nations League,Gibraltar,Bulgaria,1.0,1.0,1,Nations League,2022-06-09 00:00:00_Bulgaria_Gibraltar,1251.9023724474876,0.2,3.2
 45318.0,2022-06-09,CONCACAF Nations League,Dominica,Saint Lucia,0.0,1.0,1,Nations League,2022-06-09 00:00:00_Dominica_Saint Lucia,1290.295533415139,1.2,1.1
 45318.0,2022-06-09,CONCACAF Nations League,Saint Lucia,Dominica,1.0,0.0,0,Nations League,2022-06-09 00:00:00_Dominica_Saint Lucia,1332.6256690065936,0.6,1.5
 45319.0,2022-06-09,UEFA Nations League,Norway,Slovenia,0.0,0.0,1,Nations League,2022-06-09 00:00:00_Norway_Slovenia,1717.6925104548905,2.4,0.5
@@ -90759,7 +90759,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 45379.0,2022-06-12,UEFA Nations League,San Marino,Malta,0.0,1.0,0,Nations League,2022-06-12 00:00:00_Malta_San Marino,978.8044646627569,0.1,3.6
 45380.0,2022-06-12,UEFA Nations League,Bulgaria,Georgia,0.0,0.0,0,Nations League,2022-06-12 00:00:00_Bulgaria_Georgia,1539.23677021303,1.4,2.1
 45380.0,2022-06-12,UEFA Nations League,Georgia,Bulgaria,0.0,0.0,1,Nations League,2022-06-12 00:00:00_Bulgaria_Georgia,1597.731289546933,1.9,0.9
-45381.0,2022-06-12,UEFA Nations League,Gibraltar,North Macedonia,0.0,4.0,0,Nations League,2022-06-12 00:00:00_Gibraltar_North Macedonia,1249.909781728958,0.3,3.0
+45381.0,2022-06-12,UEFA Nations League,Gibraltar,North Macedonia,0.0,4.0,0,Nations League,2022-06-12 00:00:00_Gibraltar_North Macedonia,1249.9097817289578,0.3,3.0
 45381.0,2022-06-12,UEFA Nations League,North Macedonia,Gibraltar,4.0,0.0,1,Nations League,2022-06-12 00:00:00_Gibraltar_North Macedonia,1636.3082161657308,1.6,1.1
 45382.0,2022-06-12,UEFA Nations League,Greece,Kosovo,2.0,0.0,1,Nations League,2022-06-12 00:00:00_Greece_Kosovo,1684.2736507058207,1.1,0.6
 45382.0,2022-06-12,UEFA Nations League,Kosovo,Greece,0.0,2.0,0,Nations League,2022-06-12 00:00:00_Greece_Kosovo,1545.993898989771,1.3,1.4
@@ -91010,7 +91010,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 45505.0,2022-09-23,UEFA Nations League,Finland,Romania,1.0,1.0,1,Nations League,2022-09-23 00:00:00_Finland_Romania,1633.1812335249786,1.2,1.3
 45505.0,2022-09-23,UEFA Nations League,Romania,Finland,1.0,1.0,0,Nations League,2022-09-23 00:00:00_Finland_Romania,1622.616749532878,0.7,1.1
 45506.0,2022-09-23,UEFA Nations League,Bulgaria,Gibraltar,5.0,1.0,1,Nations League,2022-09-23 00:00:00_Bulgaria_Gibraltar,1542.4172715068983,1.0,2.0
-45506.0,2022-09-23,UEFA Nations League,Gibraltar,Bulgaria,1.0,5.0,0,Nations League,2022-09-23 00:00:00_Bulgaria_Gibraltar,1246.7292804350898,0.2,2.9
+45506.0,2022-09-23,UEFA Nations League,Gibraltar,Bulgaria,1.0,5.0,0,Nations League,2022-09-23 00:00:00_Bulgaria_Gibraltar,1246.7292804350895,0.2,2.9
 45507.0,2022-09-23,UEFA Nations League,Bosnia and Herzegovina,Montenegro,1.0,0.0,1,Nations League,2022-09-23 00:00:00_Bosnia and Herzegovina_Montenegro,1642.4659303936744,0.9,1.2
 45507.0,2022-09-23,UEFA Nations League,Montenegro,Bosnia and Herzegovina,0.0,1.0,0,Nations League,2022-09-23 00:00:00_Bosnia and Herzegovina_Montenegro,1548.114326395092,1.3,1.0
 45508.0,2022-09-23,UEFA Nations League,Georgia,North Macedonia,2.0,0.0,1,Nations League,2022-09-23 00:00:00_Georgia_North Macedonia,1608.8370822618522,1.8,0.5
@@ -91134,7 +91134,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 45567.0,2022-09-26,UEFA Nations League,Bulgaria,North Macedonia,1.0,0.0,0,Nations League,2022-09-26 00:00:00_Bulgaria_North Macedonia,1554.7559273594486,1.4,1.8
 45567.0,2022-09-26,UEFA Nations League,North Macedonia,Bulgaria,0.0,1.0,1,Nations League,2022-09-26 00:00:00_Bulgaria_North Macedonia,1612.8637675982613,1.6,1.3
 45568.0,2022-09-26,UEFA Nations League,Georgia,Gibraltar,2.0,1.0,0,Nations League,2022-09-26 00:00:00_Georgia_Gibraltar,1611.0494106789029,2.0,0.3
-45568.0,2022-09-26,UEFA Nations League,Gibraltar,Georgia,1.0,2.0,1,Nations League,2022-09-26 00:00:00_Georgia_Gibraltar,1244.516952018039,0.3,3.1
+45568.0,2022-09-26,UEFA Nations League,Gibraltar,Georgia,1.0,2.0,1,Nations League,2022-09-26 00:00:00_Georgia_Gibraltar,1244.5169520180389,0.3,3.1
 45569.0,2022-09-26,UEFA Nations League,Finland,Montenegro,2.0,0.0,0,Nations League,2022-09-26 00:00:00_Finland_Montenegro,1640.7805915003044,1.2,1.2
 45569.0,2022-09-26,UEFA Nations League,Montenegro,Finland,0.0,2.0,1,Nations League,2022-09-26 00:00:00_Finland_Montenegro,1540.514968419766,1.0,1.1
 45570.0,2022-09-26,UEFA Nations League,England,Germany,3.0,3.0,1,Nations League,2022-09-26 00:00:00_England_Germany,1911.4912359977845,2.2,0.9
@@ -91313,7 +91313,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 45656.0,2022-11-16,Friendly,Italy,Albania,3.0,1.0,0,Friendly,2022-11-16 00:00:00_Albania_Italy,1915.514873450035,1.1,1.3
 45657.0,2022-11-16,Friendly,Cuba,Dominican Republic,4.0,2.0,0,Friendly,2022-11-16 00:00:00_Cuba_Dominican Republic,1420.032925172868,1.5,1.1
 45657.0,2022-11-16,Friendly,Dominican Republic,Cuba,2.0,4.0,1,Friendly,2022-11-16 00:00:00_Cuba_Dominican Republic,1402.1123480340748,1.3,1.1
-45658.0,2022-11-16,Friendly,Gibraltar,Liechtenstein,2.0,0.0,1,Friendly,2022-11-16 00:00:00_Gibraltar_Liechtenstein,1252.0975927954846,0.4,2.7
+45658.0,2022-11-16,Friendly,Gibraltar,Liechtenstein,2.0,0.0,1,Friendly,2022-11-16 00:00:00_Gibraltar_Liechtenstein,1252.0975927954844,0.4,2.7
 45658.0,2022-11-16,Friendly,Liechtenstein,Gibraltar,0.0,2.0,0,Friendly,2022-11-16 00:00:00_Gibraltar_Liechtenstein,1151.1790025660798,0.1,2.9
 45659.0,2022-11-16,Friendly,Iran,Tunisia,0.0,2.0,0,Friendly,2022-11-16 00:00:00_Iran_Tunisia,1831.9248956467252,1.3,0.6
 45659.0,2022-11-16,Friendly,Tunisia,Iran,2.0,0.0,0,Friendly,2022-11-16 00:00:00_Iran_Tunisia,1706.7501729234436,1.3,0.6
@@ -91392,7 +91392,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 45696.0,2022-11-19,Friendly,Guatemala,Nicaragua,3.0,1.0,0,Friendly,2022-11-19 00:00:00_Guatemala_Nicaragua,1567.97637091876,1.3,1.2
 45696.0,2022-11-19,Friendly,Nicaragua,Guatemala,1.0,3.0,0,Friendly,2022-11-19 00:00:00_Guatemala_Nicaragua,1411.2940893692885,1.7,0.8
 45697.0,2022-11-19,Friendly,Andorra,Gibraltar,0.0,1.0,0,Friendly,2022-11-19 00:00:00_Andorra_Gibraltar,1204.3204119428976,0.8,0.9
-45697.0,2022-11-19,Friendly,Gibraltar,Andorra,1.0,0.0,1,Friendly,2022-11-19 00:00:00_Andorra_Gibraltar,1260.9828453669775,0.6,2.1
+45697.0,2022-11-19,Friendly,Gibraltar,Andorra,1.0,0.0,1,Friendly,2022-11-19 00:00:00_Andorra_Gibraltar,1260.9828453669772,0.6,2.1
 45698.0,2022-11-19,Friendly,Colombia,Paraguay,2.0,0.0,0,Friendly,2022-11-19 00:00:00_Colombia_Paraguay,1859.9231939832348,1.4,0.7
 45698.0,2022-11-19,Friendly,Paraguay,Colombia,0.0,2.0,0,Friendly,2022-11-19 00:00:00_Colombia_Paraguay,1689.7025383570224,0.8,1.5
 45699.0,2022-11-19,Friendly,Kuwait,Lebanon,2.0,0.0,0,Friendly,2022-11-19 00:00:00_Kuwait_Lebanon,1460.678410144552,1.1,1.9
@@ -91775,7 +91775,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 45887.0,2023-03-24,CONCACAF Nations League,Guatemala,Belize,2.0,1.0,0,Nations League,2023-03-24 00:00:00_Belize_Guatemala,1574.861771011262,1.1,1.3
 45888.0,2023-03-24,African Cup of Nations qualification,Mozambique,Senegal,1.0,5.0,0,Continental Cup,2023-03-24 00:00:00_Mozambique_Senegal,1425.3285640799832,0.7,0.9
 45888.0,2023-03-24,African Cup of Nations qualification,Senegal,Mozambique,5.0,1.0,1,Continental Cup,2023-03-24 00:00:00_Mozambique_Senegal,1779.0184185041717,1.4,1.4
-45889.0,2023-03-24,UEFA Euro qualification,Gibraltar,Greece,0.0,3.0,0,Continental Cup,2023-03-24 00:00:00_Gibraltar_Greece,1257.3183963588938,0.6,1.8
+45889.0,2023-03-24,UEFA Euro qualification,Gibraltar,Greece,0.0,3.0,0,Continental Cup,2023-03-24 00:00:00_Gibraltar_Greece,1257.3183963588936,0.6,1.8
 45889.0,2023-03-24,UEFA Euro qualification,Greece,Gibraltar,3.0,0.0,0,Continental Cup,2023-03-24 00:00:00_Gibraltar_Greece,1663.1765213687113,1.4,0.7
 45890.0,2023-03-24,UEFA Euro qualification,France,Netherlands,4.0,0.0,1,Continental Cup,2023-03-24 00:00:00_France_Netherlands,2020.159784731417,1.8,1.1
 45890.0,2023-03-24,UEFA Euro qualification,Netherlands,France,0.0,4.0,0,Continental Cup,2023-03-24 00:00:00_France_Netherlands,1941.9016165515247,2.0,0.9
@@ -91945,7 +91945,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 45972.0,2023-03-27,CONCACAF Nations League,United States,El Salvador,1.0,0.0,1,Nations League,2023-03-27 00:00:00_El Salvador_United States,1837.1392807699535,1.2,1.0
 45973.0,2023-03-27,UEFA Euro qualification,France,Republic of Ireland,1.0,0.0,0,Continental Cup,2023-03-27 00:00:00_France_Republic of Ireland,2024.851357179685,2.2,1.0
 45973.0,2023-03-27,UEFA Euro qualification,Republic of Ireland,France,0.0,1.0,1,Continental Cup,2023-03-27 00:00:00_France_Republic of Ireland,1664.8442324186224,1.4,1.1
-45974.0,2023-03-27,UEFA Euro qualification,Gibraltar,Netherlands,0.0,3.0,0,Continental Cup,2023-03-27 00:00:00_Gibraltar_Netherlands,1256.5558904511868,0.6,2.1
+45974.0,2023-03-27,UEFA Euro qualification,Gibraltar,Netherlands,0.0,3.0,0,Continental Cup,2023-03-27 00:00:00_Gibraltar_Netherlands,1256.5558904511865,0.6,2.1
 45974.0,2023-03-27,UEFA Euro qualification,Netherlands,Gibraltar,3.0,0.0,1,Continental Cup,2023-03-27 00:00:00_Gibraltar_Netherlands,1942.6641224592317,1.8,1.2
 45975.0,2023-03-27,Friendly,Greece,Lithuania,0.0,0.0,1,Friendly,2023-03-27 00:00:00_Greece_Lithuania,1655.8726569104638,1.6,0.7
 45975.0,2023-03-27,Friendly,Lithuania,Greece,0.0,0.0,0,Friendly,2023-03-27 00:00:00_Greece_Lithuania,1347.5198325970491,0.2,1.9
@@ -92162,7 +92162,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 46081.0,2023-06-16,UEFA Euro qualification,Denmark,Northern Ireland,1.0,0.0,1,Continental Cup,2023-06-16 00:00:00_Denmark_Northern Ireland,1793.9756428930325,1.3,1.1
 46081.0,2023-06-16,UEFA Euro qualification,Northern Ireland,Denmark,0.0,1.0,0,Continental Cup,2023-06-16 00:00:00_Denmark_Northern Ireland,1560.9256218651951,1.2,1.3
 46082.0,2023-06-16,UEFA Euro qualification,France,Gibraltar,3.0,0.0,0,Continental Cup,2023-06-16 00:00:00_France_Gibraltar,2025.3257519166916,2.1,1.0
-46082.0,2023-06-16,UEFA Euro qualification,Gibraltar,France,0.0,3.0,0,Continental Cup,2023-06-16 00:00:00_France_Gibraltar,1256.0814957141802,0.6,2.4
+46082.0,2023-06-16,UEFA Euro qualification,Gibraltar,France,0.0,3.0,0,Continental Cup,2023-06-16 00:00:00_France_Gibraltar,1256.08149571418,0.6,2.4
 46083.0,2023-06-16,CAFA Nations Cup,Iran,Kyrgyzstan,5.0,1.0,0,Other,2023-06-16 00:00:00_Iran_Kyrgyzstan,1814.5049515378546,1.6,1.3
 46083.0,2023-06-16,CAFA Nations Cup,Kyrgyzstan,Iran,1.0,5.0,1,Other,2023-06-16 00:00:00_Iran_Kyrgyzstan,1434.1933598009132,1.1,1.5
 46084.0,2023-06-16,Friendly,Papua New Guinea,Singapore,2.0,2.0,0,Friendly,2023-06-16 00:00:00_Papua New Guinea_Singapore,1486.102237949959,2.4,0.6
@@ -92301,7 +92301,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 46150.0,2023-06-19,UEFA Euro qualification,Ukraine,Malta,1.0,0.0,0,Continental Cup,2023-06-19 00:00:00_Malta_Ukraine,1784.896966368474,1.6,1.2
 46151.0,2023-06-19,UEFA Euro qualification,France,Greece,1.0,0.0,1,Continental Cup,2023-06-19 00:00:00_France_Greece,2030.057696055608,2.4,0.8
 46151.0,2023-06-19,UEFA Euro qualification,Greece,France,0.0,1.0,0,Continental Cup,2023-06-19 00:00:00_France_Greece,1671.657043415986,1.7,0.7
-46152.0,2023-06-19,UEFA Euro qualification,Gibraltar,Republic of Ireland,0.0,3.0,0,Continental Cup,2023-06-19 00:00:00_Gibraltar_Republic of Ireland,1252.2151887184402,0.6,2.3
+46152.0,2023-06-19,UEFA Euro qualification,Gibraltar,Republic of Ireland,0.0,3.0,0,Continental Cup,2023-06-19 00:00:00_Gibraltar_Republic of Ireland,1252.21518871844,0.6,2.3
 46152.0,2023-06-19,UEFA Euro qualification,Republic of Ireland,Gibraltar,3.0,0.0,1,Continental Cup,2023-06-19 00:00:00_Gibraltar_Republic of Ireland,1648.1942087699238,1.4,1.3
 46153.0,2023-06-19,Friendly,Philippines,Taiwan,2.0,3.0,1,Friendly,2023-06-19 00:00:00_Philippines_Taiwan,1316.581874375335,1.0,2.1
 46153.0,2023-06-19,Friendly,Taiwan,Philippines,3.0,2.0,0,Friendly,2023-06-19 00:00:00_Philippines_Taiwan,1252.4758764210208,0.7,3.7
@@ -92625,7 +92625,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 46312.0,2023-09-04,African Cup of Nations qualification,Mozambique,Benin,3.0,2.0,1,Continental Cup,2023-09-04 00:00:00_Benin_Mozambique,1458.1584527545733,0.8,1.3
 46313.0,2023-09-06,Friendly,Bhutan,Macau,1.0,0.0,0,Friendly,2023-09-06 00:00:00_Bhutan_Macau,1027.762780611049,0.6,2.6
 46313.0,2023-09-06,Friendly,Macau,Bhutan,0.0,1.0,1,Friendly,2023-09-06 00:00:00_Bhutan_Macau,1065.7874667681313,0.6,1.7
-46314.0,2023-09-06,Friendly,Gibraltar,Malta,0.0,1.0,0,Friendly,2023-09-06 00:00:00_Gibraltar_Malta,1244.467439348883,0.6,2.4
+46314.0,2023-09-06,Friendly,Gibraltar,Malta,0.0,1.0,0,Friendly,2023-09-06 00:00:00_Gibraltar_Malta,1244.4674393488829,0.6,2.4
 46314.0,2023-09-06,Friendly,Malta,Gibraltar,1.0,0.0,1,Friendly,2023-09-06 00:00:00_Gibraltar_Malta,1339.579061580185,0.8,1.5
 46315.0,2023-09-06,Friendly,Oman,Palestine,2.0,1.0,1,Friendly,2023-09-06 00:00:00_Oman_Palestine,1661.891086157433,1.4,1.0
 46315.0,2023-09-06,Friendly,Palestine,Oman,1.0,2.0,0,Friendly,2023-09-06 00:00:00_Oman_Palestine,1527.598372134249,1.6,1.3
@@ -92809,7 +92809,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 46404.0,2023-09-10,UEFA Euro qualification,Montenegro,Bulgaria,2.0,1.0,1,Continental Cup,2023-09-10 00:00:00_Bulgaria_Montenegro,1561.8628263479588,0.9,1.4
 46405.0,2023-09-10,UEFA Euro qualification,Albania,Poland,2.0,0.0,1,Continental Cup,2023-09-10 00:00:00_Albania_Poland,1610.6397274829042,1.2,1.1
 46405.0,2023-09-10,UEFA Euro qualification,Poland,Albania,0.0,2.0,0,Continental Cup,2023-09-10 00:00:00_Albania_Poland,1722.5695089661044,1.1,1.1
-46406.0,2023-09-10,UEFA Euro qualification,Gibraltar,Greece,0.0,5.0,0,Continental Cup,2023-09-10 00:00:00_Gibraltar_Greece,1241.1845943989242,0.5,2.4
+46406.0,2023-09-10,UEFA Euro qualification,Gibraltar,Greece,0.0,5.0,0,Continental Cup,2023-09-10 00:00:00_Gibraltar_Greece,1241.184594398924,0.5,2.4
 46406.0,2023-09-10,UEFA Euro qualification,Greece,Gibraltar,5.0,0.0,1,Continental Cup,2023-09-10 00:00:00_Gibraltar_Greece,1667.1977451549033,1.3,1.1
 46407.0,2023-09-10,African Cup of Nations qualification,Congo,Gambia,2.0,2.0,0,Continental Cup,2023-09-10 00:00:00_Congo_Gambia,1420.8680833381954,0.8,2.0
 46407.0,2023-09-10,African Cup of Nations qualification,Gambia,Congo,2.0,2.0,0,Continental Cup,2023-09-10 00:00:00_Congo_Gambia,1528.229962643621,0.9,1.0
@@ -92953,7 +92953,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 46476.0,2023-10-08,MSG Prime Minister's Cup,Solomon Islands,Papua New Guinea,3.0,1.0,0,Other,2023-10-08 00:00:00_Papua New Guinea_Solomon Islands,1538.9754929460328,1.5,1.6
 46477.0,2023-10-10,Friendly,China,Vietnam,2.0,0.0,1,Friendly,2023-10-10 00:00:00_China_Vietnam,1588.9156411366328,0.9,0.9
 46477.0,2023-10-10,Friendly,Vietnam,China,0.0,2.0,0,Friendly,2023-10-10 00:00:00_China_Vietnam,1553.531076372654,1.4,0.3
-46478.0,2023-10-11,Friendly,Gibraltar,Wales,0.0,4.0,0,Friendly,2023-10-11 00:00:00_Gibraltar_Wales,1239.8790741792668,0.5,2.5
+46478.0,2023-10-11,Friendly,Gibraltar,Wales,0.0,4.0,0,Friendly,2023-10-11 00:00:00_Gibraltar_Wales,1239.8790741792666,0.5,2.5
 46478.0,2023-10-11,Friendly,Wales,Gibraltar,4.0,0.0,1,Friendly,2023-10-11 00:00:00_Gibraltar_Wales,1704.8620273654485,0.7,1.4
 46479.0,2023-10-11,MSG Prime Minister's Cup,Solomon Islands,Vanuatu,1.0,0.0,0,Other,2023-10-11 00:00:00_Solomon Islands_Vanuatu,1547.7173287549874,1.5,1.6
 46479.0,2023-10-11,MSG Prime Minister's Cup,Vanuatu,Solomon Islands,0.0,1.0,0,Other,2023-10-11 00:00:00_Solomon Islands_Vanuatu,1486.2876839451515,2.8,1.8
@@ -93165,7 +93165,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 46582.0,2023-10-16,UEFA Euro qualification,Azerbaijan,Austria,0.0,1.0,1,Continental Cup,2023-10-16 00:00:00_Austria_Azerbaijan,1439.7439427486058,1.6,1.5
 46583.0,2023-10-16,UEFA Euro qualification,Luxembourg,Slovakia,0.0,1.0,1,Continental Cup,2023-10-16 00:00:00_Luxembourg_Slovakia,1489.928660052119,1.0,2.0
 46583.0,2023-10-16,UEFA Euro qualification,Slovakia,Luxembourg,1.0,0.0,0,Continental Cup,2023-10-16 00:00:00_Luxembourg_Slovakia,1654.0419583810772,1.3,0.8
-46584.0,2023-10-16,UEFA Euro qualification,Gibraltar,Republic of Ireland,0.0,4.0,0,Continental Cup,2023-10-16 00:00:00_Gibraltar_Republic of Ireland,1235.8324988193367,0.4,2.4
+46584.0,2023-10-16,UEFA Euro qualification,Gibraltar,Republic of Ireland,0.0,4.0,0,Continental Cup,2023-10-16 00:00:00_Gibraltar_Republic of Ireland,1235.8324988193365,0.4,2.4
 46584.0,2023-10-16,UEFA Euro qualification,Republic of Ireland,Gibraltar,4.0,0.0,0,Continental Cup,2023-10-16 00:00:00_Gibraltar_Republic of Ireland,1623.386702111724,1.3,1.5
 46585.0,2023-10-16,Friendly,Mozambique,Nigeria,2.0,3.0,0,Friendly,2023-10-16 00:00:00_Mozambique_Nigeria,1454.1785993924364,1.1,1.4
 46585.0,2023-10-16,Friendly,Nigeria,Mozambique,3.0,2.0,0,Friendly,2023-10-16 00:00:00_Mozambique_Nigeria,1666.2570626225886,2.5,1.4
@@ -93490,7 +93490,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 46745.0,2023-11-18,CONCACAF Nations League,Antigua and Barbuda,Puerto Rico,2.0,3.0,1,Nations League,2023-11-18 00:00:00_Antigua and Barbuda_Puerto Rico,1361.5798389027805,1.1,2.5
 46745.0,2023-11-18,CONCACAF Nations League,Puerto Rico,Antigua and Barbuda,3.0,2.0,0,Nations League,2023-11-18 00:00:00_Antigua and Barbuda_Puerto Rico,1348.0086918824593,3.0,1.1
 46746.0,2023-11-18,UEFA Euro qualification,France,Gibraltar,14.0,0.0,1,Continental Cup,2023-11-18 00:00:00_France_Gibraltar,2038.4898828486382,2.3,0.7
-46746.0,2023-11-18,UEFA Euro qualification,Gibraltar,France,0.0,14.0,0,Continental Cup,2023-11-18 00:00:00_France_Gibraltar,1235.4415424550643,0.3,2.6
+46746.0,2023-11-18,UEFA Euro qualification,Gibraltar,France,0.0,14.0,0,Continental Cup,2023-11-18 00:00:00_France_Gibraltar,1235.441542455064,0.3,2.6
 46747.0,2023-11-19,UEFA Euro qualification,Liechtenstein,Luxembourg,0.0,1.0,1,Continental Cup,2023-11-19 00:00:00_Liechtenstein_Luxembourg,1123.4652800461274,0.1,2.9
 46747.0,2023-11-19,UEFA Euro qualification,Luxembourg,Liechtenstein,1.0,0.0,0,Continental Cup,2023-11-19 00:00:00_Liechtenstein_Luxembourg,1518.2163318030098,1.2,2.0
 46748.0,2023-11-19,UEFA Euro qualification,Bosnia and Herzegovina,Slovakia,1.0,2.0,1,Continental Cup,2023-11-19 00:00:00_Bosnia and Herzegovina_Slovakia,1530.045045344111,0.9,2.2
@@ -93603,7 +93603,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 46801.0,2023-11-21,Friendly,Poland,Latvia,2.0,0.0,1,Friendly,2023-11-21 00:00:00_Latvia_Poland,1712.6772928007122,1.2,1.3
 46802.0,2023-11-21,FIFA World Cup qualification,Bangladesh,Lebanon,1.0,1.0,1,Qualifier,2023-11-21 00:00:00_Bangladesh_Lebanon,1221.2786901127138,1.1,1.5
 46802.0,2023-11-21,FIFA World Cup qualification,Lebanon,Bangladesh,1.0,1.0,0,Qualifier,2023-11-21 00:00:00_Bangladesh_Lebanon,1455.2881344865004,1.2,1.0
-46803.0,2023-11-21,UEFA Euro qualification,Gibraltar,Netherlands,0.0,6.0,0,Continental Cup,2023-11-21 00:00:00_Gibraltar_Netherlands,1234.7325881860397,0.1,4.0
+46803.0,2023-11-21,UEFA Euro qualification,Gibraltar,Netherlands,0.0,6.0,0,Continental Cup,2023-11-21 00:00:00_Gibraltar_Netherlands,1234.7325881860395,0.1,4.0
 46803.0,2023-11-21,UEFA Euro qualification,Netherlands,Gibraltar,6.0,0.0,0,Continental Cup,2023-11-21 00:00:00_Gibraltar_Netherlands,1933.6206430107354,1.7,1.6
 46804.0,2023-11-21,UEFA Euro qualification,France,Greece,2.0,2.0,0,Continental Cup,2023-11-21 00:00:00_France_Greece,2023.125080898906,3.5,0.7
 46804.0,2023-11-21,UEFA Euro qualification,Greece,France,2.0,2.0,1,Continental Cup,2023-11-21 00:00:00_France_Greece,1700.8535107560244,1.5,0.8
@@ -94085,7 +94085,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 47042.0,2024-03-21,CONCACAF Nations League,Panama,Mexico,0.0,3.0,0,Nations League,2024-03-21 00:00:00_Mexico_Panama,1731.9934443608486,2.2,0.6
 47043.0,2024-03-21,CONCACAF Nations League,Jamaica,United States,1.0,3.0,0,Nations League,2024-03-21 00:00:00_Jamaica_United States,1647.5091194853442,1.5,1.2
 47043.0,2024-03-21,CONCACAF Nations League,United States,Jamaica,3.0,1.0,1,Nations League,2024-03-21 00:00:00_Jamaica_United States,1817.3517554267466,2.5,0.9
-47044.0,2024-03-21,UEFA Nations League,Gibraltar,Lithuania,0.0,1.0,0,Nations League,2024-03-21 00:00:00_Gibraltar_Lithuania,1228.7335104087376,0.0,4.6
+47044.0,2024-03-21,UEFA Nations League,Gibraltar,Lithuania,0.0,1.0,0,Nations League,2024-03-21 00:00:00_Gibraltar_Lithuania,1228.7335104087374,0.0,4.6
 47044.0,2024-03-21,UEFA Nations League,Lithuania,Gibraltar,1.0,0.0,0,Nations League,2024-03-21 00:00:00_Gibraltar_Lithuania,1387.960526159277,0.8,1.5
 47045.0,2024-03-21,UEFA Euro qualification,Estonia,Poland,1.0,5.0,0,Continental Cup,2024-03-21 00:00:00_Estonia_Poland,1421.162854072045,0.4,2.5
 47045.0,2024-03-21,UEFA Euro qualification,Poland,Estonia,5.0,1.0,1,Continental Cup,2024-03-21 00:00:00_Estonia_Poland,1719.1720583490962,1.3,1.0
@@ -94303,7 +94303,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 47151.0,2024-03-26,FIFA Series,Guyana,Cambodia,4.0,1.0,0,Other,2024-03-26 00:00:00_Cambodia_Guyana,1417.5310559028946,2.1,1.1
 47152.0,2024-03-26,FIFA Series,Brunei,Vanuatu,3.0,2.0,0,Other,2024-03-26 00:00:00_Brunei_Vanuatu,1053.122439160795,0.8,4.9
 47152.0,2024-03-26,FIFA Series,Vanuatu,Brunei,2.0,3.0,0,Other,2024-03-26 00:00:00_Brunei_Vanuatu,1454.3819537852764,1.2,2.0
-47153.0,2024-03-26,UEFA Nations League,Gibraltar,Lithuania,0.0,1.0,0,Nations League,2024-03-26 00:00:00_Gibraltar_Lithuania,1223.0204231916753,0.0,4.4
+47153.0,2024-03-26,UEFA Nations League,Gibraltar,Lithuania,0.0,1.0,0,Nations League,2024-03-26 00:00:00_Gibraltar_Lithuania,1223.020423191675,0.0,4.4
 47153.0,2024-03-26,UEFA Nations League,Lithuania,Gibraltar,1.0,0.0,1,Nations League,2024-03-26 00:00:00_Gibraltar_Lithuania,1393.6736133763393,0.9,1.3
 47154.0,2024-03-26,UEFA Euro qualification,Poland,Wales,0.0,0.0,0,Continental Cup,2024-03-26 00:00:00_Poland_Wales,1720.3760227520206,1.7,0.8
 47154.0,2024-03-26,UEFA Euro qualification,Wales,Poland,0.0,0.0,1,Continental Cup,2024-03-26 00:00:00_Poland_Wales,1738.9084169938876,1.7,1.0
@@ -94377,7 +94377,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 47188.0,2024-06-03,Friendly,England,Bosnia and Herzegovina,3.0,0.0,1,Friendly,2024-06-03 00:00:00_Bosnia and Herzegovina_England,1955.135887881527,2.4,0.7
 47189.0,2024-06-03,Friendly,Germany,Ukraine,0.0,0.0,1,Friendly,2024-06-03 00:00:00_Germany_Ukraine,1881.5950664935108,1.4,1.7
 47189.0,2024-06-03,Friendly,Ukraine,Germany,0.0,0.0,0,Friendly,2024-06-03 00:00:00_Germany_Ukraine,1814.5128863868636,1.8,1.1
-47190.0,2024-06-03,Friendly,Gibraltar,Scotland,0.0,2.0,0,Friendly,2024-06-03 00:00:00_Gibraltar_Scotland,1221.9902464049753,0.0,4.2
+47190.0,2024-06-03,Friendly,Gibraltar,Scotland,0.0,2.0,0,Friendly,2024-06-03 00:00:00_Gibraltar_Scotland,1221.990246404975,0.0,4.2
 47190.0,2024-06-03,Friendly,Scotland,Gibraltar,2.0,0.0,0,Friendly,2024-06-03 00:00:00_Gibraltar_Scotland,1730.111209578095,1.4,2.0
 47191.0,2024-06-04,Friendly,Estonia,Switzerland,0.0,4.0,0,Friendly,2024-06-04 00:00:00_Estonia_Switzerland,1413.5786429757914,0.4,2.9
 47191.0,2024-06-04,Friendly,Switzerland,Estonia,4.0,0.0,1,Friendly,2024-06-04 00:00:00_Estonia_Switzerland,1765.0740190207875,1.5,1.1
@@ -94467,7 +94467,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 47233.0,2024-06-06,FIFA World Cup qualification,Malaysia,Kyrgyzstan,1.0,1.0,0,Qualifier,2024-06-06 00:00:00_Kyrgyzstan_Malaysia,1475.044483320342,1.3,2.0
 47234.0,2024-06-06,FIFA World Cup qualification,China,Thailand,1.0,1.0,1,Qualifier,2024-06-06 00:00:00_China_Thailand,1545.3697108818644,1.2,1.2
 47234.0,2024-06-06,FIFA World Cup qualification,Thailand,China,1.0,1.0,0,Qualifier,2024-06-06 00:00:00_China_Thailand,1537.4145190146091,0.9,1.5
-47235.0,2024-06-06,Friendly,Gibraltar,Wales,0.0,0.0,0,Friendly,2024-06-06 00:00:00_Gibraltar_Wales,1231.0194563234406,0.0,4.1
+47235.0,2024-06-06,Friendly,Gibraltar,Wales,0.0,0.0,0,Friendly,2024-06-06 00:00:00_Gibraltar_Wales,1231.0194563234404,0.0,4.1
 47235.0,2024-06-06,Friendly,Wales,Gibraltar,0.0,0.0,0,Friendly,2024-06-06 00:00:00_Gibraltar_Wales,1729.8792070754223,1.6,1.0
 47236.0,2024-06-06,Friendly,Canada,Netherlands,0.0,4.0,0,Friendly,2024-06-06 00:00:00_Canada_Netherlands,1710.6774929242238,1.7,1.6
 47236.0,2024-06-06,Friendly,Netherlands,Canada,4.0,0.0,1,Friendly,2024-06-06 00:00:00_Canada_Netherlands,1931.4367982293845,2.3,1.2
@@ -94972,7 +94972,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 47486.0,2024-09-04,Merdeka Tournament,Lebanon,Tajikistan,1.0,0.0,0,Other,2024-09-04 00:00:00_Lebanon_Tajikistan,1444.067886735833,0.6,1.4
 47486.0,2024-09-04,Merdeka Tournament,Tajikistan,Lebanon,0.0,1.0,0,Other,2024-09-04 00:00:00_Lebanon_Tajikistan,1469.86996459263,0.9,1.0
 47487.0,2024-09-04,Friendly,Andorra,Gibraltar,0.0,1.0,0,Friendly,2024-09-04 00:00:00_Andorra_Gibraltar,1194.11963650318,0.1,2.2
-47487.0,2024-09-04,Friendly,Gibraltar,Andorra,1.0,0.0,1,Friendly,2024-09-04 00:00:00_Andorra_Gibraltar,1240.2240064945863,0.0,3.8
+47487.0,2024-09-04,Friendly,Gibraltar,Andorra,1.0,0.0,1,Friendly,2024-09-04 00:00:00_Andorra_Gibraltar,1240.224006494586,0.0,3.8
 47488.0,2024-09-04,African Cup of Nations qualification,Libya,Rwanda,1.0,1.0,1,Continental Cup,2024-09-04 00:00:00_Libya_Rwanda,1484.4187270394605,1.9,0.9
 47488.0,2024-09-04,African Cup of Nations qualification,Rwanda,Libya,1.0,1.0,0,Continental Cup,2024-09-04 00:00:00_Libya_Rwanda,1446.07730551601,0.7,0.7
 47489.0,2024-09-05,FIFA World Cup qualification,Argentina,Chile,3.0,0.0,1,Qualifier,2024-09-05 00:00:00_Argentina_Chile,2050.6760976243213,2.0,0.3
@@ -95151,7 +95151,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 47575.0,2024-09-07,Friendly,New Zealand,Mexico,0.0,3.0,0,Friendly,2024-09-07 00:00:00_Mexico_New Zealand,1626.3174052292222,1.7,0.7
 47576.0,2024-09-07,CONCACAF Nations League,Belize,Turks and Caicos Islands,4.0,0.0,0,Nations League,2024-09-07 00:00:00_Belize_Turks and Caicos Islands,1318.6508832524873,1.0,1.5
 47576.0,2024-09-07,CONCACAF Nations League,Turks and Caicos Islands,Belize,0.0,4.0,1,Nations League,2024-09-07 00:00:00_Belize_Turks and Caicos Islands,1218.9435089034114,0.9,1.4
-47577.0,2024-09-08,UEFA Nations League,Gibraltar,Liechtenstein,2.0,2.0,1,Nations League,2024-09-08 00:00:00_Gibraltar_Liechtenstein,1236.8590820680245,0.1,3.7
+47577.0,2024-09-08,UEFA Nations League,Gibraltar,Liechtenstein,2.0,2.0,1,Nations League,2024-09-08 00:00:00_Gibraltar_Liechtenstein,1236.8590820680242,0.1,3.7
 47577.0,2024-09-08,UEFA Nations League,Liechtenstein,Gibraltar,2.0,2.0,0,Nations League,2024-09-08 00:00:00_Gibraltar_Liechtenstein,1121.9406775229577,0.1,2.1
 47578.0,2024-09-08,UEFA Nations League,Bulgaria,Northern Ireland,1.0,0.0,1,Nations League,2024-09-08 00:00:00_Bulgaria_Northern Ireland,1528.2509126268653,0.8,1.2
 47578.0,2024-09-08,UEFA Nations League,Northern Ireland,Bulgaria,0.0,1.0,0,Nations League,2024-09-08 00:00:00_Bulgaria_Northern Ireland,1530.8214734268868,1.2,1.2
@@ -95355,7 +95355,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 47677.0,2024-10-10,FIFA World Cup qualification,Paraguay,Ecuador,0.0,0.0,0,Qualifier,2024-10-10 00:00:00_Ecuador_Paraguay,1702.030466286298,0.5,1.2
 47678.0,2024-10-10,FIFA World Cup qualification,Argentina,Venezuela,1.0,1.0,0,Qualifier,2024-10-10 00:00:00_Argentina_Venezuela,2020.6249470724251,1.8,0.4
 47678.0,2024-10-10,FIFA World Cup qualification,Venezuela,Argentina,1.0,1.0,1,Qualifier,2024-10-10 00:00:00_Argentina_Venezuela,1740.02051081548,0.9,0.9
-47679.0,2024-10-10,UEFA Nations League,Gibraltar,San Marino,1.0,0.0,1,Nations League,2024-10-10 00:00:00_Gibraltar_San Marino,1240.7917639210175,0.3,3.4
+47679.0,2024-10-10,UEFA Nations League,Gibraltar,San Marino,1.0,0.0,1,Nations League,2024-10-10 00:00:00_Gibraltar_San Marino,1240.7917639210173,0.3,3.4
 47679.0,2024-10-10,UEFA Nations League,San Marino,Gibraltar,0.0,1.0,0,Nations League,2024-10-10 00:00:00_Gibraltar_San Marino,988.4245686123783,0.6,2.2
 47680.0,2024-10-10,FIFA World Cup qualification,Brazil,Chile,2.0,1.0,0,Qualifier,2024-10-10 00:00:00_Brazil_Chile,1942.139203001676,1.4,0.9
 47680.0,2024-10-10,FIFA World Cup qualification,Chile,Brazil,1.0,2.0,1,Qualifier,2024-10-10 00:00:00_Brazil_Chile,1687.1072998695026,0.9,1.0
@@ -95531,7 +95531,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 47765.0,2024-10-12,CONCACAF Nations League,Cayman Islands,British Virgin Islands,1.0,0.0,0,Nations League,2024-10-12 00:00:00_British Virgin Islands_Cayman Islands,1239.2015473463655,1.0,2.5
 47766.0,2024-10-13,UEFA Nations League,Malta,Moldova,1.0,0.0,1,Nations League,2024-10-13 00:00:00_Malta_Moldova,1345.3683072379026,0.5,2.4
 47766.0,2024-10-13,UEFA Nations League,Moldova,Malta,0.0,1.0,0,Nations League,2024-10-13 00:00:00_Malta_Moldova,1400.3805821294893,1.2,1.5
-47767.0,2024-10-13,UEFA Nations League,Gibraltar,Liechtenstein,0.0,0.0,0,Nations League,2024-10-13 00:00:00_Gibraltar_Liechtenstein,1237.9004902927206,0.4,3.0
+47767.0,2024-10-13,UEFA Nations League,Gibraltar,Liechtenstein,0.0,0.0,0,Nations League,2024-10-13 00:00:00_Gibraltar_Liechtenstein,1237.9004902927204,0.4,3.0
 47767.0,2024-10-13,UEFA Nations League,Liechtenstein,Gibraltar,0.0,0.0,1,Nations League,2024-10-13 00:00:00_Gibraltar_Liechtenstein,1140.2814259343995,0.4,1.8
 47768.0,2024-10-13,UEFA Nations League,Armenia,North Macedonia,0.0,2.0,1,Nations League,2024-10-13 00:00:00_Armenia_North Macedonia,1491.1852461936583,1.2,1.6
 47768.0,2024-10-13,UEFA Nations League,North Macedonia,Armenia,2.0,0.0,0,Nations League,2024-10-13 00:00:00_Armenia_North Macedonia,1600.1058540312406,1.4,1.5
@@ -95863,7 +95863,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 47931.0,2024-11-15,CONCACAF Nations League,Sint Maarten,Haiti,0.0,8.0,0,Nations League,2024-11-15 00:00:00_Haiti_Sint Maarten,1327.8495658600425,1.2,2.5
 47932.0,2024-11-15,CONCACAF Nations League,Barbados,Guyana,1.0,4.0,1,Nations League,2024-11-15 00:00:00_Barbados_Guyana,1266.9771973048446,2.3,2.9
 47932.0,2024-11-15,CONCACAF Nations League,Guyana,Barbados,4.0,1.0,0,Nations League,2024-11-15 00:00:00_Barbados_Guyana,1400.615525309779,1.3,2.2
-47933.0,2024-11-15,UEFA Nations League,Gibraltar,San Marino,1.0,1.0,0,Nations League,2024-11-15 00:00:00_Gibraltar_San Marino,1231.6564734869587,0.4,2.6
+47933.0,2024-11-15,UEFA Nations League,Gibraltar,San Marino,1.0,1.0,0,Nations League,2024-11-15 00:00:00_Gibraltar_San Marino,1231.6564734869585,0.4,2.6
 47933.0,2024-11-15,UEFA Nations League,San Marino,Gibraltar,1.0,1.0,1,Nations League,2024-11-15 00:00:00_Gibraltar_San Marino,989.7565912028483,0.5,2.0
 47934.0,2024-11-16,CONCACAF Nations League,Antigua and Barbuda,Bermuda,1.0,2.0,0,Nations League,2024-11-16 00:00:00_Antigua and Barbuda_Bermuda,1294.201248333604,1.0,2.7
 47934.0,2024-11-16,CONCACAF Nations League,Bermuda,Antigua and Barbuda,2.0,1.0,0,Nations League,2024-11-16 00:00:00_Antigua and Barbuda_Bermuda,1408.3493166664466,2.0,2.2
@@ -96067,7 +96067,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 48033.0,2024-11-19,CONCACAF Nations League,Suriname,Canada,0.0,3.0,0,Nations League,2024-11-19 00:00:00_Canada_Suriname,1485.212835184562,2.3,0.8
 48034.0,2024-11-19,CONCACAF Nations League,Honduras,Mexico,0.0,4.0,0,Nations League,2024-11-19 00:00:00_Honduras_Mexico,1589.9052208892685,2.2,1.2
 48034.0,2024-11-19,CONCACAF Nations League,Mexico,Honduras,4.0,0.0,1,Nations League,2024-11-19 00:00:00_Honduras_Mexico,1800.765771366603,0.9,1.0
-48035.0,2024-11-19,Friendly,Gibraltar,Moldova,1.0,1.0,1,Friendly,2024-11-19 00:00:00_Gibraltar_Moldova,1236.2677209600868,0.5,1.3
+48035.0,2024-11-19,Friendly,Gibraltar,Moldova,1.0,1.0,1,Friendly,2024-11-19 00:00:00_Gibraltar_Moldova,1236.2677209600865,0.5,1.3
 48035.0,2024-11-19,Friendly,Moldova,Gibraltar,1.0,1.0,0,Friendly,2024-11-19 00:00:00_Gibraltar_Moldova,1400.324848823758,1.1,1.2
 48036.0,2024-11-19,Friendly,Hong Kong,Mauritius,1.0,0.0,1,Friendly,2024-11-19 00:00:00_Hong Kong_Mauritius,1342.1056559752944,1.2,1.5
 48036.0,2024-11-19,Friendly,Mauritius,Hong Kong,0.0,1.0,0,Friendly,2024-11-19 00:00:00_Hong Kong_Mauritius,1243.771714818189,0.7,1.3
@@ -96381,7 +96381,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 48190.0,2025-03-21,Friendly,Switzerland,Northern Ireland,1.0,1.0,0,Friendly,2025-03-21 00:00:00_Northern Ireland_Switzerland,1759.328592130614,1.1,1.7
 48191.0,2025-03-22,FIFA World Cup qualification,Czech Republic,Faroe Islands,2.0,1.0,1,Qualifier,2025-03-22 00:00:00_Czech Republic_Faroe Islands,1734.5515451967303,1.4,1.4
 48191.0,2025-03-22,FIFA World Cup qualification,Faroe Islands,Czech Republic,1.0,2.0,0,Qualifier,2025-03-22 00:00:00_Czech Republic_Faroe Islands,1308.4148690244622,1.0,1.3
-48192.0,2025-03-22,FIFA World Cup qualification,Gibraltar,Montenegro,1.0,3.0,0,Qualifier,2025-03-22 00:00:00_Gibraltar_Montenegro,1232.046679788353,0.6,0.8
+48192.0,2025-03-22,FIFA World Cup qualification,Gibraltar,Montenegro,1.0,3.0,0,Qualifier,2025-03-22 00:00:00_Gibraltar_Montenegro,1232.0466797883528,0.6,0.8
 48192.0,2025-03-22,FIFA World Cup qualification,Montenegro,Gibraltar,3.0,1.0,1,Qualifier,2025-03-22 00:00:00_Gibraltar_Montenegro,1554.8270759901861,0.8,1.4
 48193.0,2025-03-22,FIFA World Cup qualification,Kazakhstan,Wales,1.0,3.0,0,Qualifier,2025-03-22 00:00:00_Kazakhstan_Wales,1478.0476029706172,0.5,2.5
 48193.0,2025-03-22,FIFA World Cup qualification,Wales,Kazakhstan,3.0,1.0,1,Qualifier,2025-03-22 00:00:00_Kazakhstan_Wales,1740.458351900862,1.3,0.9
@@ -96514,7 +96514,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 48257.0,2025-03-25,FIFA World Cup qualification,North Macedonia,Wales,1.0,1.0,1,Qualifier,2025-03-25 00:00:00_North Macedonia_Wales,1614.6779707436115,1.4,0.7
 48257.0,2025-03-25,FIFA World Cup qualification,Wales,North Macedonia,1.0,1.0,0,Qualifier,2025-03-25 00:00:00_North Macedonia_Wales,1735.049108100566,1.2,0.9
 48258.0,2025-03-25,FIFA World Cup qualification,Czech Republic,Gibraltar,4.0,0.0,0,Qualifier,2025-03-25 00:00:00_Czech Republic_Gibraltar,1736.1270873475826,1.4,1.4
-48258.0,2025-03-25,FIFA World Cup qualification,Gibraltar,Czech Republic,0.0,4.0,0,Qualifier,2025-03-25 00:00:00_Czech Republic_Gibraltar,1230.4711376375008,0.7,1.0
+48258.0,2025-03-25,FIFA World Cup qualification,Gibraltar,Czech Republic,0.0,4.0,0,Qualifier,2025-03-25 00:00:00_Czech Republic_Gibraltar,1230.4711376375005,0.7,1.0
 48259.0,2025-03-25,FIFA World Cup qualification,Faroe Islands,Montenegro,0.0,1.0,0,Qualifier,2025-03-25 00:00:00_Faroe Islands_Montenegro,1302.5677880537596,0.7,1.5
 48259.0,2025-03-25,FIFA World Cup qualification,Montenegro,Faroe Islands,1.0,0.0,1,Qualifier,2025-03-25 00:00:00_Faroe Islands_Montenegro,1560.6741569608887,0.9,1.5
 48260.0,2025-03-25,FIFA World Cup qualification,Angola,Cape Verde,1.0,2.0,1,Qualifier,2025-03-25 00:00:00_Angola_Cape Verde,1580.460600561581,1.0,0.4
@@ -96706,7 +96706,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 48353.0,2025-06-06,FIFA World Cup qualification,Colombia,Peru,0.0,0.0,1,Qualifier,2025-06-06 00:00:00_Colombia_Peru,1877.037847244403,1.3,1.2
 48353.0,2025-06-06,FIFA World Cup qualification,Peru,Colombia,0.0,0.0,0,Qualifier,2025-06-06 00:00:00_Colombia_Peru,1730.4698022069815,0.5,1.2
 48354.0,2025-06-06,FIFA World Cup qualification,Croatia,Gibraltar,7.0,0.0,0,Qualifier,2025-06-06 00:00:00_Croatia_Gibraltar,1858.5423212313851,1.3,1.3
-48354.0,2025-06-06,FIFA World Cup qualification,Gibraltar,Croatia,0.0,7.0,0,Qualifier,2025-06-06 00:00:00_Croatia_Gibraltar,1229.681668488077,0.7,1.3
+48354.0,2025-06-06,FIFA World Cup qualification,Gibraltar,Croatia,0.0,7.0,0,Qualifier,2025-06-06 00:00:00_Croatia_Gibraltar,1229.6816684880769,0.7,1.3
 48355.0,2025-06-06,Friendly,Nigeria,Russia,1.0,1.0,0,Friendly,2025-06-06 00:00:00_Nigeria_Russia,1639.822266047424,1.4,0.9
 48355.0,2025-06-06,Friendly,Russia,Nigeria,1.0,1.0,1,Friendly,2025-06-06 00:00:00_Nigeria_Russia,1781.246305040985,3.5,0.4
 48356.0,2025-06-06,Friendly,Cameroon,Uganda,3.0,0.0,0,Friendly,2025-06-06 00:00:00_Cameroon_Uganda,1674.6959820083027,1.6,0.5
@@ -96790,7 +96790,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 48395.0,2025-06-09,FIFA World Cup qualification,Italy,Moldova,2.0,0.0,1,Qualifier,2025-06-09 00:00:00_Italy_Moldova,1864.2302522472128,1.7,1.8
 48395.0,2025-06-09,FIFA World Cup qualification,Moldova,Italy,0.0,2.0,0,Qualifier,2025-06-09 00:00:00_Italy_Moldova,1377.7966553261178,0.9,1.6
 48396.0,2025-06-09,FIFA World Cup qualification,Faroe Islands,Gibraltar,2.0,1.0,1,Qualifier,2025-06-09 00:00:00_Faroe Islands_Gibraltar,1312.2587022620773,0.6,1.1
-48396.0,2025-06-09,FIFA World Cup qualification,Gibraltar,Faroe Islands,1.0,2.0,0,Qualifier,2025-06-09 00:00:00_Faroe Islands_Gibraltar,1217.6877442829712,0.7,1.8
+48396.0,2025-06-09,FIFA World Cup qualification,Gibraltar,Faroe Islands,1.0,2.0,0,Qualifier,2025-06-09 00:00:00_Faroe Islands_Gibraltar,1217.687744282971,0.7,1.8
 48397.0,2025-06-09,FIFA World Cup qualification,Belgium,Wales,4.0,3.0,1,Qualifier,2025-06-09 00:00:00_Belgium_Wales,1874.1960387811341,1.1,1.4
 48397.0,2025-06-09,FIFA World Cup qualification,Wales,Belgium,3.0,4.0,0,Qualifier,2025-06-09 00:00:00_Belgium_Wales,1726.191056671815,1.6,1.0
 48398.0,2025-06-09,FIFA World Cup qualification,Kazakhstan,North Macedonia,0.0,1.0,1,Qualifier,2025-06-09 00:00:00_Kazakhstan_North Macedonia,1463.0101308318287,0.6,2.2
@@ -97086,7 +97086,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 48543.0,2025-09-04,FIFA World Cup qualification,Liberia,Tunisia,0.0,3.0,0,Qualifier,2025-09-04 00:00:00_Liberia_Tunisia,1390.7621372915312,0.8,1.5
 48543.0,2025-09-04,FIFA World Cup qualification,Tunisia,Liberia,3.0,0.0,1,Qualifier,2025-09-04 00:00:00_Liberia_Tunisia,1668.1718541441792,1.2,0.8
 48544.0,2025-09-04,Friendly,Albania,Gibraltar,1.0,0.0,0,Friendly,2025-09-04 00:00:00_Albania_Gibraltar,1613.4936056199128,0.8,0.9
-48544.0,2025-09-04,Friendly,Gibraltar,Albania,0.0,1.0,1,Friendly,2025-09-04 00:00:00_Albania_Gibraltar,1215.810967081361,0.8,2.0
+48544.0,2025-09-04,Friendly,Gibraltar,Albania,0.0,1.0,1,Friendly,2025-09-04 00:00:00_Albania_Gibraltar,1215.8109670813608,0.8,2.0
 48545.0,2025-09-04,Friendly,Malaysia,Singapore,2.0,1.0,1,Friendly,2025-09-04 00:00:00_Malaysia_Singapore,1501.4544533569415,1.6,1.1
 48545.0,2025-09-04,Friendly,Singapore,Malaysia,1.0,2.0,0,Friendly,2025-09-04 00:00:00_Malaysia_Singapore,1343.0661041365552,1.3,1.3
 48546.0,2025-09-04,Friendly,Finland,Norway,0.0,1.0,0,Friendly,2025-09-04 00:00:00_Finland_Norway,1583.0647148827265,0.7,1.8
@@ -97234,7 +97234,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 48617.0,2025-09-08,FIFA World Cup qualification,Denmark,Greece,3.0,0.0,0,Qualifier,2025-09-08 00:00:00_Denmark_Greece,1817.7929478823169,1.5,1.1
 48617.0,2025-09-08,FIFA World Cup qualification,Greece,Denmark,0.0,3.0,1,Qualifier,2025-09-08 00:00:00_Denmark_Greece,1746.1588056532596,2.4,0.7
 48618.0,2025-09-08,FIFA World Cup qualification,Faroe Islands,Gibraltar,1.0,0.0,0,Qualifier,2025-09-08 00:00:00_Faroe Islands_Gibraltar,1322.0744160796241,0.7,1.1
-48618.0,2025-09-08,FIFA World Cup qualification,Gibraltar,Faroe Islands,0.0,1.0,1,Qualifier,2025-09-08 00:00:00_Faroe Islands_Gibraltar,1204.824294435323,0.7,2.1
+48618.0,2025-09-08,FIFA World Cup qualification,Gibraltar,Faroe Islands,0.0,1.0,1,Qualifier,2025-09-08 00:00:00_Faroe Islands_Gibraltar,1204.8242944353228,0.7,2.1
 48619.0,2025-09-08,FIFA World Cup qualification,Croatia,Montenegro,4.0,0.0,1,Qualifier,2025-09-08 00:00:00_Croatia_Montenegro,1873.8989776906735,2.2,0.9
 48619.0,2025-09-08,FIFA World Cup qualification,Montenegro,Croatia,0.0,4.0,0,Qualifier,2025-09-08 00:00:00_Croatia_Montenegro,1538.5037552823405,1.0,1.4
 48620.0,2025-09-08,FIFA World Cup qualification,El Salvador,Suriname,1.0,2.0,1,Qualifier,2025-09-08 00:00:00_El Salvador_Suriname,1500.2097986994997,0.9,0.8
@@ -97363,7 +97363,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 48681.0,2025-10-05,Friendly,Saint Martin,Saint Kitts and Nevis,1.0,2.0,0,Friendly,2025-10-05 00:00:00_Saint Kitts and Nevis_Saint Martin,1276.288580056605,2.2,1.9
 48682.0,2025-10-05,Friendly,Cuba,Saint Vincent and the Grenadines,0.0,7.0,0,Friendly,2025-10-05 00:00:00_Cuba_Saint Vincent and the Grenadines,1377.2275140108593,1.2,1.6
 48682.0,2025-10-05,Friendly,Saint Vincent and the Grenadines,Cuba,7.0,0.0,1,Friendly,2025-10-05 00:00:00_Cuba_Saint Vincent and the Grenadines,1369.5126124688886,2.1,1.1
-48683.0,2025-10-08,Friendly,Gibraltar,New Caledonia,0.0,2.0,1,Friendly,2025-10-08 00:00:00_Gibraltar_New Caledonia,1202.4166844532447,0.5,2.0
+48683.0,2025-10-08,Friendly,Gibraltar,New Caledonia,0.0,2.0,1,Friendly,2025-10-08 00:00:00_Gibraltar_New Caledonia,1202.4166844532444,0.5,2.0
 48683.0,2025-10-08,Friendly,New Caledonia,Gibraltar,2.0,0.0,0,Friendly,2025-10-08 00:00:00_Gibraltar_New Caledonia,1552.7273881659125,2.8,1.0
 48684.0,2025-10-08,FIFA World Cup qualification,Chad,Mali,0.0,2.0,1,Qualifier,2025-10-08 00:00:00_Chad_Mali,1303.5400289223765,0.4,1.8
 48684.0,2025-10-08,FIFA World Cup qualification,Mali,Chad,2.0,0.0,0,Qualifier,2025-10-08 00:00:00_Chad_Mali,1647.1927128027628,1.5,0.2
@@ -97546,7 +97546,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 48773.0,2025-10-11,FIFA World Cup qualification,Bulgaria,Turkey,1.0,6.0,1,Qualifier,2025-10-11 00:00:00_Bulgaria_Turkey,1487.648993733404,0.6,2.2
 48773.0,2025-10-11,FIFA World Cup qualification,Turkey,Bulgaria,6.0,1.0,0,Qualifier,2025-10-11 00:00:00_Bulgaria_Turkey,1791.7428976318224,1.7,1.6
 48774.0,2025-10-12,FIFA World Cup qualification,Croatia,Gibraltar,3.0,0.0,1,Qualifier,2025-10-12 00:00:00_Croatia_Gibraltar,1868.9994250184059,2.3,0.8
-48774.0,2025-10-12,FIFA World Cup qualification,Gibraltar,Croatia,0.0,3.0,0,Qualifier,2025-10-12 00:00:00_Croatia_Gibraltar,1201.7814159061465,0.4,2.2
+48774.0,2025-10-12,FIFA World Cup qualification,Gibraltar,Croatia,0.0,3.0,0,Qualifier,2025-10-12 00:00:00_Croatia_Gibraltar,1201.7814159061463,0.4,2.2
 48775.0,2025-10-12,FIFA World Cup qualification,Czech Republic,Faroe Islands,1.0,2.0,0,Qualifier,2025-10-12 00:00:00_Czech Republic_Faroe Islands,1717.6231306437194,1.5,0.9
 48775.0,2025-10-12,FIFA World Cup qualification,Faroe Islands,Czech Republic,2.0,1.0,1,Qualifier,2025-10-12 00:00:00_Czech Republic_Faroe Islands,1372.637752654358,1.0,0.8
 48776.0,2025-10-12,FIFA World Cup qualification,Austria,Romania,0.0,1.0,0,Qualifier,2025-10-12 00:00:00_Austria_Romania,1790.290226653139,2.8,0.7
@@ -97787,7 +97787,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 48893.0,2025-11-13,Friendly,North Macedonia,Latvia,0.0,0.0,1,Friendly,2025-11-13 00:00:00_Latvia_North Macedonia,1620.92888056366,1.5,0.5
 48894.0,2025-11-14,Friendly,Jordan,Tunisia,2.0,3.0,0,Friendly,2025-11-14 00:00:00_Jordan_Tunisia,1654.9386538869846,1.3,1.1
 48894.0,2025-11-14,Friendly,Tunisia,Jordan,3.0,2.0,1,Friendly,2025-11-14 00:00:00_Jordan_Tunisia,1689.5833698424458,1.9,0.4
-48895.0,2025-11-14,FIFA World Cup qualification,Gibraltar,Montenegro,1.0,2.0,1,Qualifier,2025-11-14 00:00:00_Gibraltar_Montenegro,1197.5781092192672,0.4,2.5
+48895.0,2025-11-14,FIFA World Cup qualification,Gibraltar,Montenegro,1.0,2.0,1,Qualifier,2025-11-14 00:00:00_Gibraltar_Montenegro,1197.578109219267,0.4,2.5
 48895.0,2025-11-14,FIFA World Cup qualification,Montenegro,Gibraltar,2.0,1.0,0,Qualifier,2025-11-14 00:00:00_Gibraltar_Montenegro,1521.1739073314973,1.1,1.9
 48896.0,2025-11-14,Al Ain International Cup,Egypt,Uzbekistan,0.0,2.0,0,Other,2025-11-14 00:00:00_Egypt_Uzbekistan,1724.1920619487137,1.4,0.2
 48896.0,2025-11-14,Al Ain International Cup,Uzbekistan,Egypt,2.0,0.0,0,Other,2025-11-14 00:00:00_Egypt_Uzbekistan,1766.039700226542,1.3,0.7
@@ -97910,7 +97910,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 48955.0,2025-11-17,FIFA World Cup qualification,Germany,Slovakia,6.0,0.0,1,Qualifier,2025-11-17 00:00:00_Germany_Slovakia,1898.9694574694759,1.7,1.2
 48955.0,2025-11-17,FIFA World Cup qualification,Slovakia,Germany,0.0,6.0,0,Qualifier,2025-11-17 00:00:00_Germany_Slovakia,1687.1470051545884,0.8,0.8
 48956.0,2025-11-17,FIFA World Cup qualification,Czech Republic,Gibraltar,6.0,0.0,1,Qualifier,2025-11-17 00:00:00_Czech Republic_Gibraltar,1719.3539476406063,1.6,1.0
-48956.0,2025-11-17,FIFA World Cup qualification,Gibraltar,Czech Republic,0.0,6.0,0,Qualifier,2025-11-17 00:00:00_Czech Republic_Gibraltar,1196.1490267310087,0.4,2.6
+48956.0,2025-11-17,FIFA World Cup qualification,Gibraltar,Czech Republic,0.0,6.0,0,Qualifier,2025-11-17 00:00:00_Czech Republic_Gibraltar,1196.1490267310085,0.4,2.6
 48957.0,2025-11-17,Friendly,Bahrain,Somalia,1.0,2.0,1,Friendly,2025-11-17 00:00:00_Bahrain_Somalia,1545.5334907515037,0.6,1.3
 48957.0,2025-11-17,Friendly,Somalia,Bahrain,2.0,1.0,0,Friendly,2025-11-17 00:00:00_Bahrain_Somalia,1136.5710664291232,0.4,2.1
 48958.0,2025-11-17,Friendly,Qatar,Zimbabwe,1.0,2.0,1,Friendly,2025-11-17 00:00:00_Qatar_Zimbabwe,1659.4865449209678,1.5,1.7
@@ -98606,7 +98606,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 49303.0,2026-06-03,Friendly,El Salvador,South Korea,0.0,1.0,0,Friendly,2026-06-03 00:00:00_El Salvador_South Korea,1472.7167868335587,0.5,1.7
 49303.0,2026-06-03,Friendly,South Korea,El Salvador,1.0,0.0,0,Friendly,2026-06-03 00:00:00_El Salvador_South Korea,1812.0829356954707,1.8,1.2
 49304.0,2026-06-03,Friendly,British Virgin Islands,Gibraltar,0.0,4.0,0,Friendly,2026-06-03 00:00:00_British Virgin Islands_Gibraltar,1130.9027197831442,1.6,1.5
-49304.0,2026-06-03,Friendly,Gibraltar,British Virgin Islands,4.0,0.0,1,Friendly,2026-06-03 00:00:00_British Virgin Islands_Gibraltar,1204.526677825721,0.3,3.1
+49304.0,2026-06-03,Friendly,Gibraltar,British Virgin Islands,4.0,0.0,1,Friendly,2026-06-03 00:00:00_British Virgin Islands_Gibraltar,1204.5266778257208,0.3,3.1
 49305.0,2026-06-03,Friendly,DR Congo,Denmark,0.0,0.0,0,Friendly,2026-06-03 00:00:00_DR Congo_Denmark,1683.603665612015,1.2,0.3
 49305.0,2026-06-03,Friendly,Denmark,DR Congo,0.0,0.0,0,Friendly,2026-06-03 00:00:00_DR Congo_Denmark,1802.4421769007913,2.9,1.0
 49306.0,2026-06-03,Friendly,Albania,Israel,0.0,1.0,1,Friendly,2026-06-03 00:00:00_Albania_Israel,1619.481778324588,1.0,0.8
@@ -98688,7 +98688,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 49344.0,2026-06-06,Tri-Nations Cup,Guam,Myanmar,1.0,6.0,0,Other,2026-06-06 00:00:00_Guam_Myanmar,1113.3764509309576,1.4,2.4
 49344.0,2026-06-06,Tri-Nations Cup,Myanmar,Guam,6.0,1.0,0,Other,2026-06-06 00:00:00_Guam_Myanmar,1249.8164603433972,1.1,2.2
 49345.0,2026-06-06,Friendly,Cayman Islands,Gibraltar,1.0,4.0,0,Friendly,2026-06-06 00:00:00_Cayman Islands_Gibraltar,1212.442062920326,0.9,2.1
-49345.0,2026-06-06,Friendly,Gibraltar,Cayman Islands,4.0,1.0,1,Friendly,2026-06-06 00:00:00_Cayman Islands_Gibraltar,1215.0570923528455,1.0,2.5
+49345.0,2026-06-06,Friendly,Gibraltar,Cayman Islands,4.0,1.0,1,Friendly,2026-06-06 00:00:00_Cayman Islands_Gibraltar,1215.0570923528453,1.0,2.5
 49346.0,2026-06-06,Friendly,Turkey,Venezuela,2.0,1.0,0,Friendly,2026-06-06 00:00:00_Turkey_Venezuela,1841.5565023554116,2.3,1.3
 49346.0,2026-06-06,Friendly,Venezuela,Turkey,1.0,2.0,0,Friendly,2026-06-06 00:00:00_Turkey_Venezuela,1705.0867933456007,1.1,1.5
 49347.0,2026-06-06,Friendly,Kyrgyzstan,Palestine,0.0,0.0,1,Friendly,2026-06-06 00:00:00_Kyrgyzstan_Palestine,1460.5154668124578,1.2,2.0
@@ -98712,7 +98712,7 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 49356.0,2026-06-06,Friendly,Argentina,Honduras,2.0,0.0,0,Friendly,2026-06-06 00:00:00_Argentina_Honduras,2013.8481544974497,2.5,0.4
 49356.0,2026-06-06,Friendly,Honduras,Argentina,0.0,2.0,0,Friendly,2026-06-06 00:00:00_Argentina_Honduras,1626.5047332784568,1.0,0.7
 49357.0,2026-06-06,Friendly,Cayman Islands,Gibraltar,1.0,4.0,0,Friendly,2026-06-06 00:00:00_Cayman Islands_Gibraltar,1212.442062920326,0.9,1.7
-49357.0,2026-06-06,Friendly,Gibraltar,Cayman Islands,4.0,1.0,1,Friendly,2026-06-06 00:00:00_Cayman Islands_Gibraltar,1215.0570923528455,0.6,2.8
+49357.0,2026-06-06,Friendly,Gibraltar,Cayman Islands,4.0,1.0,1,Friendly,2026-06-06 00:00:00_Cayman Islands_Gibraltar,1215.0570923528453,0.6,2.8
 49358.0,2026-06-06,Friendly,Australia,Switzerland,1.0,1.0,0,Friendly,2026-06-06 00:00:00_Australia_Switzerland,1796.292502351414,1.4,1.0
 49358.0,2026-06-06,Friendly,Switzerland,Australia,1.0,1.0,0,Friendly,2026-06-06 00:00:00_Australia_Switzerland,1812.7654727067393,2.5,0.7
 49359.0,2026-06-06,Friendly,Armenia,Kazakhstan,1.0,1.0,1,Friendly,2026-06-06 00:00:00_Armenia_Kazakhstan,1456.3625477979174,0.9,3.4
@@ -98949,8 +98949,8 @@ MATCH_ID,MATCH_DATE,TOURNAMENT,TEAM_ID,OPP_TEAM_ID,GOALS,OPP_GOALS,IS_HOST,TOURN
 ,2026-07-07,,Switzerland,Colombia,0.0,0.0,1,World Cup,2026-07-07 00:00:00_Colombia_Switzerland,1863.908727818957,2.2,1.1
 ,2026-07-09,,France,Morocco,2.0,0.0,1,World Cup,2026-07-09 00:00:00_France_Morocco,2065.101558869549,2.6,0.8
 ,2026-07-09,,Morocco,France,0.0,2.0,0,World Cup,2026-07-09 00:00:00_France_Morocco,1920.1434673131048,2.3,0.7
-,2026-07-10,,Belgium,Spain,,,0,World Cup,2026-07-10 00:00:00_Belgium_Spain,1906.892855329612,3.3,0.8
-,2026-07-10,,Spain,Belgium,,,1,World Cup,2026-07-10 00:00:00_Belgium_Spain,2055.34344887351,1.8,0.4
+,2026-07-10,,Belgium,Spain,1.0,2.0,0,World Cup,2026-07-10 00:00:00_Belgium_Spain,1906.892855329612,3.3,0.8
+,2026-07-10,,Spain,Belgium,2.0,1.0,1,World Cup,2026-07-10 00:00:00_Belgium_Spain,2055.34344887351,1.8,0.4
 ,2026-07-11,,England,Norway,,,0,World Cup,2026-07-11 00:00:00_England_Norway,1951.4379991155586,1.7,0.7
 ,2026-07-11,,Norway,England,,,1,World Cup,2026-07-11 00:00:00_England_Norway,1918.0076774703568,2.1,1.3
 ,2026-07-12,,Argentina,Switzerland,,,1,World Cup,2026-07-12 00:00:00_Argentina_Switzerland,2017.5607140610462,3.1,0.6
