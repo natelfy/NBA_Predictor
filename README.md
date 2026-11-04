@@ -169,3 +169,19 @@ Ce projet est à but **éducatif et personnel**.
 - Structure matchups
 - Features différentielles
 - Précision 56% → 62%
+## 🎯 TTFL Advisor (classement général TTFL)
+
+Prédit le score TTFL de chaque joueur, planifie les picks sous le verrou de 31 jours et conseille le bonus x2.
+Aide à la décision uniquement : les picks se posent à la main sur fantasy.trashtalk.co (usage personnel, cf. CGU).
+
+```bash
+python -m src.ttfl.data        # box scores joueurs -> data/ttfl/games_<saison>.csv (+ score TTFL)
+python -m src.ttfl.schedule    # calendrier -> data/ttfl/schedule.csv
+python -m src.ttfl.model       # évalue sur la dernière saison complète, puis ré-entraîne (models/ttfl_model.pkl)
+python -m src.ttfl.backtest    # saison complète avec verrou : greedy L10 vs greedy modèle vs planificateur, x2
+streamlit run app.py           # page « TTFL Advisor »
+python -m unittest tests.test_ttfl   # tests (données synthétiques)
+```
+
+Hypothèse à vérifier : `LOCK_GAP_DAYS = 31` dans `src/ttfl/core.py` (« indisponible pour les 30 jours suivants »).
+Si ton deck TTFL redonne le joueur dès le 30e jour, passe la constante à 30.

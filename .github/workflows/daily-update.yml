@@ -46,6 +46,14 @@ jobs:
         run: python src/tracker.py --update
         continue-on-error: true
       
+      # TTFL Advisor : box scores joueurs + calendrier (le modèle est ré-entraîné le lundi seulement)
+      - name: 🎯 TTFL - données joueurs et calendrier
+        run: |
+          python -m src.ttfl.data
+          python -m src.ttfl.schedule
+          if [ "$(date +%u)" = "1" ] || [ ! -f models/ttfl_model.pkl ]; then python -m src.ttfl.model; fi
+        continue-on-error: true
+
       # Sauvegarder
       - name: 💾 Commit et push
         run: |
